@@ -1,6 +1,5 @@
 'use client';
 /** @jsxImportSource @emotion/react */
-import React from 'react';
 import Link from 'next/link';
 
 import { HeaderStyles } from './header-styles';
