@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import './globals.css';
+
+import './styles/main.scss';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 
@@ -15,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className="flex flex-col h-screen font-paperlogy text-base" suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <Header />
         <main className="flex-1 mt-[6.9rem]">{children}</main>
         <Footer />

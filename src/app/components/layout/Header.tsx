@@ -7,7 +7,6 @@ import Image from 'next/image';
 export default function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isHover, setIsHover] = useState(false);
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
