@@ -1,0 +1,70 @@
+footer {
+  padding: 8rem 10rem;
+  background-color: $color-primary-dark;
+  color: #ffffff;
+
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 2.4rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
+
+    .logo-area {
+      flex: 1;
+      max-width: 35rem;
+
+      .logo {
+        margin-bottom: 2rem;
+      }
+
+      .text {
+        font-size: 1.8rem;
+        color: $color-gray-300;
+      }
+    }
+
+    .service-area {
+      flex: 1;
+      display: flex;
+      gap: 6rem;
+
+      .service {
+        > h3 {
+          font-size: 1.6rem;
+          font-weight: 600;
+          color: #ffffff;
+          margin-bottom: 1.6rem;
+        }
+
+        > ul {
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+
+          li {
+            font-size: 1.4rem;
+            color: #ffffff;
+            > a {
+              transition: all 0.25s ease;
+
+              &:hover {
+                color: $color-secondary;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 3rem;
+    font-size: 1.3rem;
+    color: $color-gray-500;
+  }
+}

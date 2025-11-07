@@ -1,5 +1,14 @@
 @import './tailwind.css';
 
-@import './base/fonts.scss';
-@import './base/normalize.scss';
-@import './base/reset.scss';
+@import './utils/variables';
+@import './utils/mixins';
+
+@import './base/fonts';
+@import './base/colors';
+@import './base/normalize';
+@import './base/reset';
+
+@import './layout/layout';
+
+@import '../components/layout/styles';
+@import '../components/ui/styles';

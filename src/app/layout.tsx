@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 import './styles/main.scss';
-import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
+import Header from './components/layout/header/Header';
+import Footer from './components/layout/footer/Footer';
 
 export const metadata: Metadata = {
   title: 'Dream Box',

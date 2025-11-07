@@ -35,24 +35,20 @@ export default function Header() {
   }, [handleScroll]);
 
   return (
-    <header className={`fixed top-0 left-0 w-full h-[6.9rem] bg-cream  z-[1000] transition-all duration-300 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'} `}>
-      <div className="flex justify-between items-center h-full px-16">
-        <div className="h-auto">
-          <Link href="/" className="flex items-center">
+    <header className={isVisible ? 'is-visible gnb' : 'gnb'}>
+      <div className="l-inner header-wrap">
+        <div className="logo-wrap">
+          <Link href="/" className="logo">
             <Image src={'/assets/image/logo_dark.svg'} alt="logo" width={162} height={40} style={{ width: '162px', height: '40px' }} priority={true} />
           </Link>
         </div>
         <nav>
-          <ul className="flex justify-between items-center gap-[1.6rem] font-paperlogy font-semibold text-[2rem] text-primary-dark">
+          <ul className="menu-list">
             <li>
-              <Link href="/portfolio" className="inline-block py-4 px-8 opacity-80 transition-opacity duration-250 hover:opacity-100">
-                포트폴리오
-              </Link>
+              <Link href="/portfolio">포트폴리오</Link>
             </li>
             <li>
-              <Link href="/" className="inline-block py-4 px-8   opacity-80 transition-opacity duration-250 hover:opacity-100">
-                견적문의
-              </Link>
+              <Link href="/company">견적문의</Link>
             </li>
           </ul>
         </nav>
