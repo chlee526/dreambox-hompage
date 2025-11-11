@@ -12,6 +12,7 @@ interface ProductCardProps {
 
 export default function ProductCard(props: ProductCardProps) {
   const { product, onClick } = props;
+
   return (
     <div className="card" onClick={onClick}>
       <div className="thumbnail">

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import ProductCard from '../components/ui/product-card/ProductCard';
+import { ProductCard } from '../_components/ui';
 import { useRouter } from 'next/navigation';
 
 export default function PortfolioPage() {
