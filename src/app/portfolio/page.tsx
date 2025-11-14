@@ -1,12 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ProductCard } from '../_components/ui';
+import { ProductCard } from 'app/_components/ui';
 import { useRouter } from 'next/navigation';
+import { useGetPortfolios } from 'app/hooks/usePortfolio';
 
 export default function PortfolioPage() {
   const [activeTab, setActiveTab] = useState('all');
   const router = useRouter();
+
+  // React Query로 API에서 데이터 가져오기
+  const { data: portfolios, isLoading, error } = useGetPortfolios();
+
   const subTabList = [
     {
       label: '전체',
@@ -26,6 +31,7 @@ export default function PortfolioPage() {
     },
   ];
 
+  // 샘플 데이터 (폴백용)
   const sampleData = [
     {
       seq: 1,
@@ -77,6 +83,18 @@ export default function PortfolioPage() {
     },
   ];
 
+  console.log('portfolios', portfolios);
+
+  // Supabase 데이터를 UI에 맞게 변환
+  const displayData = portfolios?.length
+    ? portfolios.map((item) => ({
+        seq: item.id,
+        title: item.name,
+        desc: item.description,
+        thumbnail: '/assets/image/portfolio/sample1.jpg', // S3 URL 추가 필요
+      }))
+    : sampleData;
+
   const handleCardClick = (item: { seq: number; title: string; desc: string; thumbnail: string }) => {
     router.push(`/portfolio/${item.seq}`);
   };
@@ -104,13 +122,37 @@ export default function PortfolioPage() {
 
       {/* 포트폴리오 리스트 */}
       <div className="py-[4rem]">
-        <ul className="grid grid-cols-[repeat(auto-fill,minmax(30rem,1fr))] gap-[2rem]">
-          {sampleData.map((item) => (
-            <li key={item.seq} className="w-full h-auto max-h-[38rem]">
-              <ProductCard product={item} onClick={() => handleCardClick(item)} />
-            </li>
-          ))}
-        </ul>
+        {/* 로딩 상태 */}
+        {isLoading && (
+          <div className="flex justify-center items-center py-[10rem]">
+            <p className="text-primary-dark text-lg">로딩 중...</p>
+          </div>
+        )}
+
+        {/* 에러 상태 */}
+        {error && (
+          <div className="flex justify-center items-center py-[10rem]">
+            <p className="text-red-500 text-lg">데이터를 불러오는데 실패했습니다. 샘플 데이터를 표시합니다.</p>
+          </div>
+        )}
+
+        {/* 데이터가 없을 때 */}
+        {!isLoading && !error && displayData.length === 0 && (
+          <div className="flex justify-center items-center py-[10rem]">
+            <p className="text-primary-dark text-lg">포트폴리오가 없습니다.</p>
+          </div>
+        )}
+
+        {/* 포트폴리오 리스트 */}
+        {!isLoading && displayData.length > 0 && (
+          <ul className="grid grid-cols-[repeat(auto-fill,minmax(30rem,1fr))] gap-[2rem]">
+            {displayData.map((item) => (
+              <li key={item.seq} className="w-full h-auto max-h-[38rem]">
+                <ProductCard product={item} onClick={() => handleCardClick(item)} />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   );

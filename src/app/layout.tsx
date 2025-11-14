@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 
+import ReactQueryClientProvider from 'app/config/ReactQueryClientProvider';
+import { Header, Footer } from 'app/_components/layout';
 import './styles/main.scss';
-import { Header, Footer } from './_components/layout';
 
 export const metadata: Metadata = {
   title: 'Dream Box',
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body suppressHydrationWarning>
-        <Header />
-        <main className="flex-1 mt-[6.9rem]">{children}</main>
-        <Footer />
+        <ReactQueryClientProvider>
+          <Header />
+          <main className="flex-1 mt-[6.9rem]">{children}</main>
+          <Footer />
+        </ReactQueryClientProvider>
       </body>
     </html>
   );
