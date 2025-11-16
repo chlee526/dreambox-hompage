@@ -1,0 +1,39 @@
+.portfolio-section {
+  width: 100%;
+  padding: 10rem 6rem;
+  background-color: #f0eeeb;
+
+  .section-title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #5b1c1d;
+    margin-bottom: 4rem;
+  }
+
+  .portfolio-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    // grid-auto-rows: 45rem; // 모든 요소의 높이를 30rem으로 고정
+    // display: flex;
+    // justify-content: center;
+    // flex-wrap: wrap;
+    // max-width: 1400px;
+    gap: 3rem;
+
+    > li {
+      // width: calc(100% / 4);
+      height: 100%;
+
+      &.view-all-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .view-all-link {
+          font-size: 1.8rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

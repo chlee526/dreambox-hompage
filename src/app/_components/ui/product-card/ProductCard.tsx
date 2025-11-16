@@ -17,8 +17,11 @@ export default function ProductCard(props: ProductCardProps) {
     <div className="card" onClick={onClick}>
       <div className="thumbnail">
         <img src={product.thumbnail} alt={product.title} />
+
+        <div className="title">
+          <span>{product.title}</span>
+        </div>
       </div>
-      <span className="title text-primary-dark">{product.title}</span>
     </div>
   );
 }

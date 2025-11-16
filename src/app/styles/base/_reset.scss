@@ -12,12 +12,14 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   width: 100vw;
-  max-width: $doc_max_wid;
   height: 100%;
   margin: 0 auto;
   box-sizing: border-box;
   line-height: normal;
+  overflow-x: hidden;
 }
 
 a {
