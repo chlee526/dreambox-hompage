@@ -3,7 +3,7 @@ import { Tables } from 'root/types_db';
 import { NextRequest, NextResponse } from 'next/server';
 
 // 포트폴리오 타입
-export type Portfolio = Tables<'portfolioList'>;
+export type PortfolioType = Tables<'portfolioList'>;
 
 // Supabase에서 포트폴리오 데이터 가져오기
 // GET /api/portfolio - 전체 목록
@@ -16,7 +16,7 @@ export const GET = async (request: NextRequest): Promise<NextResponse> => {
 
     // id가 있으면 특정 아이템만 조회
     if (id) {
-      const { data, error } = await supabase.from('portfolioList').select('*').eq('id', Number(id)).single();
+      const { data, error } = await supabase.from('portfolioList').select('*').eq('seq', Number(id)).single();
 
       if (error) {
         console.error('포트폴리오 아이템 가져오기 실패:', error);

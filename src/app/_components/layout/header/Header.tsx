@@ -36,7 +36,7 @@ export default function Header() {
 
   return (
     <header className={isVisible ? 'is-visible gnb' : 'gnb'}>
-      <div className="l-inner header-wrap">
+      <div className="header-wrap">
         <div className="logo-wrap">
           <Link href="/" className="logo">
             <Image src={'/assets/image/logo_dark.svg'} alt="logo" width={162} height={40} style={{ width: '162px', height: '40px' }} priority={true} />

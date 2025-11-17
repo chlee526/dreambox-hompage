@@ -16,9 +16,8 @@
     gap: 3rem;
 
     > li {
-      // width: calc(100% / 4);
       height: auto;
-      max-height: 45rem;
+      max-height: 30rem;
 
       &.view-all-button {
         display: flex;

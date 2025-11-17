@@ -2,13 +2,13 @@
 
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { Portfolio } from '../api/portfolio/route';
+import { PortfolioType } from '../api/portfolio/route';
 
 // 포트폴리오 목록 조회
 export const useGetPortfolios = () => {
   const getPortfolios = async () => {
     const response = await axios.get('/api/portfolio');
-    return (response.data.data as Portfolio[]) || [];
+    return (response.data.data as PortfolioType[]) || [];
   };
 
   return useQuery({
@@ -22,7 +22,7 @@ export const useGetPortfolios = () => {
 export const useGetPortfolio = (id: number) => {
   const getPortfolio = async (id: number) => {
     const response = await axios.get(`/api/portfolio?id=${id}`);
-    return (response.data.data as Portfolio) || null;
+    return (response.data.data as PortfolioType) || null;
   };
 
   return useQuery({
