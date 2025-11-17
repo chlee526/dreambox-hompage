@@ -16,22 +16,25 @@ export type Database = {
     Tables: {
       portfolioList: {
         Row: {
-          created_at: string
           description: string
-          id: number
+          images: Json[]
           name: string
+          seq: number
+          thumbnail: string
         }
         Insert: {
-          created_at?: string
           description?: string
-          id?: number
+          images?: Json[]
           name?: string
+          seq?: number
+          thumbnail?: string
         }
         Update: {
-          created_at?: string
           description?: string
-          id?: number
+          images?: Json[]
           name?: string
+          seq?: number
+          thumbnail?: string
         }
         Relationships: []
       }

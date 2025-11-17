@@ -28,7 +28,7 @@ export const GET = async (request: NextRequest): Promise<NextResponse> => {
     }
 
     // id가 없으면 전체 목록 조회
-    const { data, error } = await supabase.from('portfolioList').select('*').order('created_at', { ascending: false });
+    const { data, error } = await supabase.from('portfolioList').select('*');
 
     if (error) {
       console.error('포트폴리오 목록 가져오기 실패:', error);

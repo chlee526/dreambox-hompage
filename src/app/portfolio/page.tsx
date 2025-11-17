@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ProductCard } from 'app/_components/ui';
 import { useRouter } from 'next/navigation';
 import { useGetPortfolios } from 'app/hooks/usePortfolio';
+import { Portfolio } from '../api/portfolio/route';
 
 export default function PortfolioPage() {
   const [activeTab, setActiveTab] = useState('all');
@@ -31,71 +32,7 @@ export default function PortfolioPage() {
     },
   ];
 
-  // 샘플 데이터 (폴백용)
-  const sampleData = [
-    {
-      seq: 1,
-      title: 'Sample Title 1',
-      desc: 'Sample Description 1',
-      thumbnail: '/assets/image/portfolio/sample1.jpg',
-    },
-    {
-      seq: 2,
-      title: 'Sample Title 2',
-      desc: 'Sample Description 2',
-      thumbnail: '/assets/image/portfolio/sample2.jpg',
-    },
-    {
-      seq: 3,
-      title: 'Sample Title 3',
-      desc: 'Sample Description 3',
-      thumbnail: '/assets/image/portfolio/sample3.jpg',
-    },
-    {
-      seq: 4,
-      title: 'Sample Title 4',
-      desc: 'Sample Description 4',
-      thumbnail: '/assets/image/portfolio/sample4.jpg',
-    },
-    {
-      seq: 5,
-      title: 'Sample Title 5',
-      desc: 'Sample Description 5',
-      thumbnail: '/assets/image/portfolio/sample5.jpg',
-    },
-    {
-      seq: 6,
-      title: 'Sample Title 6',
-      desc: 'Sample Description 6',
-      thumbnail: '/assets/image/portfolio/sample6.jpg',
-    },
-    {
-      seq: 7,
-      title: 'Sample Title 7',
-      desc: 'Sample Description 7',
-      thumbnail: '/assets/image/portfolio/sample7.jpg',
-    },
-    {
-      seq: 8,
-      title: 'Sample Title 8',
-      desc: 'Sample Description 8',
-      thumbnail: '/assets/image/portfolio/sample8.jpg',
-    },
-  ];
-
-  console.log('portfolios', portfolios);
-
-  // Supabase 데이터를 UI에 맞게 변환
-  const displayData = portfolios?.length
-    ? portfolios.map((item) => ({
-        seq: item.id,
-        title: item.name,
-        desc: item.description,
-        thumbnail: '/assets/image/portfolio/sample1.jpg', // S3 URL 추가 필요
-      }))
-    : sampleData;
-
-  const handleCardClick = (item: { seq: number; title: string; desc: string; thumbnail: string }) => {
+  const handleCardClick = (item: Portfolio) => {
     router.push(`/portfolio/${item.seq}`);
   };
 
@@ -137,16 +74,16 @@ export default function PortfolioPage() {
         )}
 
         {/* 데이터가 없을 때 */}
-        {!isLoading && !error && displayData.length === 0 && (
+        {!isLoading && !error && portfolios && portfolios.length === 0 && (
           <div className="flex justify-center items-center py-[10rem]">
             <p className="text-primary-dark text-lg">포트폴리오가 없습니다.</p>
           </div>
         )}
 
         {/* 포트폴리오 리스트 */}
-        {!isLoading && displayData.length > 0 && (
+        {!isLoading && portfolios && portfolios.length > 0 && (
           <ul className="grid grid-cols-[repeat(auto-fill,minmax(30rem,1fr))] gap-[2rem]">
-            {displayData.map((item) => (
+            {portfolios?.map((item) => (
               <li key={item.seq} className="w-full h-auto max-h-[38rem]">
                 <ProductCard product={item} onClick={() => handleCardClick(item)} />
               </li>

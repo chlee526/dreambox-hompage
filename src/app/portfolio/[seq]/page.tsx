@@ -47,8 +47,7 @@ export default function PortfolioDetailPage() {
 
         {/* 여기에 추가 상세 정보나 이미지 등을 표시 */}
         <div className="bg-gray-100 p-[4rem] rounded-lg">
-          <p className="text-md text-gray-600">ID: {detailData.id}</p>
-          <p className="text-md text-gray-600">생성일: {new Date(detailData.created_at).toLocaleDateString('ko-KR')}</p>
+          <p className="text-md text-gray-600">ID: {detailData.seq}</p>
         </div>
       </div>
     </section>

@@ -8,13 +8,13 @@ import { Portfolio } from '../api/portfolio/route';
 export const useGetPortfolios = () => {
   const getPortfolios = async () => {
     const response = await axios.get('/api/portfolio');
-    return response.data.data as Portfolio[];
+    return (response.data.data as Portfolio[]) || [];
   };
 
   return useQuery({
     queryKey: ['portfolios'],
     queryFn: getPortfolios,
-    staleTime: 1000 * 60 * 5, // 5분
+    // staleTime: 1000 * 60 * 5, // 5분
   });
 };
 
@@ -22,13 +22,13 @@ export const useGetPortfolios = () => {
 export const useGetPortfolio = (id: number) => {
   const getPortfolio = async (id: number) => {
     const response = await axios.get(`/api/portfolio?id=${id}`);
-    return response.data.data as Portfolio;
+    return (response.data.data as Portfolio) || null;
   };
 
   return useQuery({
     queryKey: ['portfolio', id],
     queryFn: () => getPortfolio(id),
-    staleTime: 1000 * 60 * 5, // 5분
+    // staleTime: 1000 * 60 * 5, // 5분
     enabled: !!id, // id가 있을 때만 실행
   });
 };
