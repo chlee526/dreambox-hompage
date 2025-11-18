@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { useGetPortfolio } from '../../hooks/usePortfolio';
+import './style.scss';
 
 export default function PortfolioDetailPage() {
   const params = useParams();
@@ -40,14 +41,17 @@ export default function PortfolioDetailPage() {
   }
 
   return (
-    <section className="h-full px-[6rem] py-[4rem] bg-[#fff]">
-      <div className="max-w-[120rem] mx-auto">
-        <h1 className="text-2xl font-bold text-primary-dark mb-[2rem]">{detailData.name}</h1>
-        <p className="text-lg text-gray-700 mb-[4rem]">{detailData.description}</p>
-
-        {/* 여기에 추가 상세 정보나 이미지 등을 표시 */}
-        <div className="bg-gray-100 p-[4rem] rounded-lg">
-          <p className="text-md text-gray-600">ID: {detailData.seq}</p>
+    <section className="page-portfolio-detail">
+      <div className="wrap">
+        <div className="desc-area">
+          <p>{detailData.description}</p>
+        </div>
+        <div className="image-area">
+          <div className="image-list">
+            {detailData.images.map((image, index) => (
+              <img key={index} src={image as string} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

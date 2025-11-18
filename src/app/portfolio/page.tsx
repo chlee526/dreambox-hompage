@@ -24,21 +24,14 @@ export default function PortfolioPage() {
   ];
 
   useEffect(() => {
-    const clonePortfolio = structuredClone(portfolios || []);
-    switch (activeTab) {
-      case 'etc':
-        setDisplayData(clonePortfolio.filter((item) => item.category === 'etc'));
-        break;
-      case 'package':
-        setDisplayData(clonePortfolio.filter((item) => item.category === 'package'));
-        break;
-      case 'bag':
-        setDisplayData(clonePortfolio.filter((item) => item.category === 'bag'));
-        break;
-      default:
-        setDisplayData(clonePortfolio);
-        break;
+    if (!portfolios) {
+      setDisplayData([]);
+      return;
     }
+
+    const filteredData = activeTab === 'all' ? portfolios : portfolios.filter((item) => item.category === activeTab);
+
+    setDisplayData(filteredData);
   }, [portfolios, activeTab]);
 
   const handleCardClick = (item: PortfolioType) => {
@@ -58,10 +51,8 @@ export default function PortfolioPage() {
         <div className="sub-tab">
           <ul className="sub-tab-list">
             {subTabList.map((item) => (
-              <li key={item.value} className={` border-b-2  text-primary-dark opacity-[0.8] hover:opacity-[1] ${activeTab === item.value ? 'border-primary-dark' : 'border-transparent'}`}>
-                <button className="px-[2rem] py-[0.6rem] whitespace-nowrap" onClick={() => setActiveTab(item.value)}>
-                  {item.label}
-                </button>
+              <li key={item.value} className="sub-tab-item" style={{ '--borderColor': activeTab === item.value ? '#3b1112' : 'transparent' } as React.CSSProperties}>
+                <button onClick={() => setActiveTab(item.value)}>{item.label}</button>
               </li>
             ))}
           </ul>

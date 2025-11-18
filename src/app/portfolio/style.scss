@@ -41,6 +41,22 @@
       font-size: 1.8rem;
       font-weight: 500;
     }
+
+    &-item {
+      border-bottom: 3px solid var(--borderColor);
+      color: $color-primary-dark;
+      transition: all 0.25s ease;
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      > button {
+        padding: 0.6rem 2rem;
+        white-space: nowrap;
+      }
+    }
   }
 
   .section-portfolios {
@@ -48,7 +64,7 @@
 
     > .list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+      grid-template-columns: repeat(auto-fill, 1fr);
       gap: 2rem;
 
       .item {
