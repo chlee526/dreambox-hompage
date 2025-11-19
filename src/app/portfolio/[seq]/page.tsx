@@ -42,15 +42,19 @@ export default function PortfolioDetailPage() {
 
   return (
     <section className="page-portfolio-detail">
-      <div className="wrap">
-        <div className="desc-area">
-          <p>{detailData.description}</p>
-        </div>
-        <div className="image-area">
-          <div className="image-list">
-            {detailData.images.map((image, index) => (
-              <img key={index} src={image as string} />
-            ))}
+      <div className="l-inner">
+        <div className="wrap">
+          <div className="image-area">
+            <div className="image-list">
+              {detailData.images.map((image, index) => (
+                <div key={index}>
+                  <img src={image as string} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="desc-area">
+            <p>{detailData.description}</p>
           </div>
         </div>
       </div>
