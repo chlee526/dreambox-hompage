@@ -2,28 +2,22 @@
 
 import Link from 'next/link';
 import { ProductCard } from '../_components/ui';
-import { useGetPortfolios } from '../hooks/usePortfolio';
 import './style.scss';
-import { useEffect, useState } from 'react';
-import { PortfolioType } from '../api/portfolio/route';
+import { PortfolioType } from '@/types/portfolio';
 
-export default function Portfolio() {
-  const { data: portfolios, isLoading, error } = useGetPortfolios();
-  const [previewData, setPreviewData] = useState<PortfolioType[]>([]);
+interface PortfolioProps {
+  portfolios: PortfolioType[];
+}
 
-  useEffect(() => {
-    const filteredData = portfolios?.filter((item) => item.isPreview) || [];
-    setPreviewData(filteredData);
-  }, [portfolios]);
-
+export default function Portfolio({ portfolios }: PortfolioProps) {
   return (
     <section className="portfolio-section">
       <div className="l-inner">
         <h2 className="section-title">Portfolio</h2>
 
-        {!isLoading && previewData.length > 0 && (
+        {portfolios.length > 0 && (
           <ul className="portfolio-list">
-            {previewData.map((item) => (
+            {portfolios.map((item) => (
               <li key={item.seq} className="w-full">
                 <ProductCard product={item} />
               </li>

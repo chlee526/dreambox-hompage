@@ -1,54 +1,51 @@
-'use client';
-
-import { useParams } from 'next/navigation';
-import React, { useEffect } from 'react';
-import { useGetPortfolio } from '../../hooks/usePortfolio';
+import React from 'react';
+import { notFound } from 'next/navigation';
 import './style.scss';
+import { getPortfolio, getPortfolios } from '@/services/portfolio.service';
 
-export default function PortfolioDetailPage() {
-  const params = useParams();
-  const id = Number(params.seq);
+// 빌드 시 모든 포트폴리오 상세 페이지를 정적으로 생성
+export async function generateStaticParams() {
+  const portfolios = await getPortfolios();
 
-  const { data: detailData, isLoading, error } = useGetPortfolio(id);
+  return portfolios.map((portfolio) => ({
+    seq: portfolio.seq.toString(),
+  }));
+}
 
-  useEffect(() => {
-    console.log('Portfolio ID:', id);
-    console.log('Portfolio Data:', detailData);
-  }, [id, detailData]);
+// ISR: 1시간마다 재생성
+export const revalidate = 3600; // 3600초 = 1시간
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-lg">로딩 중...</p>
-      </div>
-    );
-  }
+// 동적 세그먼트를 정적으로 생성하되, 없는 경로는 404 처리
+export const dynamicParams = true;
 
-  if (error) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-lg text-red-500">에러: {error.message}</p>
-      </div>
-    );
-  }
+interface PortfolioDetailPageProps {
+  params: Promise<{ seq: string }>;
+}
 
+export default async function PortfolioDetailPage({ params }: PortfolioDetailPageProps) {
+  const { seq } = await params;
+  const id = Number(seq);
+
+  // 서버에서 데이터 가져오기
+  const detailData = await getPortfolio(id);
+
+  // 데이터가 없으면 404 페이지 표시
   if (!detailData) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-lg">포트폴리오를 찾을 수 없습니다.</p>
-      </div>
-    );
+    notFound();
   }
 
   return (
     <section className="page-portfolio-detail">
       <div className="l-inner">
+        <div className="header">
+          <h3>{detailData.name}</h3>
+        </div>
         <div className="wrap">
           <div className="image-area">
             <div className="image-list">
               {detailData.images.map((image, index) => (
                 <div key={index}>
-                  <img src={image as string} />
+                  <img src={image as string} alt={`${detailData.name} - ${index + 1}`} />
                 </div>
               ))}
             </div>

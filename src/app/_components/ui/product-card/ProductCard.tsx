@@ -1,9 +1,8 @@
-import Image from 'next/image';
 import React from 'react';
-import { Portfolio } from 'root/src/app/api/portfolio/route';
+import { PortfolioType } from '@/types/portfolio';
 
 interface ProductCardProps {
-  product: Portfolio;
+  product: PortfolioType;
   onClick?: () => void;
 }
 

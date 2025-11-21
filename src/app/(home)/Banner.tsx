@@ -1,5 +1,3 @@
-'use client';
-
 export default function Banner() {
   return (
     <section className="flex flex-col justify-center  gap-[6rem] w-full h-screen mt-[-6.9rem] px-[12rem]  bg-cover bg-top bg-no-repeat" style={{ backgroundImage: "url('/assets/image/banner.png')" }}>
