@@ -48,7 +48,7 @@ export default function Header() {
               <Link href="/portfolio">포트폴리오</Link>
             </li>
             <li>
-              <Link href="/company">견적문의</Link>
+              <Link href="/contact">문의하기</Link>
             </li>
           </ul>
         </nav>

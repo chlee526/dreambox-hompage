@@ -1,0 +1,61 @@
+@import 'app/styles/base/colors';
+
+.page-contact {
+}
+
+.content-wrap {
+  display: flex;
+  gap: 2rem;
+
+  .lc {
+    flex-shrink: 0;
+    width: 50%;
+
+    > .content {
+      height: 100%;
+    }
+
+    > .content > .map {
+      height: 100%;
+    }
+  }
+
+  .rc {
+    flex: 1;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      // font-family: 'Pretendard';
+      font-size: 1.6rem;
+      font-weight: 500;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        // align-items: ;
+        gap: 0.5rem;
+
+        > label {
+          color: $color-primary-dark;
+          // width: 8rem;
+        }
+
+        &.content {
+          // flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      > button {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        background-color: $color-primary-dark;
+        color: #ffffff;
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+    }
+  }
+}

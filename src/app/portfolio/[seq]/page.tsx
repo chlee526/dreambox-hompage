@@ -1,22 +1,22 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import './style.scss';
-import { getPortfolio, getPortfolios } from '@/services/portfolio.service';
+import { getPortfolio } from '@/services/portfolio.service';
 
 // 빌드 시 모든 포트폴리오 상세 페이지를 정적으로 생성
-export async function generateStaticParams() {
-  const portfolios = await getPortfolios();
+// export async function generateStaticParams() {
+//   const portfolios = await getPortfolios();
 
-  return portfolios.map((portfolio) => ({
-    seq: portfolio.seq.toString(),
-  }));
-}
+//   return portfolios.map((portfolio) => ({
+//     seq: portfolio.seq.toString(),
+//   }));
+// }
 
-// ISR: 1시간마다 재생성
-export const revalidate = 3600; // 3600초 = 1시간
+// // ISR: 1시간마다 재생성
+// export const revalidate = 3600; // 3600초 = 1시간
 
 // 동적 세그먼트를 정적으로 생성하되, 없는 경로는 404 처리
-export const dynamicParams = true;
+// export const dynamicParams = true;
 
 interface PortfolioDetailPageProps {
   params: Promise<{ seq: string }>;
@@ -51,7 +51,18 @@ export default async function PortfolioDetailPage({ params }: PortfolioDetailPag
             </div>
           </div>
           <div className="desc-area">
-            <p>{detailData.description}</p>
+            <ul className="info-data-list">
+              {detailData?.infoData.map((sort) => (
+                <li key={sort.code}>
+                  <strong>{sort.name}</strong>
+                  <span>{sort.value}</span>
+                </li>
+              ))}
+            </ul>
+            <hr />
+            <div className="description">
+              <p>{detailData.description}</p>
+            </div>
           </div>
         </div>
       </div>

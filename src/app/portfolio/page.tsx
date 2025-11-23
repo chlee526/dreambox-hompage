@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.scss';
+import './portfolio-style.scss';
 import PortfolioClient from './PortfolioClient';
 import { getPortfolios } from '@/services/portfolio.service';
 
@@ -11,9 +11,9 @@ export default async function PortfolioPage() {
   const portfolios = await getPortfolios();
 
   return (
-    <section className="page-portfolio">
+    <section className="l-page page-portfolio">
       <div className="l-inner">
-        <div className="page-portfolio-header">
+        <div className="l-page-header">
           <h3>Portfolio</h3>
           <span>드림박스가 제작한 다양한 패키지를 소개합니다.</span>
         </div>
