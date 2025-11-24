@@ -234,3 +234,32 @@
   //filter: url("data:image/svg+xml;utf8,<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"blur\"><feGaussianBlur stdDeviation=\"#{#{$radius}}\" /></filter></svg>#blur"); /* Firefox, Safari, Chrome*/
   filter: progid:DXImageTransform.Microsoft.Blur(Strength=#{$radius}); /* IE9 */
 }
+
+// 반응형 미디어 쿼리
+// 모바일: 768px 이하
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+// 태블릿: 769px ~ 1024px
+@mixin tablet {
+  @media (min-width: 769px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+// 데스크톱 소형: 1025px ~ 1400px
+@mixin desktop-sm {
+  @media (min-width: 1025px) and (max-width: 1400px) {
+    @content;
+  }
+}
+
+// 모바일 + 태블릿
+@mixin mobile-tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}

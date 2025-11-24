@@ -1,27 +1,76 @@
-export default function Banner() {
-  return (
-    <section className="flex flex-col justify-center  gap-[6rem] w-full h-screen mt-[-6.9rem] px-[12rem]  bg-cover bg-top bg-no-repeat" style={{ backgroundImage: "url('/assets/image/banner.png')" }}>
-      <div className="flex flex-col text-secondary">
-        <p className="mb-16 text-[50px] font-bold leading-[1.3] tracking-[0.2rem]">
-          당신의 브랜드를
-          <br />
-          담는 첫 번째 순간
-          <br /> DREAM BOX
-        </p>
+'use client';
 
-        <p className="text-[32px] font-medium leading-[1.4]">
-          필요한 만큼, 원하는 방식으로
-          <br /> 소량 맞춤 제작으로 브랜드 감성을 완성합니다.
-        </p>
+import Link from 'next/link';
+import Image from 'next/image';
+import { useContactModalStore } from '@/stores/useContactModalStore';
+
+export default function Banner() {
+  const openModal = useContactModalStore((state) => state.openModal);
+
+  // 박스 이미지 설정 (public/assets/image/boxes/ 폴더에 이미지 추가 필요)
+  const boxes = [
+    { id: 1, image: '/assets/image/boxes/box3.png', size: 120, delay: 0, duration: 8, x: 10, y: 15, rotation: 15 },
+    { id: 2, image: '/assets/image/boxes/box5.png', size: 100, delay: 1, duration: 10, x: 85, y: 20, rotation: -20 },
+    { id: 3, image: '/assets/image/boxes/box4.png', size: 80, delay: 2, duration: 7, x: 15, y: 75, rotation: 10 },
+    { id: 4, image: '/assets/image/boxes/bag1.png', size: 90, delay: 0.5, duration: 9, x: 78, y: 70, rotation: -15 },
+    { id: 5, image: '/assets/image/boxes/box1.png', size: 110, delay: 1.5, duration: 11, x: 50, y: 85, rotation: 25 },
+    { id: 6, image: '/assets/image/boxes/box2.png', size: 70, delay: 0.8, duration: 6, x: 92, y: 50, rotation: -10 },
+  ];
+
+  return (
+    <section className="banner-section">
+      {/* 떠다니는 박스 이미지들 */}
+      <div className="floating-boxes">
+        {boxes.map((box) => (
+          <div
+            key={box.id}
+            className="box-image"
+            style={
+              {
+                '--delay': `${box.delay}s`,
+                '--duration': `${box.duration}s`,
+                '--x': `${box.x}%`,
+                '--y': `${box.y}%`,
+                '--size': `${box.size}px`,
+                '--rotation': `${box.rotation}deg`,
+              } as React.CSSProperties
+            }
+          >
+            <Image src={box.image} alt="box decoration" width={box.size} height={box.size} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          </div>
+        ))}
       </div>
 
-      <div className="flex  items-start gap-[1.6rem]">
-        <button className="py-[10px] px-[20px] rounded-[0.8rem] border-2 border-secondary bg-transparent text-secondary transition-all duration-200 hover:bg-secondary hover:text-primary hover:border-primary">
-          <span className="text-lg font-semibold">상담 및 견적 문의</span>
-        </button>
-        <button className="py-[10px] px-[20px] rounded-[0.8rem] border-2 border-secondary bg-transparent text-secondary transition-all duration-200 hover:bg-secondary hover:text-primary hover:border-primary">
-          <span className="text-lg font-semibold">포트폴리오 보기</span>
-        </button>
+      {/* 그라데이션 오버레이 */}
+      <div className="banner-overlay" />
+
+      {/* 콘텐츠 */}
+      <div className="banner-wrapper">
+        <div className="banner-content">
+          <p className="banner-title">
+            <span className="title-line">당신의 브랜드를</span>
+            <span className="title-line">담는 첫 번째 순간</span>
+            <span className="title-line highlight">DREAM BOX</span>
+          </p>
+
+          <p className="banner-subtitle">
+            <span className="subtitle-line">필요한 만큼, 원하는 방식으로</span>
+            <span className="subtitle-line">소량 맞춤 제작으로 브랜드 감성을 완성합니다.</span>
+          </p>
+        </div>
+
+        <div className="banner-buttons">
+          <button onClick={openModal} className="banner-btn primary-btn">
+            <span>문의하기</span>
+            <div className="btn-shine" />
+          </button>
+          <Link href="/portfolio">
+            <button className="banner-btn secondary-btn">
+              <span>포트폴리오 보기</span>
+              <div className="btn-shine" />
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );

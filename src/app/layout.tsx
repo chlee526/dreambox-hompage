@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 
 import ReactQueryClientProvider from 'root/src/app/_config/ReactQueryClientProvider';
 import { Header, Footer } from 'app/_components/layout';
+import GlobalContactModal from 'app/_components/GlobalContactModal';
 import './styles/main.scss';
-import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Dream Box',
@@ -15,8 +15,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const KAKAO_SDK_URL = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_KEY}&autoload=false`;
-
   return (
     <html lang="ko">
       <body suppressHydrationWarning>
@@ -24,9 +22,8 @@ export default function RootLayout({
           <Header />
           <main className="flex-1 mt-[6.9rem]">{children}</main>
           <Footer />
+          <GlobalContactModal />
         </ReactQueryClientProvider>
-
-        <Script src={KAKAO_SDK_URL} strategy="beforeInteractive" />
       </body>
     </html>
   );

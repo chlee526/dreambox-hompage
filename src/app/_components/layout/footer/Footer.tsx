@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="footer-top">
           <div className="logo-area">
             <div className="logo">
-              <Image src={'/assets/image/logo_light.svg'} alt="logo" width={162} height={40} style={{ width: '162px', height: '40px' }} priority={true} />
+              <Image src={'/assets/image/logo_light.svg'} alt="logo" width={162} height={40} priority={true} />
             </div>
 
             <p className="text">당신의 꿈을 담는 상자, 드림박스</p>

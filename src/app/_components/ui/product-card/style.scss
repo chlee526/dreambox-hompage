@@ -1,4 +1,5 @@
 /* 포트폴리오 썸네일 호버 효과 */
+@import 'app/styles/utils/mixins';
 
 .card {
   position: relative;
@@ -13,6 +14,10 @@
   &:hover {
     transform: scale(1.01);
     transition: all duration(0.3s);
+
+    @include mobile {
+      transform: scale(1);
+    }
   }
 
   .thumbnail {
@@ -23,6 +28,10 @@
     border-radius: 1rem;
     overflow: hidden;
     // transition: all 0.3s;
+
+    @include mobile {
+      border-radius: 0.8rem;
+    }
 
     > img {
       width: 100%;
@@ -73,6 +82,10 @@
 
       img {
         transform: scale(1.1);
+
+        @include mobile {
+          transform: scale(1);
+        }
       }
       &::before {
         // background-color: rgba(0, 0, 0, 0.2);
@@ -100,12 +113,28 @@
 
       transition: all 0.4s ease-in-out;
 
+      @include mobile-tablet {
+        padding-bottom: 20px;
+      }
+
+      @include mobile {
+        padding-bottom: 16px;
+      }
+
       > span {
         font-size: 1.8rem;
         font-weight: 400;
         color: #fff;
         text-align: center;
         white-space: nowrap;
+
+        @include mobile-tablet {
+          font-size: 1.6rem;
+        }
+
+        @include mobile {
+          font-size: 1.4rem;
+        }
       }
     }
   }

@@ -3,10 +3,12 @@
 import Link from 'next/link';
 import { useEffect, useState, useCallback } from 'react';
 import Image from 'next/image';
+import { useContactModalStore } from '@/stores/useContactModalStore';
 
 export default function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const openModal = useContactModalStore((state) => state.openModal);
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
@@ -39,7 +41,7 @@ export default function Header() {
       <div className="header-wrap">
         <div className="logo-wrap">
           <Link href="/" className="logo">
-            <Image src={'/assets/image/logo_dark.svg'} alt="logo" width={162} height={40} style={{ width: '162px', height: '40px' }} priority={true} />
+            <Image src={'/assets/image/logo_dark.svg'} alt="logo" width={162} height={40} priority={true} />
           </Link>
         </div>
         <nav>
@@ -48,7 +50,9 @@ export default function Header() {
               <Link href="/portfolio">포트폴리오</Link>
             </li>
             <li>
-              <Link href="/contact">문의하기</Link>
+              <button onClick={openModal} className="contact-btn">
+                문의하기
+              </button>
             </li>
           </ul>
         </nav>

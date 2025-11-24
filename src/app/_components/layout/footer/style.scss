@@ -1,7 +1,17 @@
+@import 'app/styles/utils/mixins';
+
 footer {
   padding: 6rem;
   background-color: $color-primary-dark;
   color: #ffffff;
+
+  @include mobile-tablet {
+    padding: 5rem 4rem;
+  }
+
+  @include mobile {
+    padding: 4rem 2rem;
+  }
 
   .footer-top {
     display: flex;
@@ -10,17 +20,64 @@ footer {
     padding-bottom: 3rem;
     border-bottom: 1px solid rgb(255 255 255 / 10%);
 
+    @include mobile-tablet {
+      flex-direction: column;
+      gap: 3rem;
+      padding-bottom: 2.4rem;
+    }
+
+    @include mobile {
+      flex-direction: column;
+      gap: 2.4rem;
+      padding-bottom: 2rem;
+    }
+
     .logo-area {
       flex: 1;
       max-width: 35rem;
 
+      @include mobile-tablet {
+        max-width: 100%;
+      }
+
+      @include mobile {
+        max-width: 100%;
+      }
+
       .logo {
         margin-bottom: 2rem;
+        width: 162px;
+        height: 40px;
+
+        @include mobile-tablet {
+          width: 140px;
+          height: 35px;
+        }
+
+        @include mobile {
+          margin-bottom: 1.6rem;
+          width: 130px;
+          height: 32px;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
       }
 
       .text {
         font-size: 1.8rem;
         color: $color-gray-300;
+
+        @include mobile-tablet {
+          font-size: 1.6rem;
+        }
+
+        @include mobile {
+          font-size: 1.5rem;
+        }
       }
     }
 
@@ -29,12 +86,30 @@ footer {
       display: flex;
       gap: 6rem;
 
+      @include tablet {
+        gap: 4rem;
+      }
+
+      @include mobile {
+        gap: 3rem;
+        flex-direction: column;
+      }
+
       .service {
+        @include mobile {
+          flex: 1;
+        }
+
         > h3 {
           font-size: 1.6rem;
           font-weight: 600;
           color: #ffffff;
           margin-bottom: 1.6rem;
+
+          @include mobile {
+            font-size: 1.5rem;
+            margin-bottom: 1.2rem;
+          }
         }
 
         > ul {
@@ -42,9 +117,18 @@ footer {
           flex-direction: column;
           gap: 1.2rem;
 
+          @include mobile {
+            gap: 1rem;
+          }
+
           li {
             font-size: 1.4rem;
             color: #ffffff;
+
+            @include mobile {
+              font-size: 1.3rem;
+            }
+
             > a {
               transition: all 0.25s ease;
 
@@ -66,5 +150,32 @@ footer {
     padding-top: 3rem;
     font-size: 1.3rem;
     color: $color-gray-500;
+
+    @include mobile-tablet {
+      padding-top: 2.4rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+
+    @include mobile {
+      padding-top: 2rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 1.2rem;
+    }
+
+    > div {
+      @include mobile {
+        width: 100%;
+      }
+
+      > p {
+        @include mobile {
+          line-height: 1.6;
+        }
+      }
+    }
   }
 }

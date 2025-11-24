@@ -1,15 +1,33 @@
+@import 'app/styles/utils/mixins';
+
 .l-inner {
   position: relative;
   max-width: 140rem;
   height: 100%;
   margin: 0 auto;
   transition: padding 0.3s;
+
+  @include mobile-tablet {
+    padding: 0 2rem;
+  }
+
+  @include mobile {
+    padding: 0 1.6rem;
+  }
 }
 
 .l-page {
   height: 100%;
   padding: 4rem 6rem;
   background-color: #fff;
+
+  @include mobile-tablet {
+    padding: 3rem 4rem;
+  }
+
+  @include mobile {
+    padding: 2rem 2rem;
+  }
 
   &-header {
     display: flex;
@@ -18,21 +36,43 @@
     color: $color-primary-dark;
     margin-bottom: 4rem;
 
+    @include mobile-tablet {
+      margin-bottom: 3rem;
+    }
+
+    @include mobile {
+      margin-bottom: 2.4rem;
+      gap: 1.2rem;
+    }
+
     &::before {
       content: '';
       display: block;
       width: 0.4rem;
       height: 3.6rem;
       background-color: $color-primary-dark;
+
+      @include mobile {
+        width: 0.3rem;
+        height: 2.8rem;
+      }
     }
 
     > h3 {
       font-size: 2.4rem;
       font-weight: 700;
+
+      @include mobile {
+        font-size: 2rem;
+      }
     }
 
     > span {
       font-size: 1.6rem;
+
+      @include mobile {
+        font-size: 1.4rem;
+      }
     }
   }
 }
