@@ -29,7 +29,7 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="service">
+            {/* <div className="service">
               <h3>고객지원</h3>
               <ul>
                 <li>
@@ -39,7 +39,7 @@ export default function Footer() {
                   <Link href="/">개인정보처리방침</Link>
                 </li>
               </ul>
-            </div>
+            </div> */}
 
             <div className="service">
               <h3>연락처</h3>

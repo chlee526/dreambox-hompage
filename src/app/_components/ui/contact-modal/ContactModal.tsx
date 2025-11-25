@@ -4,14 +4,8 @@ import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IoClose } from 'react-icons/io5';
 import { useContactModalStore } from '@/stores/useContactModalStore';
+import { sendEmail, ContactFormData } from '@/services/sendAction.service';
 import './style.scss';
-
-interface ContactFormData {
-  name: string;
-  phone: string;
-  email: string;
-  content: string;
-}
 
 export default function ContactModal() {
   const { isOpen, closeModal } = useContactModalStore();
@@ -51,15 +45,18 @@ export default function ContactModal() {
 
   const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
     try {
-      console.log('제출 데이터:', data);
-      // TODO: API 호출 또는 Supabase에 저장
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // 시뮬레이션
-      alert('문의가 접수되었습니다.');
-      reset();
-      closeModal();
+      const result = await sendEmail(data);
+
+      if (result.success) {
+        alert('문의가 성공적으로 접수되었습니다.\n빠른 시일 내에 답변 드리겠습니다.');
+        reset();
+        closeModal();
+      } else {
+        alert(result.message || '문의 접수에 실패했습니다. 다시 시도해주세요.');
+      }
     } catch (error) {
       console.error('제출 실패:', error);
-      alert('문의 접수에 실패했습니다. 다시 시도해주세요.');
+      alert('문의 접수에 실패했습니다. 잠시 후 다시 시도해주세요.');
     }
   };
 

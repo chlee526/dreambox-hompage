@@ -24,7 +24,7 @@ export default function Portfolio({ portfolios }: PortfolioProps) {
             ))}
             <li className="view-all-button">
               <Link href="/portfolio" className="view-all-link">
-                전체보기
+                <span>전체보기</span>
               </Link>
             </li>
           </ul>
