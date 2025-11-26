@@ -1,7 +1,7 @@
 import React from 'react';
-import './portfolio-style.scss';
+import './style.scss';
 import PortfolioClient from './PortfolioClient';
-import { getPortfolios } from '@/services/portfolio.service';
+import { getPortfolios } from '@/lib/services/portfolio';
 
 // ISR: 1시간마다 재생성
 export const revalidate = 3600; // 3600초 = 1시간

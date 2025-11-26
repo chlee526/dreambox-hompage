@@ -1,7 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import './style.scss';
-import { getPortfolio } from '@/services/portfolio.service';
+import { getPortfolio } from '@/lib/services/portfolio';
 
 // 빌드 시 모든 포트폴리오 상세 페이지를 정적으로 생성
 // export async function generateStaticParams() {

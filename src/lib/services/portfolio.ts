@@ -2,8 +2,8 @@ import { createClient } from '@/utils/supabase/server';
 import { PortfolioType } from '@/types/portfolio';
 
 /**
- * 포트폴리오 서비스
- * Supabase에서 포트폴리오 데이터를 가져오는 로직을 모듈화
+ * 포트폴리오 서버 서비스
+ * Supabase에서 포트폴리오 데이터를 직접 가져오는 서버사이드 로직
  */
 
 /**

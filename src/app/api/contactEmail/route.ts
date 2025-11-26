@@ -3,7 +3,7 @@ import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, phone, email, content } = await request.json();
+    const { name, phone, email, subject, content } = await request.json();
 
     // 필수 필드 검증
     if (!name || !phone || !email || !content) {
@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     const mailOptions = {
       from: `"${process.env.MAIL_FROM_NAME}" <${process.env.SMTP_USER}>`,
       to: process.env.MAIL_TO, // 문의를 받을 이메일 주소
-      subject: `[문의] ${name}님의 문의사항`,
+      subject: `[드림박스 문의] ${subject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
           <h2 style="color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px;">새로운 문의가 도착했습니다</h2>
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
 
           <div style="margin: 20px 0;">
             <h3 style="color: #333; margin-bottom: 10px;">문의 내용</h3>
-            <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; white-space: pre-wrap;">
+            <div style="background-color: #f9f9f9; padding: 10px; border-radius: 5px; white-space: pre-wrap;">
               ${content}
             </div>
           </div>
@@ -66,11 +66,12 @@ export async function POST(request: NextRequest) {
         </div>
       `,
       text: `
-새로운 문의가 도착했습니다
+${name}님의 문의가 도착했습니다.
 
 이름: ${name}
 연락처: ${phone}
 이메일: ${email}
+제목: ${subject}
 
 문의 내용:
 ${content}

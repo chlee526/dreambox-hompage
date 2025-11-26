@@ -23,3 +23,4 @@ export default function ProductCard(props: ProductCardProps) {
     </div>
   );
 }
+

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ProductCard } from '../_components/ui';
+import { ProductCard } from '@/components/ui';
 import './style.scss';
 import { PortfolioType } from '@/types/portfolio';
 

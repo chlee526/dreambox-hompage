@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import ReactQueryClientProvider from 'root/src/app/_config/ReactQueryClientProvider';
-import { Header, Footer } from 'app/_components/layout';
-import GlobalContactModal from 'app/_components/GlobalContactModal';
+import ReactQueryClientProvider from 'root/src/app/_provider/ReactQueryClientProvider';
+import { Header, Footer } from '@/components/layout';
+import { ContactModal } from '@/components/ui';
 import './styles/main.scss';
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1 mt-[6.9rem]">{children}</main>
           <Footer />
-          <GlobalContactModal />
+          <ContactModal />
         </ReactQueryClientProvider>
       </body>
     </html>

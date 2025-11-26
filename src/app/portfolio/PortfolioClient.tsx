@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { ProductCard } from 'app/_components/ui';
+import { ProductCard } from '@/components/ui';
 import { useRouter } from 'next/navigation';
 import { PortfolioType } from '@/types/portfolio';
 

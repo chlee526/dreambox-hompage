@@ -1,6 +1,6 @@
-import Banner from './Banner';
-import Portfolio from './Portfolio';
-import { getPreviewPortfolios } from '@/services/portfolio.service';
+import Banner from './(main)/Banner';
+import Portfolio from './(main)/Portfolio';
+import { getPreviewPortfolios } from '@/lib/services/portfolio';
 
 // ISR: 1시간마다 재생성
 export const revalidate = 3600;

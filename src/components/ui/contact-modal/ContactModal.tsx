@@ -4,16 +4,18 @@ import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IoClose } from 'react-icons/io5';
 import { useContactModalStore } from '@/stores/useContactModalStore';
-import { sendEmail, ContactFormData } from '@/services/sendAction.service';
+import { useContact } from 'root/src/hooks/useContact';
+import { ContactFormData } from 'root/src/types/contactTypes';
 import './style.scss';
 
 export default function ContactModal() {
   const { isOpen, closeModal } = useContactModalStore();
+  const { mutate, isPending } = useContact();
   const {
     register,
     handleSubmit,
     reset,
-    formState: { isValid, isSubmitting },
+    formState: { isValid },
   } = useForm<ContactFormData>({
     mode: 'onChange', // 실시간 검증으로 버튼 상태 업데이트
   });
@@ -43,21 +45,22 @@ export default function ContactModal() {
     }
   };
 
-  const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
-    try {
-      const result = await sendEmail(data);
-
-      if (result.success) {
-        alert('문의가 성공적으로 접수되었습니다.\n빠른 시일 내에 답변 드리겠습니다.');
-        reset();
-        closeModal();
-      } else {
-        alert(result.message || '문의 접수에 실패했습니다. 다시 시도해주세요.');
-      }
-    } catch (error) {
-      console.error('제출 실패:', error);
-      alert('문의 접수에 실패했습니다. 잠시 후 다시 시도해주세요.');
-    }
+  const onSubmit: SubmitHandler<ContactFormData> = (data) => {
+    mutate(data, {
+      onSuccess: (result) => {
+        if (result.success) {
+          alert('문의가 성공적으로 접수되었습니다.\n빠른 시일 내에 답변 드리겠습니다.');
+          reset();
+          closeModal();
+        } else {
+          alert(result.message || '문의 접수에 실패했습니다. 다시 시도해주세요.');
+        }
+      },
+      onError: (error) => {
+        console.error('제출 실패:', error);
+        alert('문의 접수에 실패했습니다. 잠시 후 다시 시도해주세요.');
+      },
+    });
   };
 
   return (
@@ -109,6 +112,17 @@ export default function ContactModal() {
             </div>
 
             <div className="form-group">
+              <label htmlFor="modal-subject">제목 *</label>
+              <input
+                type="text"
+                id="modal-subject"
+                {...register('subject', {
+                  required: true,
+                })}
+              />
+            </div>
+
+            <div className="form-group">
               <label htmlFor="modal-content">내용 *</label>
               <textarea
                 id="modal-content"
@@ -119,8 +133,8 @@ export default function ContactModal() {
               />
             </div>
 
-            <button type="submit" className="submit-btn" disabled={!isValid || isSubmitting}>
-              {isSubmitting ? '전송 중...' : '보내기'}
+            <button type="submit" className="submit-btn" disabled={!isValid || isPending}>
+              {isPending ? '전송 중...' : '보내기'}
             </button>
           </form>
         </div>
