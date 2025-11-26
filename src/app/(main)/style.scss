@@ -299,16 +299,6 @@
   }
 }
 
-@keyframes gradientShift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
 .portfolio-section {
   width: 100%;
   padding: 10rem 6rem;
@@ -370,10 +360,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 0;
         background: transparent;
         border: 2px solid rgba(91, 28, 29, 0.2);
         border-radius: 1rem;
-        padding: 0;
         overflow: hidden;
         transition: all 0.3s ease;
 
@@ -421,20 +411,6 @@
             padding: 1.6rem;
           }
 
-          // 배경 원형 장식
-          &::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(circle, rgba(91, 28, 29, 0.08) 0%, transparent 70%);
-            opacity: 0;
-            transition: all 0.5s ease;
-          }
-
           // 화살표 아이콘
           &::before {
             content: '→';
@@ -455,7 +431,7 @@
           span {
             position: relative;
             font-size: 1.8rem;
-            font-weight: 700;
+            font-weight: 600;
             letter-spacing: 0.05em;
             z-index: 1;
 

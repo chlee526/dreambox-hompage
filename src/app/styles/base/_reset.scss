@@ -79,12 +79,24 @@ input {
   border: 1px solid #e0e0e0;
   padding: 0.8rem 1rem;
   border-radius: 0.5rem;
+  background-color: #fff;
   outline: none;
+  font-family: 'Pretendard', sans-serif;
   font-size: 1.5rem;
   color: #333333;
 
   &:focus {
     border-color: #333333;
+  }
+
+  // 자동완성 배경색 제거
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+    box-shadow: 0 0 0 1000px #fff inset !important;
+    -webkit-text-fill-color: #333333 !important;
   }
 }
 
@@ -96,8 +108,10 @@ textarea {
   padding: 0.8rem 1rem;
   border-radius: 0.5rem;
   outline: none;
+  font-family: 'Pretendard', sans-serif;
   font-size: 1.5rem;
   line-height: 1.6;
+  letter-spacing: 0.1rem;
   color: #333333;
   resize: none;
 
