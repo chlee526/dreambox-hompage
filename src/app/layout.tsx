@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 
 import ReactQueryClientProvider from 'root/src/app/_provider/ReactQueryClientProvider';
-import { Header, Footer } from '@/components/layout';
-import { ContactModal } from '@/components/ui';
+import LayoutClient from './LayoutClient';
 import './styles/main.scss';
 
 export const metadata: Metadata = {
@@ -19,10 +18,7 @@ export default function RootLayout({
     <html lang="ko">
       <body suppressHydrationWarning>
         <ReactQueryClientProvider>
-          <Header />
-          <main className="flex-1 mt-[6.9rem]">{children}</main>
-          <Footer />
-          <ContactModal />
+          <LayoutClient>{children}</LayoutClient>
         </ReactQueryClientProvider>
       </body>
     </html>

@@ -1,5 +1,17 @@
 @import 'app/styles/utils/mixins';
 
+main {
+  margin-top: 6.9rem;
+
+  @include mobile-tablet {
+    margin-top: 6rem;
+  }
+
+  @include mobile {
+    margin-top: 5.6rem;
+  }
+}
+
 .l-inner {
   position: relative;
   max-width: 140rem;

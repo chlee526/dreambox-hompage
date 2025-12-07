@@ -38,10 +38,6 @@ footer {
       gap: 0.6rem;
       flex: 1;
 
-      @include mobile {
-        gap: 2rem;
-      }
-
       .contact-info,
       .company-info {
         display: flex;

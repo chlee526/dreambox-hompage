@@ -48,8 +48,9 @@ export default function Banner() {
       <div className="banner-wrapper">
         <div className="banner-content">
           <p className="banner-title">
-            <span className="title-line">당신의 브랜드를</span>
-            <span className="title-line">담는 첫 번째 순간</span>
+            <span className="title-line">당신의 브랜드를 담는</span>
+            <span className="title-line">첫 번째 패키지</span>
+
             <span className="title-line highlight">DREAM BOX</span>
           </p>
 

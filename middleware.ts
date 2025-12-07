@@ -1,11 +1,11 @@
 import { createServerClient } from '@supabase/ssr';
 import { type NextRequest, NextResponse } from 'next/server';
-import { Database } from 'root/types_db';
+import { Database } from './types_db';
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-export const createClient = (request: NextRequest) => {
+export async function middleware(request: NextRequest) {
   // Create an unmodified response
   let supabaseResponse = NextResponse.next({
     request: {
@@ -28,15 +28,27 @@ export const createClient = (request: NextRequest) => {
     },
   });
 
-  return { supabase, supabaseResponse };
-};
+  // Refresh session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
-export async function middleware(request: NextRequest) {
-  const { supabase, supabaseResponse } = createClient(request);
+  // Admin 경로 보호
+  if (request.nextUrl.pathname.startsWith('/admin')) {
+    // 로그인 페이지는 제외
+    if (request.nextUrl.pathname === '/admin/login') {
+      // 이미 로그인된 사용자가 로그인 페이지에 접근하면 대시보드로 리다이렉트
+      if (session) {
+        return NextResponse.redirect(new URL('/admin', request.url));
+      }
+      return supabaseResponse;
+    }
 
-  // Refreshing the auth token
-
-  await supabase.auth.getUser();
+    // 그 외 admin 경로는 인증 필요
+    if (!session) {
+      return NextResponse.redirect(new URL('/admin/login', request.url));
+    }
+  }
 
   return supabaseResponse;
 }

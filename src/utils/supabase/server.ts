@@ -45,8 +45,8 @@ export const requireAuth = async () => {
   } = await supabase.auth.getSession();
 
   if (!session) {
-    // 인증되지 않은 경우 /auth로 리디렉션
-    redirect('/auth');
+    // 인증되지 않은 경우 /admin/login으로 리디렉션
+    redirect('/admin/login');
   }
 
   return session; // 인증된 경우 세션 반환
