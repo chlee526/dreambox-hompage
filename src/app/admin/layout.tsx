@@ -1,5 +1,5 @@
 import { createClient } from '@/utils/supabase/server';
-import AdminHeader from './AdminHeader';
+import AdminHeader from './_components/header/AdminHeader';
 import './style.scss';
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -11,7 +11,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="admin-layout">
       {session && <AdminHeader user={session.user} />}
-      {children}
+      <div className="admin-main">{children}</div>
     </div>
   );
 }

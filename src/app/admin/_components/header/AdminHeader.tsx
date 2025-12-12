@@ -3,6 +3,8 @@
 import { useRouter, usePathname } from 'next/navigation';
 import { createBrowserSupabaseClient } from '@/utils/supabase/client';
 import type { User } from '@supabase/supabase-js';
+import Link from 'next/link';
+import './style.scss';
 
 interface AdminHeaderProps {
   user: User;
@@ -30,18 +32,24 @@ export default function AdminHeader({ user }: AdminHeaderProps) {
 
   return (
     <header className="admin-header">
-      <div className="admin-header__content">
-        <h1 className="admin-header__title" onClick={() => handleNavigate('/admin')}>
-          DREAMBOX 관리자
-        </h1>
-        <nav className="admin-header__nav">
-          <button className={`admin-header__nav-btn ${pathname.startsWith('/admin/portfolio') ? 'active' : ''}`} onClick={() => handleNavigate('/admin/portfolio')}>
-            포트폴리오 관리
-          </button>
-        </nav>
-        <div className="admin-header__user-info">
-          <span className="admin-header__user-email">{user.email}</span>
-          <button onClick={handleLogout} className="admin-header__logout-btn">
+      <div className="wrap">
+        <div className="header-left">
+          <h1 className="header-title" onClick={() => handleNavigate('/admin')}>
+            DREAMBOX 관리자
+          </h1>
+          <nav className="header-nav">
+            <ul>
+              <li>
+                <Link href="/admin/portfolio" className={`nav-btn ${pathname.includes('/admin/portfolio') ? 'active' : ''}`}>
+                  포트폴리오 관리
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div className="header-util">
+          <span className="user-email">{user.email}</span>
+          <button onClick={handleLogout} className="logout-btn">
             로그아웃
           </button>
         </div>

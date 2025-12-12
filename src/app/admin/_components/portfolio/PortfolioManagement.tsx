@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { PortfolioType } from '@/types/portfolio';
+import './style.scss';
 
 interface PortfolioManagementProps {
   initialPortfolios: PortfolioType[];
@@ -49,48 +50,39 @@ export default function PortfolioManagement({ initialPortfolios }: PortfolioMana
 
   return (
     <div className="portfolio-management">
-      <div className="portfolio-management__header">
-        <h1 className="portfolio-management__title">포트폴리오 관리</h1>
-        <button onClick={handleCreate} className="portfolio-management__btn-create">
+      <div className="header">
+        <h1 className="is-title">포트폴리오 관리</h1>
+        <button onClick={handleCreate} className="add-portfolio-btn">
           + 새 포트폴리오 추가
         </button>
       </div>
 
-      <div className="portfolio-management__container">
+      <div className="container">
         {portfolios.length === 0 ? (
-          <div className="portfolio-management__empty">
+          <div className="empty">
             <p>등록된 포트폴리오가 없습니다.</p>
-            <button onClick={handleCreate} className="portfolio-management__btn-create">
+            <button onClick={handleCreate} className="add-portfolio-btn">
               첫 포트폴리오 만들기
             </button>
           </div>
         ) : (
-          <div className="portfolio-management__grid">
+          <div className="portfolio-wrapper">
             {portfolios.map((portfolio) => (
               <div key={portfolio.seq} className="portfolio-card">
-                <div className="portfolio-card__image">
-                  {portfolio.thumbnail ? (
-                    <img src={portfolio.thumbnail} alt={portfolio.name} />
-                  ) : (
-                    <div className="portfolio-card__no-image">이미지 없음</div>
-                  )}
-                </div>
+                <div className="portfolio-card__image">{portfolio.thumbnail ? <img src={portfolio.thumbnail} alt={portfolio.name} /> : <div className="portfolio-card__no-image">이미지 없음</div>}</div>
                 <div className="portfolio-card__content">
-                  <h3 className="portfolio-card__name">{portfolio.name}</h3>
-                  <p className="portfolio-card__category">{portfolio.category}</p>
-                  <p className="portfolio-card__description">{portfolio.description || '설명 없음'}</p>
-                  <div className="portfolio-card__meta">
-                    <span className={`portfolio-card__badge ${portfolio.isPreview ? 'active' : ''}`}>
-                      {portfolio.isPreview ? '미리보기 노출' : '미리보기 숨김'}
-                    </span>
-                    <span className="portfolio-card__seq">ID: {portfolio.seq}</span>
+                  <h3 className="name">{portfolio.name}</h3>
+                  <div className="badges">
+                    <span className="badge category">{portfolio.category}</span>
+                    {portfolio.isPreview && <span className="badge preview">메인</span>}
+                    <span className="badge seq">ID: {portfolio.seq}</span>
                   </div>
                 </div>
                 <div className="portfolio-card__actions">
-                  <button onClick={() => handleEdit(portfolio.seq)} className="portfolio-card__btn portfolio-card__btn--edit" disabled={loading}>
+                  <button onClick={() => handleEdit(portfolio.seq)} className="action-btn is-edit" disabled={loading}>
                     수정
                   </button>
-                  <button onClick={() => handleDelete(portfolio.seq)} className="portfolio-card__btn portfolio-card__btn--delete" disabled={loading}>
+                  <button onClick={() => handleDelete(portfolio.seq)} className="action-btn is-delete" disabled={loading}>
                     삭제
                   </button>
                 </div>
@@ -102,4 +94,3 @@ export default function PortfolioManagement({ initialPortfolios }: PortfolioMana
     </div>
   );
 }
-

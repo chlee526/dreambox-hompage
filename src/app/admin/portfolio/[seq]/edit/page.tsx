@@ -1,8 +1,8 @@
 import { requireAuth } from '@/utils/supabase/server';
 import { getPortfolio } from '@/lib/services/portfolio';
 import { notFound } from 'next/navigation';
-import PortfolioForm from '../../PortfolioForm';
-import '../../style.scss';
+import PortfolioForm from '@/app/admin/_components/portfolio/PortfolioForm';
+import '@/app/admin/_components/portfolio/style.scss';
 
 interface EditPortfolioPageProps {
   params: Promise<{ seq: string }>;
@@ -23,12 +23,9 @@ export default async function EditPortfolioPage({ params }: EditPortfolioPagePro
   }
 
   return (
-    <div className="portfolio-form-page">
-      <div className="portfolio-form-page__container">
-        <h1 className="portfolio-form-page__title">포트폴리오 수정</h1>
-        <PortfolioForm mode="edit" portfolio={portfolio} />
-      </div>
+    <div className="container">
+      <h3 className="is-title">포트폴리오 수정</h3>
+      <PortfolioForm mode="edit" portfolio={portfolio} />
     </div>
   );
 }
-

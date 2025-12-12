@@ -1,7 +1,6 @@
 import { requireAuth } from '@/utils/supabase/server';
 import { getPortfolios } from '@/lib/services/portfolio';
-import PortfolioManagement from './PortfolioManagement';
-import './style.scss';
+import PortfolioManagement from '../_components/portfolio/PortfolioManagement';
 
 export default async function AdminPortfolioPage() {
   // 인증 체크
@@ -12,4 +11,3 @@ export default async function AdminPortfolioPage() {
 
   return <PortfolioManagement initialPortfolios={portfolios} />;
 }
-
