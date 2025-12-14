@@ -11,7 +11,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="admin-layout">
       {session && <AdminHeader user={session.user} />}
-      <div className="admin-main">{children}</div>
+      <div className="admin-main">
+        <div className="wrap">{children}</div>
+      </div>
     </div>
   );
 }

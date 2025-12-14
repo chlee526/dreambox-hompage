@@ -18,9 +18,15 @@ const FIXED_INFO_FIELDS = [
   { code: 'material', name: '재질' },
 ];
 
+const CATEGORY_OPTIONS = [
+  { value: 'package', label: '패키지' },
+  { value: 'bag', label: '쇼핑백' },
+  { value: 'etc', label: '기타' },
+];
+
 interface FormValues {
   name: string;
-  category: 'package' | 'bag' | 'etc';
+  category: string;
   description: string;
   thumbnail: string;
   isPreview: boolean;
@@ -246,18 +252,12 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
                 카테고리 <span className="required">*</span>
               </label>
               <div className="radio-group">
-                <label className="radio-label">
-                  <input type="radio" {...register('category', { required: true })} value="package" />
-                  <span>패키지</span>
-                </label>
-                <label className="radio-label">
-                  <input type="radio" {...register('category', { required: true })} value="bag" />
-                  <span>가방</span>
-                </label>
-                <label className="radio-label">
-                  <input type="radio" {...register('category', { required: true })} value="etc" />
-                  <span>기타</span>
-                </label>
+                {CATEGORY_OPTIONS.map((option) => (
+                  <label key={option.value} className="radio-label">
+                    <input type="radio" {...register('category', { required: true })} value={option.value} />
+                    <span>{option.label}</span>
+                  </label>
+                ))}
               </div>
             </div>
 
@@ -269,7 +269,7 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
             <div className="field">
               <label className="checkbox-label">
                 <input type="checkbox" {...register('isPreview')} />
-                <span>홈페이지 미리보기에 노출</span>
+                <span>메인페이지 노출</span>
               </label>
             </div>
           </div>

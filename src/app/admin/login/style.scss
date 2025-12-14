@@ -1,124 +1,137 @@
+@import 'app/styles/base/_colors.scss';
+
 .admin-login {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-  &__container {
-    width: 100%;
-    max-width: 450px;
-  }
-
-  &__card {
+  > .wrap {
+    width: 460px;
+    padding: 48px 40px;
     background: white;
     border-radius: 16px;
-    padding: 48px 40px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  }
 
-  &__title {
-    font-size: 28px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 8px;
-    color: #1a1a1a;
-  }
+    .login-header {
+      text-align: center;
+      margin-bottom: 40px;
 
-  &__subtitle {
-    font-size: 14px;
-    text-align: center;
-    color: #666;
-    margin-bottom: 40px;
-  }
+      .title {
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 8px;
+        color: #1a1a1a;
+      }
 
-  &__form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  &__form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  &__label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #333;
-  }
-
-  &__input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 15px;
-    transition: all 0.2s ease;
-
-    &:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      .subtitle {
+        font-size: 14px;
+        text-align: center;
+        color: #666;
+      }
     }
 
-    &:disabled {
-      background-color: #f5f5f5;
-      cursor: not-allowed;
-    }
+    .login-form {
+      display: flex;
+      flex-direction: column;
 
-    &::placeholder {
-      color: #aaa;
-    }
-  }
+      .login-form-group {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-bottom: 20px;
 
-  &__error {
-    padding: 12px 16px;
-    background-color: #fee;
-    border: 1px solid #fcc;
-    border-radius: 8px;
-    color: #c33;
-    font-size: 14px;
-    text-align: center;
-  }
+        > label {
+          font-size: 14px;
+          font-weight: 600;
+          color: #333;
+        }
 
-  &__button {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
+        > input {
+          width: 100%;
+          padding: 12px 16px;
+          border: 2px solid #e0e0e0;
+          border-radius: 8px;
+          font-size: 15px;
+          transition: all 0.2s ease;
 
-    &:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-    }
+          &:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+          }
 
-    &:active:not(:disabled) {
-      transform: translateY(0);
-    }
+          &:disabled {
+            background-color: #f5f5f5;
+            cursor: not-allowed;
+          }
 
-    &:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+          &::placeholder {
+            color: #aaa;
+          }
+        }
+
+        .field-error {
+          position: absolute;
+          display: block;
+          bottom: 0;
+          left: 0;
+          margin-top: 4px;
+          color: #dc2626;
+          font-size: 13px;
+        }
+      }
+
+      > .error {
+        padding: 12px 16px;
+        border: 1px solid #fcc;
+        border-radius: 8px;
+        background-color: #fee;
+        color: #c33;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      > .login-button {
+        width: 100%;
+        padding: 14px;
+        margin-top: 10px;
+        background: $color-primary;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover:not(:disabled) {
+          background: $color-primary-dark;
+        }
+
+        &:active:not(:disabled) {
+          background: $color-primary-dark;
+        }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
     }
   }
 
   @media (max-width: 768px) {
-    &__card {
+    > .wrap {
       padding: 32px 24px;
     }
 
-    &__title {
-      font-size: 24px;
+    > .login-header {
+      .title {
+        font-size: 24px;
+      }
     }
   }
 }

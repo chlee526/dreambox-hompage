@@ -25,7 +25,7 @@
     align-items: center;
   }
 
-  > .container {
+  .container {
     max-width: 1400px;
     padding-top: 20px;
   }
@@ -340,32 +340,22 @@
   }
 
   .field-group {
-    margin-bottom: 16px;
+    padding: 16px 0;
+    border-bottom: 1px dashed #e5e7eb;
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
   }
 
   .images-scroll {
     max-height: 600px;
     overflow-y: auto;
+    overflow-x: hidden;
     padding-right: 4px;
     margin-bottom: 12px;
-
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background: #f1f1f1;
-      border-radius: 3px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #c1c1c1;
-      border-radius: 3px;
-
-      &:hover {
-        background: #a8a8a8;
-      }
-    }
+    overscroll-behavior: contain;
   }
 
   .input-row {

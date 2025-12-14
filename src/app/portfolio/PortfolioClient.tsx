@@ -22,6 +22,10 @@ export default function PortfolioClient({ portfolios }: PortfolioClientProps) {
   ];
 
   useEffect(() => {
+    console.log('portfolios', portfolios);
+  }, [portfolios]);
+
+  useEffect(() => {
     if (!portfolios) {
       setDisplayData([]);
       return;

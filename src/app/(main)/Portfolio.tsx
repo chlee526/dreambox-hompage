@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { ProductCard } from '@/components/ui';
 import './style.scss';
 import { PortfolioType } from '@/types/portfolio';
@@ -10,6 +11,11 @@ interface PortfolioProps {
 }
 
 export default function Portfolio({ portfolios }: PortfolioProps) {
+  const router = useRouter();
+
+  const handleCardClick = (item: PortfolioType) => {
+    router.push(`/portfolio/${item.seq}`);
+  };
   return (
     <section className="portfolio-section">
       <div className="l-inner">
@@ -19,7 +25,7 @@ export default function Portfolio({ portfolios }: PortfolioProps) {
           <ul className="portfolio-list">
             {portfolios.map((item) => (
               <li key={item.seq} className="w-full">
-                <ProductCard product={item} />
+                <ProductCard product={item} onClick={() => handleCardClick(item)} />
               </li>
             ))}
             <li className="view-all-button">

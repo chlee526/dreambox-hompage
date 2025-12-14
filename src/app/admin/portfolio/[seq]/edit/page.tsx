@@ -23,7 +23,7 @@ export default async function EditPortfolioPage({ params }: EditPortfolioPagePro
   }
 
   return (
-    <div className="container">
+    <div className="container" style={{ margin: '0 auto' }}>
       <h3 className="is-title">포트폴리오 수정</h3>
       <PortfolioForm mode="edit" portfolio={portfolio} />
     </div>

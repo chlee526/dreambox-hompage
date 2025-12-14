@@ -6,7 +6,7 @@ export default async function NewPortfolioPage() {
   await requireAuth();
 
   return (
-    <div className="container">
+    <div className="container" style={{ margin: '0 auto' }}>
       <h3 className="is-title">포트폴리오 생성</h3>
       <PortfolioForm mode="create" />
     </div>

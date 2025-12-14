@@ -54,8 +54,12 @@ export default async function PortfolioDetailPage({ params }: PortfolioDetailPag
             <ul className="info-data-list">
               {detailData?.infoData.map((sort) => (
                 <li key={sort.code}>
-                  <strong>{sort.name}</strong>
-                  <span>{sort.value}</span>
+                  {sort.value && (
+                    <>
+                      <strong>{sort.name}</strong>
+                      <span>{sort.value}</span>
+                    </>
+                  )}
                 </li>
               ))}
             </ul>
