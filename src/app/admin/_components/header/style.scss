@@ -42,7 +42,7 @@
 
           .nav-btn {
             padding: 8px 16px;
-            background-color: $color-cream;
+            background-color: $color-gray-light;
             color: #1a1a1a;
             border: none;
             border-radius: 6px;
@@ -53,7 +53,7 @@
             transition: all 0.2s ease;
 
             &:hover {
-              background-color: #e0e0e0;
+              background-color: $color-gray-200;
             }
 
             &.active {
@@ -86,7 +86,7 @@
         transition: all 0.2s ease;
 
         &:hover {
-          background-color: $color-primary-dark;
+          opacity: 0.8;
         }
       }
     }
@@ -116,55 +116,6 @@
           }
         }
       }
-    }
-  }
-}
-
-.admin-dashboard {
-  > .wrap {
-    display: flex;
-    gap: 24px;
-
-    .dashboard-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 4px;
-      background: white;
-      border-radius: 12px;
-      padding: 32px 24px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s ease;
-      cursor: pointer;
-
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 10px rgba(0, 0, 0, 0.15);
-      }
-
-      .icon {
-        position: relative;
-        bottom: 2px;
-        font-size: 18px;
-        margin-bottom: 16px;
-      }
-
-      .title {
-        font-size: 18px;
-        font-weight: 600;
-      }
-
-      .desc {
-        padding-left: 4px;
-        font-size: 14px;
-        color: #666;
-      }
-    }
-  }
-
-  @media (max-width: 768px) {
-    > .wrap {
-      flex-direction: column;
     }
   }
 }

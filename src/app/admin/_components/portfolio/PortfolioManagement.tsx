@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { PortfolioType } from '@/types/portfolio';
+import { useDeletePortfolio } from '@/lib/queries/portfolios/usePortfolios';
 import './style.scss';
 
 interface PortfolioManagementProps {
@@ -10,34 +10,26 @@ interface PortfolioManagementProps {
 }
 
 export default function PortfolioManagement({ initialPortfolios }: PortfolioManagementProps) {
-  const [portfolios, setPortfolios] = useState<PortfolioType[]>(initialPortfolios);
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
+
+  // 삭제 mutation
+  const { mutateAsync: deletePortfolio, isPending: isDeleting } = useDeletePortfolio({
+    onSuccess: () => {
+      alert('포트폴리오가 삭제되었습니다.');
+      router.refresh(); // 서버 데이터 새로고침
+    },
+    onError: (error) => {
+      console.error('삭제 오류:', error);
+      alert('포트폴리오 삭제에 실패했습니다.');
+    },
+  });
 
   const handleDelete = async (seq: number) => {
     if (!confirm('정말 이 포트폴리오를 삭제하시겠습니까?')) {
       return;
     }
 
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/admin/portfolio/${seq}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) {
-        throw new Error('삭제에 실패했습니다.');
-      }
-
-      // 목록에서 제거
-      setPortfolios((prev) => prev.filter((p) => p.seq !== seq));
-      alert('포트폴리오가 삭제되었습니다.');
-    } catch (error) {
-      console.error('삭제 오류:', error);
-      alert('포트폴리오 삭제에 실패했습니다.');
-    } finally {
-      setLoading(false);
-    }
+    await deletePortfolio(seq);
   };
 
   const handleEdit = (seq: number) => {
@@ -52,13 +44,13 @@ export default function PortfolioManagement({ initialPortfolios }: PortfolioMana
     <div className="portfolio-management">
       <div className="header">
         <h1 className="is-title">포트폴리오 관리</h1>
-        <button onClick={handleCreate} className="add-portfolio-btn">
+        <button onClick={handleCreate} className="add-portfolio-btn" disabled={isDeleting}>
           + 새 포트폴리오 추가
         </button>
       </div>
 
       <div className="container">
-        {portfolios.length === 0 ? (
+        {initialPortfolios.length === 0 ? (
           <div className="empty">
             <p>등록된 포트폴리오가 없습니다.</p>
             <button onClick={handleCreate} className="add-portfolio-btn">
@@ -67,7 +59,7 @@ export default function PortfolioManagement({ initialPortfolios }: PortfolioMana
           </div>
         ) : (
           <div className="portfolio-wrapper">
-            {portfolios.map((portfolio) => (
+            {initialPortfolios.map((portfolio) => (
               <div key={portfolio.seq} className="portfolio-card">
                 <div className="portfolio-card__image">{portfolio.thumbnail ? <img src={portfolio.thumbnail} alt={portfolio.name} /> : <div className="portfolio-card__no-image">이미지 없음</div>}</div>
                 <div className="portfolio-card__content">
@@ -79,11 +71,11 @@ export default function PortfolioManagement({ initialPortfolios }: PortfolioMana
                   </div>
                 </div>
                 <div className="portfolio-card__actions">
-                  <button onClick={() => handleEdit(portfolio.seq)} className="action-btn is-edit" disabled={loading}>
+                  <button onClick={() => handleEdit(portfolio.seq)} className="action-btn is-edit" disabled={isDeleting}>
                     수정
                   </button>
-                  <button onClick={() => handleDelete(portfolio.seq)} className="action-btn is-delete" disabled={loading}>
-                    삭제
+                  <button onClick={() => handleDelete(portfolio.seq)} className="action-btn is-delete" disabled={isDeleting}>
+                    {isDeleting ? '삭제 중...' : '삭제'}
                   </button>
                 </div>
               </div>

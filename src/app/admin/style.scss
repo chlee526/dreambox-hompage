@@ -5,14 +5,14 @@
   flex-direction: column;
   min-height: 100vh;
   height: 100%;
-  background-color: $color-cream;
+  background-color: $color-gray-light;
 }
 
 // admin-main
 .admin-main {
   flex: 1;
   // padding: 3rem;
-  background-color: $color-cream;
+  background-color: $color-gray-light;
 
   > .wrap {
     width: 100%;

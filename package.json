@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "(sleep 3 && open http://localhost:3000) & next dev",
+    "dev": "next dev",
     "dev:editor": "next dev",
     "build": "next build",
     "start": "next start",
@@ -27,6 +27,7 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.91.1",
     "@types/node": "^20",
     "@types/nodemailer": "^7.0.4",
     "@types/react": "^18",

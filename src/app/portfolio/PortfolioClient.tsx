@@ -4,15 +4,15 @@ import React, { useEffect, useState } from 'react';
 import { ProductCard } from '@/components/ui';
 import { useRouter } from 'next/navigation';
 import { PortfolioType } from '@/types/portfolio';
+import { usePortfolios } from 'root/src/lib/queries/portfolios/usePortfolios';
 
-interface PortfolioClientProps {
-  portfolios: PortfolioType[];
-}
-
-export default function PortfolioClient({ portfolios }: PortfolioClientProps) {
+export default function PortfolioClient() {
   const [activeTab, setActiveTab] = useState('all');
   const [displayData, setDisplayData] = useState<PortfolioType[]>([]);
   const router = useRouter();
+
+  // React Query로 데이터 가져오기 (캐시 사용)
+  const { data: portfolios = [], isLoading } = usePortfolios();
 
   const subTabList = [
     { label: '전체', value: 'all' },
@@ -22,15 +22,6 @@ export default function PortfolioClient({ portfolios }: PortfolioClientProps) {
   ];
 
   useEffect(() => {
-    console.log('portfolios', portfolios);
-  }, [portfolios]);
-
-  useEffect(() => {
-    if (!portfolios) {
-      setDisplayData([]);
-      return;
-    }
-
     const filteredData = activeTab === 'all' ? portfolios : portfolios.filter((item) => item.category === activeTab);
 
     setDisplayData(filteredData);
@@ -39,6 +30,14 @@ export default function PortfolioClient({ portfolios }: PortfolioClientProps) {
   const handleCardClick = (item: PortfolioType) => {
     router.push(`/portfolio/${item.seq}`);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center py-20">
+        <p>로딩 중...</p>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -62,7 +61,6 @@ export default function PortfolioClient({ portfolios }: PortfolioClientProps) {
           </div>
         )}
 
-        {/* 포트폴리오 리스트 */}
         {displayData.length > 0 && (
           <ul className="list">
             {displayData.map((item) => (

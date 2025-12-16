@@ -3,6 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { useForm, useFieldArray, SubmitHandler } from 'react-hook-form';
 import { PortfolioType } from '@/types/portfolio';
+import { useUploadImage } from '@/lib/queries/upload/useUpload';
+import { useCreatePortfolio, useUpdatePortfolio } from '@/lib/queries/portfolios/usePortfolios';
 import './style.scss';
 
 interface PortfolioFormProps {
@@ -36,6 +38,40 @@ interface FormValues {
 
 export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
   const router = useRouter();
+
+  // 이미지 업로드 mutation
+  const { mutateAsync: uploadImage, isPending: isUploading } = useUploadImage({
+    onError: (error) => {
+      console.error('파일 업로드 오류:', error);
+      alert('파일 업로드에 실패했습니다.');
+    },
+  });
+
+  // 포트폴리오 생성 mutation
+  const { mutateAsync: createPortfolio, isPending: isCreating } = useCreatePortfolio({
+    onSuccess: () => {
+      alert('포트폴리오가 생성되었습니다.');
+      router.push('/admin/portfolio');
+      router.refresh();
+    },
+    onError: (error) => {
+      console.error('생성 오류:', error);
+      alert('포트폴리오 생성에 실패했습니다.');
+    },
+  });
+
+  // 포트폴리오 수정 mutation
+  const { mutateAsync: updatePortfolio, isPending: isUpdating } = useUpdatePortfolio({
+    onSuccess: () => {
+      alert('포트폴리오가 수정되었습니다.');
+      router.push('/admin/portfolio');
+      router.refresh();
+    },
+    onError: (error) => {
+      console.error('수정 오류:', error);
+      alert('포트폴리오 수정에 실패했습니다.');
+    },
+  });
 
   // 고정된 추가정보 초기화
   const initializeInfoData = () => {
@@ -82,38 +118,20 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
     return hasName && hasThumbnail && hasValidImage;
   };
 
-  // 파일 업로드 함수
-  const uploadFile = async (file: File): Promise<string | null> => {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    try {
-      const response = await fetch('/api/admin/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('파일 업로드 실패');
-      }
-
-      const data = await response.json();
-      return data.url;
-    } catch (error) {
-      console.error('파일 업로드 오류:', error);
-      alert('파일 업로드에 실패했습니다.');
-      return null;
-    }
-  };
-
   // 썸네일 파일 업로드
   const handleThumbnailFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const url = await uploadFile(file);
-    if (url) {
-      setValue('thumbnail', url);
+    try {
+      const result = await uploadImage({
+        file,
+        folder: 'thumbnails', // 썸네일은 thumbnails 폴더에 저장
+      });
+      setValue('thumbnail', result.url);
+    } catch (error) {
+      // 에러는 mutation의 onError에서 처리
+      console.error('썸네일 업로드 실패:', error);
     }
   };
 
@@ -122,54 +140,46 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    setValue(`images.${index}.uploading`, true);
-    const url = await uploadFile(file);
-    setValue(`images.${index}.uploading`, false);
-
-    if (url) {
-      setValue(`images.${index}.url`, url);
+    try {
+      setValue(`images.${index}.uploading`, true);
+      const result = await uploadImage({
+        file,
+        folder: 'images', // 상세 이미지는 images 폴더에 저장
+      });
+      setValue(`images.${index}.url`, result.url);
+    } catch (error) {
+      // 에러는 mutation의 onError에서 처리
+      console.error('이미지 업로드 실패:', error);
+    } finally {
+      setValue(`images.${index}.uploading`, false);
     }
   };
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    try {
-      // 이미지 필터링 (빈 값 제거)
-      const filteredImages = data.images.filter((img) => img.url.trim() !== '').map((img) => img.url);
+    // 이미지 필터링 (빈 값 제거)
+    const filteredImages = data.images.filter((img) => img.url.trim() !== '').map((img) => img.url);
 
-      // infoData 필터링 (빈 값 제거)
-      const filteredInfoData = data.infoData.filter((info) => info.code && info.name);
+    // infoData 필터링 (빈 값 제거)
+    const filteredInfoData = data.infoData.filter((info) => info.code && info.name);
 
-      const payload = {
-        name: data.name,
-        category: data.category,
-        description: data.description,
-        thumbnail: data.thumbnail,
-        isPreview: data.isPreview,
-        images: filteredImages,
-        infoData: filteredInfoData,
-      };
+    const payload = {
+      name: data.name,
+      category: data.category,
+      description: data.description,
+      thumbnail: data.thumbnail,
+      isPreview: data.isPreview,
+      images: filteredImages,
+      infoData: filteredInfoData,
+    };
 
-      const url = mode === 'create' ? '/api/admin/portfolio' : `/api/admin/portfolio/${portfolio?.seq}`;
-      const method = mode === 'create' ? 'POST' : 'PUT';
-
-      const response = await fetch(url, {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
+    // React Query Mutation 사용
+    if (mode === 'create') {
+      await createPortfolio(payload);
+    } else {
+      await updatePortfolio({
+        seq: portfolio!.seq,
+        data: payload,
       });
-
-      if (!response.ok) {
-        throw new Error('저장에 실패했습니다.');
-      }
-
-      alert(mode === 'create' ? '포트폴리오가 생성되었습니다.' : '포트폴리오가 수정되었습니다.');
-      router.push('/admin/portfolio');
-      router.refresh();
-    } catch (error) {
-      console.error('저장 오류:', error);
-      alert('포트폴리오 저장에 실패했습니다.');
     }
   };
 
@@ -287,11 +297,11 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
       </div>
 
       <div className="form-actions">
-        <button type="button" onClick={handleCancel} className="btn btn-cancel" disabled={isSubmitting}>
+        <button type="button" onClick={handleCancel} className="btn btn-cancel" disabled={isSubmitting || isUploading || isCreating || isUpdating}>
           취소
         </button>
-        <button type="submit" className="btn btn-submit" disabled={isSubmitting || !isFormValid()}>
-          {isSubmitting ? '저장 중...' : mode === 'create' ? '생성' : '수정'}
+        <button type="submit" className="btn btn-submit" disabled={isSubmitting || isUploading || isCreating || isUpdating || !isFormValid()}>
+          {isUploading ? '업로드 중...' : isCreating || isUpdating ? '저장 중...' : mode === 'create' ? '생성' : '수정'}
         </button>
       </div>
     </form>

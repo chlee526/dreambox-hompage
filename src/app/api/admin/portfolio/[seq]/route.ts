@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/utils/supabase/server';
+import { updatePortfolio, deletePortfolio } from '@/lib/services/portfolio';
 
-// 포트폴리오 수정
+/**
+ * 포트폴리오 수정 API
+ * PUT /api/admin/portfolio/[seq]
+ */
 export async function PUT(request: NextRequest, { params }: { params: Promise<{ seq: string }> }) {
   try {
     const supabase = await createClient();
@@ -25,24 +29,18 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
       return NextResponse.json({ error: '필수 항목을 입력해주세요.' }, { status: 400 });
     }
 
-    // 포트폴리오 수정
-    const { data, error } = await supabase
-      .from('portfolioList')
-      .update({
-        name,
-        category,
-        description: description || '',
-        thumbnail: thumbnail || '',
-        images: images || [],
-        infoData: infoData || [],
-        isPreview: isPreview || false,
-      })
-      .eq('seq', id)
-      .select()
-      .single();
+    // Services 레이어를 통한 포트폴리오 수정
+    const data = await updatePortfolio(id, {
+      name,
+      category,
+      description,
+      thumbnail,
+      images,
+      infoData,
+      isPreview,
+    });
 
-    if (error) {
-      console.error('포트폴리오 수정 실패:', error);
+    if (!data) {
       return NextResponse.json({ error: '포트폴리오 수정에 실패했습니다.' }, { status: 500 });
     }
 
@@ -53,7 +51,10 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
   }
 }
 
-// 포트폴리오 삭제
+/**
+ * 포트폴리오 삭제 API
+ * DELETE /api/admin/portfolio/[seq]
+ */
 export async function DELETE(request: NextRequest, { params }: { params: Promise<{ seq: string }> }) {
   try {
     const supabase = await createClient();
@@ -70,18 +71,11 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     const { seq } = await params;
     const id = Number(seq);
 
-    // 포트폴리오 삭제 (실제 삭제 여부 확인을 위해 select 추가)
-    const { data, error } = await supabase.from('portfolioList').delete().eq('seq', id).select();
+    // Services 레이어를 통한 포트폴리오 삭제
+    const success = await deletePortfolio(id);
 
-    if (error) {
-      console.error('포트폴리오 삭제 실패:', error);
+    if (!success) {
       return NextResponse.json({ error: '포트폴리오 삭제에 실패했습니다.' }, { status: 500 });
-    }
-
-    // 실제로 삭제된 데이터가 없는 경우 (RLS 정책 등으로 인한 삭제 실패)
-    if (!data || data.length === 0) {
-      console.error('포트폴리오 삭제 권한 없음 또는 데이터 없음');
-      return NextResponse.json({ error: '포트폴리오를 삭제할 수 없습니다. 권한을 확인해주세요.' }, { status: 403 });
     }
 
     return NextResponse.json({ message: '포트폴리오가 삭제되었습니다.' }, { status: 200 });

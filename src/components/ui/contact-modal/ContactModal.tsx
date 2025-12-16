@@ -4,13 +4,13 @@ import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IoClose } from 'react-icons/io5';
 import { useContactModalStore } from '@/stores/useContactModalStore';
-import { useContact } from 'root/src/hooks/useContact';
-import { ContactFormData } from 'root/src/types/contactTypes';
+import { useContactMutation } from 'root/src/lib/queries/contact/useContact';
+import { ContactFormData } from '@/types/contactTypes';
 import './style.scss';
 
 export default function ContactModal() {
   const { isOpen, closeModal } = useContactModalStore();
-  const { mutate, isPending } = useContact();
+  const { mutate, isPending } = useContactMutation();
   const {
     register,
     handleSubmit,

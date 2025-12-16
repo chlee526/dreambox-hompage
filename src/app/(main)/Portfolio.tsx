@@ -4,18 +4,29 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ProductCard } from '@/components/ui';
 import './style.scss';
-import { PortfolioType } from '@/types/portfolio';
+import { usePreviewPortfolios } from 'root/src/lib/queries/portfolios/usePortfolios';
 
-interface PortfolioProps {
-  portfolios: PortfolioType[];
-}
-
-export default function Portfolio({ portfolios }: PortfolioProps) {
+export default function Portfolio() {
   const router = useRouter();
+  const { data: portfolios = [], isLoading } = usePreviewPortfolios();
 
-  const handleCardClick = (item: PortfolioType) => {
-    router.push(`/portfolio/${item.seq}`);
+  const handleCardClick = (seq: number) => {
+    router.push(`/portfolio/${seq}`);
   };
+
+  if (isLoading) {
+    return (
+      <section className="portfolio-section">
+        <div className="l-inner">
+          <h2 className="section-title">Portfolio</h2>
+          <div className="flex justify-center items-center py-20">
+            <p>로딩 중...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="portfolio-section">
       <div className="l-inner">
@@ -25,7 +36,7 @@ export default function Portfolio({ portfolios }: PortfolioProps) {
           <ul className="portfolio-list">
             {portfolios.map((item) => (
               <li key={item.seq} className="w-full">
-                <ProductCard product={item} onClick={() => handleCardClick(item)} />
+                <ProductCard product={item} onClick={() => handleCardClick(item.seq)} />
               </li>
             ))}
             <li className="view-all-button">

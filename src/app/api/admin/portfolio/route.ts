@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/utils/supabase/server';
+import { createPortfolio } from '@/lib/services/portfolio';
 
-// 포트폴리오 생성
+/**
+ * 포트폴리오 생성 API
+ * POST /api/admin/portfolio
+ */
 export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient();
@@ -23,34 +27,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: '필수 항목을 입력해주세요.' }, { status: 400 });
     }
 
-    // 현재 최대 seq 값 가져오기
-    const { data: portfolios, error: fetchError } = await supabase.from('portfolioList').select('seq').order('seq', { ascending: false }).limit(1);
+    // Services 레이어를 통한 포트폴리오 생성
+    const data = await createPortfolio({
+      name,
+      category,
+      description,
+      thumbnail,
+      images,
+      infoData,
+      isPreview,
+    });
 
-    if (fetchError) {
-      console.error('포트폴리오 조회 실패:', fetchError);
-    }
-
-    // 새로운 seq 계산 (최대값 + 1, 없으면 1부터 시작)
-    const newSeq = portfolios && portfolios.length > 0 ? portfolios[0].seq + 1 : 1;
-
-    // 포트폴리오 생성
-    const { data, error } = await supabase
-      .from('portfolioList')
-      .insert({
-        seq: newSeq,
-        name,
-        category,
-        description: description || '',
-        thumbnail: thumbnail || '',
-        images: images || [],
-        infoData: infoData || [],
-        isPreview: isPreview || false,
-      })
-      .select()
-      .single();
-
-    if (error) {
-      console.error('포트폴리오 생성 실패:', error);
+    if (!data) {
       return NextResponse.json({ error: '포트폴리오 생성에 실패했습니다.' }, { status: 500 });
     }
 

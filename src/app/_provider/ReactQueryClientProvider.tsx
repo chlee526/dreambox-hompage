@@ -1,10 +1,36 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useState } from 'react';
 
-// 이 변수, 즉 상수 값 같은 경우에는 쿼리 관련된 요청을 하는 모든 요청들에 대한 캐시 역할을 한다
-export const queryClient = new QueryClient({});
-
+/**
+ * React Query Provider
+ * 클라이언트 컴포넌트에서 QueryClient를 제공
+ */
 export default function ReactQueryClientProvider({ children }: React.PropsWithChildren) {
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+  // useState로 QueryClient를 한 번만 생성하도록 보장
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 60 * 1000, // 1분
+            refetchOnWindowFocus: false,
+            retry: 1,
+          },
+          mutations: {
+            retry: 0,
+          },
+        },
+      }),
+  );
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+      {/* 개발 환경에서만 DevTools 표시 */}
+      {process.env.NODE_ENV === 'development' && <ReactQueryDevtools initialIsOpen={false} />}
+    </QueryClientProvider>
+  );
 }
