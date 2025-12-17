@@ -29,11 +29,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     ...portfolioUrls, // 동적 포트폴리오 페이지들
-    {
-      url: `${baseUrl}/admin/login`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
   ];
 }
