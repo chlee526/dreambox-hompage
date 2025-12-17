@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://dreambox.co.kr'), // 실제 도메인으로 변경 필요
+  metadataBase: new URL('https://www.dreambox.kr'), // 실제 도메인으로 변경 필요
   openGraph: {
     title: 'Dream Box | 소량 맞춤 박스 제작 전문',
     description: '1개부터 제작 가능한 맞춤형 박스 패키지. 빠른 납기와 합리적인 가격으로 고객의 특별한 포장 솔루션을 제공합니다.',
-    url: 'https://dreambox.co.kr',
+    url: 'https://www.dreambox.kr',
     siteName: 'Dream Box',
     locale: 'ko_KR',
     type: 'website',
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // google: 'your-google-verification-code', // Google Search Console 인증 코드
+    google: 'APLzo29RwuHS0VcWpgNV_ASjcTvCXUCE3n8h64c_eJ4', // Google Search Console 인증 코드
     // naver: 'your-naver-verification-code', // 네이버 웹마스터 인증 코드
   },
 };
