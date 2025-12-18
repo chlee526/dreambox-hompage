@@ -57,7 +57,7 @@ export default function PortfolioClient() {
         {/* 데이터가 없을 때 */}
         {portfolios.length === 0 && (
           <div className="flex justify-center items-center py-[10rem]">
-            <p className="text-primary-dark text-lg">포트폴리오가 없습니다.</p>
+            <p className="text-primary-dark text-base">포트폴리오가 없습니다.</p>
           </div>
         )}
 

@@ -11,7 +11,7 @@ header.gnb {
   z-index: 1000;
   transition: all 0.3s ease-in-out;
 
-  @include mobile-tablet {
+  @include tablet {
     height: 6rem;
   }
 
@@ -32,7 +32,7 @@ header.gnb {
     height: 100%;
     padding: 0 3rem;
 
-    @include mobile-tablet {
+    @include tablet {
       padding: 0 2rem;
     }
 
@@ -48,7 +48,7 @@ header.gnb {
         width: 162px;
         height: 40px;
 
-        @include mobile-tablet {
+        @include tablet {
           width: 140px;
           height: 35px;
         }
@@ -75,7 +75,7 @@ header.gnb {
       font-weight: 600;
       color: $color-primary-dark;
 
-      @include mobile-tablet {
+      @include tablet {
         font-size: 1.7rem;
         gap: 1.2rem;
       }
@@ -100,7 +100,7 @@ header.gnb {
           font-weight: inherit;
           font-family: inherit;
 
-          @include mobile-tablet {
+          @include tablet {
             padding: 0.6rem 1.2rem;
           }
 
@@ -116,4 +116,3 @@ header.gnb {
     }
   }
 }
-

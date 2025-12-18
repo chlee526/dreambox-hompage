@@ -9,6 +9,10 @@
   overflow: hidden;
   background: linear-gradient(135deg, $color-primary-dark 0%, $color-primary 100%);
 
+  @include tablet {
+    height: calc(100vh - 6rem);
+  }
+
   @include mobile {
     height: calc(100vh - 5.6rem);
   }
@@ -35,7 +39,7 @@
       filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
       transition: opacity 0.3s ease;
 
-      @include mobile-tablet {
+      @include tablet {
         opacity: 0.1;
       }
 
@@ -74,7 +78,7 @@
     padding: 0 12rem;
     z-index: 4;
 
-    @include mobile-tablet {
+    @include tablet {
       padding: 0 6rem;
       gap: 4rem;
     }
@@ -106,7 +110,7 @@
     letter-spacing: 0.2rem;
     margin-bottom: 4rem;
 
-    @include mobile-tablet {
+    @include tablet {
       font-size: 4rem;
       margin-bottom: 3rem;
     }
@@ -163,7 +167,7 @@
     line-height: 1.4;
     opacity: 0.95;
 
-    @include mobile-tablet {
+    @include tablet {
       font-size: 2.4rem;
     }
 
@@ -217,7 +221,7 @@
       overflow: hidden;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-      @include mobile-tablet {
+      @include tablet {
         padding: 10px 24px;
         font-size: 1.6rem;
       }
@@ -298,7 +302,7 @@
   padding: 10rem 6rem;
   background-color: #f0eeeb;
 
-  @include mobile-tablet {
+  @include tablet {
     padding: 8rem 4rem;
   }
 
@@ -312,7 +316,7 @@
     color: #5b1c1d;
     margin-bottom: 4rem;
 
-    @include mobile-tablet {
+    @include tablet {
       font-size: 2.8rem;
       margin-bottom: 3rem;
     }
@@ -329,7 +333,6 @@
     gap: 3rem;
 
     @include tablet {
-      grid-template-columns: repeat(3, 1fr);
       gap: 2.4rem;
     }
 
@@ -342,7 +345,7 @@
       height: auto;
       max-height: 30rem;
 
-      @include mobile-tablet {
+      @include tablet {
         max-height: 25rem;
       }
 
@@ -413,7 +416,7 @@
             transition: transform 0.3s ease;
             z-index: 1;
 
-            @include mobile-tablet {
+            @include tablet {
               font-size: 3.5rem;
             }
 
@@ -429,7 +432,7 @@
             letter-spacing: 0.05em;
             z-index: 1;
 
-            @include mobile-tablet {
+            @include tablet {
               font-size: 1.6rem;
             }
 

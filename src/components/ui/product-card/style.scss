@@ -78,7 +78,7 @@
 
       transition: all 0.4s ease-in-out;
 
-      @include mobile-tablet {
+      @include tablet {
         padding-bottom: 20px;
       }
 
@@ -93,7 +93,7 @@
         text-align: center;
         white-space: nowrap;
 
-        @include mobile-tablet {
+        @include tablet {
           font-size: 1.6rem;
         }
 

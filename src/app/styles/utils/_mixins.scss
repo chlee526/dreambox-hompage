@@ -256,10 +256,3 @@
     @content;
   }
 }
-
-// 모바일 + 태블릿
-@mixin mobile-tablet {
-  @media (max-width: 1024px) {
-    @content;
-  }
-}
