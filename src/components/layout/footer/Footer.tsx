@@ -9,7 +9,8 @@ export default function Footer() {
         <div className="footer-top">
           <div className="info-section">
             <div className="contact-info">
-              <p>이메일: dreambox13@hanmail.net</p>
+              <p>연락처: 010-5290-8856</p>
+              <p>이메일: dreamboxcom25@gmail.com</p>
               <p>주소: 경기도 파주시 파주읍 바리골길 196-20</p>
             </div>
 
