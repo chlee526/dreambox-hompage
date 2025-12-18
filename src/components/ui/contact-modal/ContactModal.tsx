@@ -15,7 +15,7 @@ export default function ContactModal() {
     register,
     handleSubmit,
     reset,
-    formState: { isValid },
+    formState: { isValid, errors },
   } = useForm<ContactFormData>({
     mode: 'onChange', // 실시간 검증으로 버튼 상태 업데이트
   });
@@ -39,12 +39,6 @@ export default function ContactModal() {
 
   if (!isOpen) return null;
 
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      closeModal();
-    }
-  };
-
   const onSubmit: SubmitHandler<ContactFormData> = (data) => {
     mutate(data, {
       onSuccess: (result) => {
@@ -64,7 +58,7 @@ export default function ContactModal() {
   };
 
   return (
-    <div className="contact-modal-backdrop" onClick={handleBackdropClick}>
+    <div className="contact-modal-backdrop">
       <div className="contact-modal">
         <div className="modal-wrap">
           <button className="close-btn" onClick={closeModal} aria-label="닫기">
@@ -101,12 +95,16 @@ export default function ContactModal() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="modal-email">이메일 *</label>
+              <label htmlFor="modal-email">이메일 * {errors.email && <span className="error-message">{errors.email.message}</span>}</label>
               <input
                 type="email"
                 id="modal-email"
                 {...register('email', {
-                  required: true,
+                  required: '이메일을 입력해주세요',
+                  pattern: {
+                    value: /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: '올바른 이메일 형식이 아닙니다',
+                  },
                 })}
               />
             </div>
