@@ -75,18 +75,30 @@
         color: $color-gray-500;
       }
 
-      .logout-btn {
+      .util-btn {
         padding: 6px 8px;
-        background-color: $color-primary;
-        color: white;
         border: none;
         border-radius: 6px;
         font-size: 13px;
-        cursor: pointer;
+        color: white;
         transition: all 0.2s ease;
 
-        &:hover {
-          opacity: 0.8;
+        &.is-site {
+          color: white;
+          background-color: $color-primary;
+
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+
+        &.is-logout {
+          color: #1a1a1a;
+          background-color: $color-gray-light;
+
+          &:hover {
+            background-color: $color-gray-200;
+          }
         }
       }
     }

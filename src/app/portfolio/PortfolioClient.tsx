@@ -14,17 +14,30 @@ export default function PortfolioClient() {
   // React Query로 데이터 가져오기 (캐시 사용)
   const { data: portfolios = [], isLoading } = usePortfolios();
 
-  const subTabList = [
+  const allSubTabs = [
     { label: '전체', value: 'all' },
     { label: '패키지', value: 'package' },
     { label: '쇼핑백', value: 'bag' },
     { label: '기타', value: 'etc' },
   ];
 
+  // 아이템이 1개 이상 있는 카테고리만 필터링
+  const subTabList = allSubTabs.filter((tab) => {
+    if (tab.value === 'all') {
+      return portfolios.length > 0; // 전체는 포트폴리오가 1개 이상 있으면 표시
+    }
+    return portfolios.some((item) => item.category === tab.value); // 해당 카테고리에 아이템이 있으면 표시
+  });
+
   useEffect(() => {
     const filteredData = activeTab === 'all' ? portfolios : portfolios.filter((item) => item.category === activeTab);
 
     setDisplayData(filteredData);
+
+    // 현재 선택된 탭에 아이템이 없으면 '전체' 탭으로 이동
+    if (activeTab !== 'all' && filteredData.length === 0 && portfolios.length > 0) {
+      setActiveTab('all');
+    }
   }, [portfolios, activeTab]);
 
   const handleCardClick = (item: PortfolioType) => {
@@ -41,26 +54,21 @@ export default function PortfolioClient() {
 
   return (
     <>
-      {/* 서브 탭 */}
-      <div className="sub-tab">
-        <ul className="sub-tab-list">
-          {subTabList.map((item) => (
-            <li key={item.value} className="sub-tab-item" style={{ '--borderColor': activeTab === item.value ? '#3b1112' : 'transparent' } as React.CSSProperties}>
-              <button onClick={() => setActiveTab(item.value)}>{item.label}</button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* 서브 탭 - 탭이 2개 이상일 때만 표시 (전체만 있으면 의미없음) */}
+      {subTabList.length > 1 && (
+        <div className="sub-tab">
+          <ul className="sub-tab-list">
+            {subTabList.map((item) => (
+              <li key={item.value} className="sub-tab-item" style={{ '--borderColor': activeTab === item.value ? '#3b1112' : 'transparent' } as React.CSSProperties}>
+                <button onClick={() => setActiveTab(item.value)}>{item.label}</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* 포트폴리오 리스트 */}
       <div className="section-portfolios">
-        {/* 데이터가 없을 때 */}
-        {portfolios.length === 0 && (
-          <div className="flex justify-center items-center py-[10rem]">
-            <p className="text-primary-dark text-base">포트폴리오가 없습니다.</p>
-          </div>
-        )}
-
         {displayData.length > 0 && (
           <ul className="list">
             {displayData.map((item) => (

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useForm, useFieldArray, SubmitHandler } from 'react-hook-form';
 import { PortfolioType } from '@/types/portfolio';
 import { useUploadImage } from '@/lib/queries/upload/useUpload';
-import { useCreatePortfolio, useUpdatePortfolio } from '@/lib/queries/portfolios/usePortfolios';
+import { useCreatePortfolio, useUpdatePortfolio, usePortfolios } from '@/lib/queries/portfolios/usePortfolios';
 import './style.scss';
 
 interface PortfolioFormProps {
@@ -16,7 +16,6 @@ interface PortfolioFormProps {
 const FIXED_INFO_FIELDS = [
   { code: 'type', name: '형태' },
   { code: 'category', name: '종류' },
-  { code: 'processing', name: '후가공' },
   { code: 'material', name: '재질' },
 ];
 
@@ -38,6 +37,18 @@ interface FormValues {
 
 export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
   const router = useRouter();
+
+  // 전체 포트폴리오 목록 조회 (메인페이지 노출 개수 확인용)
+  const { data: portfolios = [] } = usePortfolios();
+
+  // 현재 메인페이지에 노출 중인 포트폴리오 개수 계산
+  const currentPreviewCount = portfolios.filter((p) => {
+    // 수정 모드일 때는 현재 수정 중인 포트폴리오는 제외하고 계산
+    if (mode === 'edit' && portfolio && p.seq === portfolio.seq) {
+      return false;
+    }
+    return p.isPreview;
+  }).length;
 
   // 이미지 업로드 mutation
   const { mutateAsync: uploadImage, isPending: isUploading } = useUploadImage({
@@ -109,6 +120,7 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
   const thumbnail = watch('thumbnail');
   const name = watch('name');
   const images = watch('images');
+  const isPreview = watch('isPreview');
 
   // 폼 유효성 검사: 이름, 썸네일, 이미지 최소 1개
   const isFormValid = () => {
@@ -155,7 +167,28 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
     }
   };
 
+  const countWarningMsg = '메인페이지 노출은 최대 7개까지만 가능합니다.\n다른 포트폴리오의 노출을 먼저 해제해주세요.';
+
+  // 메인페이지 노출 체크박스 변경 핸들러
+  const handlePreviewChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked;
+
+    // 체크하려고 할 때 이미 7개가 노출 중이면 막기
+    if (checked && currentPreviewCount >= 7) {
+      alert(countWarningMsg);
+      return;
+    }
+
+    setValue('isPreview', checked);
+  };
+
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    // 저장 시 최종 검증: 메인페이지 노출 7개 제한
+    if (data.isPreview && currentPreviewCount >= 7) {
+      alert(countWarningMsg);
+      return;
+    }
+
     // 이미지 필터링 (빈 값 제거)
     const filteredImages = data.images.filter((img) => img.url.trim() !== '').map((img) => img.url);
 
@@ -193,10 +226,10 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
     <form className="portfolio-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-layout">
         {/* 왼쪽: 이미지 업로드 */}
-        <div className="form-col">
+        <div className="col-left">
           <div className="section">
-            <h2 className="section-title">썸네일 이미지</h2>
-            <div className="field">
+            <h2 className="section-title">대표 이미지</h2>
+            <div className="field min-h-[298px]">
               <label className="file-label">
                 <input type="file" accept="image/*" onChange={handleThumbnailFileChange} className="file-input" />
                 <span className="btn btn-file">파일 선택</span>
@@ -204,9 +237,6 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
               {thumbnail && (
                 <div className="preview">
                   <img src={thumbnail} alt="썸네일 미리보기" />
-                  <button type="button" onClick={() => setValue('thumbnail', '')} className="btn-remove" title="이미지 제거">
-                    ✕
-                  </button>
                 </div>
               )}
             </div>
@@ -217,7 +247,7 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
             <div className="images-scroll">
               {imageFields.map((field, index) => (
                 <div key={field.id} className="field-group">
-                  <div className="input-row">
+                  <div className="flex items-center gap-[8px] mb-[8px]">
                     <label className="file-label">
                       <input type="file" accept="image/*" onChange={(e) => handleImageFileChange(index, e)} className="file-input" disabled={watch(`images.${index}.uploading`)} />
                       <span className="btn btn-file">{watch(`images.${index}.uploading`) ? '업로드 중...' : `이미지 ${index + 1} 선택`}</span>
@@ -231,9 +261,6 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
                   {watch(`images.${index}.url`) && (
                     <div className="preview">
                       <img src={watch(`images.${index}.url`)} alt={`이미지 ${index + 1} 미리보기`} />
-                      <button type="button" onClick={() => setValue(`images.${index}.url`, '')} className="btn-remove" title="이미지 제거">
-                        ✕
-                      </button>
                     </div>
                   )}
                 </div>
@@ -246,7 +273,7 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
         </div>
 
         {/* 오른쪽: 내용 작성 */}
-        <div className="form-col">
+        <div className="col-right">
           <div className="section">
             <h2 className="section-title">기본 정보</h2>
 
@@ -258,10 +285,10 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
             </div>
 
             <div className="field">
-              <label className="label">
+              <span className="label">
                 카테고리 <span className="required">*</span>
-              </label>
-              <div className="radio-group">
+              </span>
+              <div className="flex gap-[16px]">
                 {CATEGORY_OPTIONS.map((option) => (
                   <label key={option.value} className="radio-label">
                     <input type="radio" {...register('category', { required: true })} value={option.value} />
@@ -272,26 +299,29 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
             </div>
 
             <div className="field">
+              {FIXED_INFO_FIELDS.map((info, index) => (
+                <div key={info.code} className="field">
+                  <label className="label">{info.name}</label>
+                  <input {...register(`infoData.${index}.value`)} className="input" placeholder={`${info.name}을(를) 입력하세요`} />
+                </div>
+              ))}
+            </div>
+
+            <div className="field">
               <label className="label">설명</label>
-              <textarea {...register('description')} className="textarea" placeholder="포트폴리오 설명을 입력하세요" rows={3} />
+              <textarea {...register('description')} className="textarea h-[250px]" placeholder="포트폴리오 설명을 입력하세요" />
             </div>
 
             <div className="field">
               <label className="checkbox-label">
-                <input type="checkbox" {...register('isPreview')} />
+                <input type="checkbox" checked={isPreview} onChange={handlePreviewChange} />
                 <span>메인페이지 노출</span>
+                <span className="ml-[8px]">
+                  <strong className={currentPreviewCount >= 7 ? 'counter-full' : ''}>{isPreview ? currentPreviewCount + 1 : currentPreviewCount}/7</strong>
+                </span>
+                <span className="counter-full"> (최대 7개 제한)</span>
               </label>
             </div>
-          </div>
-
-          <div className="section">
-            <h2 className="section-title">추가 정보</h2>
-            {FIXED_INFO_FIELDS.map((info, index) => (
-              <div key={info.code} className="field">
-                <label className="label">{info.name}</label>
-                <input {...register(`infoData.${index}.value`)} className="input" placeholder={`${info.name}을(를) 입력하세요`} />
-              </div>
-            ))}
           </div>
         </div>
       </div>

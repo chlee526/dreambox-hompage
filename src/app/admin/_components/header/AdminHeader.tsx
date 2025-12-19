@@ -49,7 +49,10 @@ export default function AdminHeader({ user }: AdminHeaderProps) {
         </div>
         <div className="header-util">
           <span className="user-email">{user.email}</span>
-          <button onClick={handleLogout} className="logout-btn">
+          <button onClick={() => window.open('/', '_blank')} className="util-btn is-site">
+            사이트 바로가기
+          </button>
+          <button onClick={handleLogout} className="util-btn is-logout">
             로그아웃
           </button>
         </div>

@@ -189,6 +189,7 @@
       .description {
         flex: 1;
         padding-top: 2rem;
+        white-space: pre-line;
 
         @include tablet {
           padding-top: 1.6rem;
