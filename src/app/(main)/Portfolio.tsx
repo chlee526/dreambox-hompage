@@ -1,18 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { ProductCard } from '@/components/ui';
 import './style.scss';
 import { usePreviewPortfolios } from 'root/src/lib/queries/portfolios/usePortfolios';
 
 export default function Portfolio() {
-  const router = useRouter();
   const { data: portfolios = [], isLoading } = usePreviewPortfolios();
-
-  const handleCardClick = (seq: number) => {
-    router.push(`/portfolio/${seq}`);
-  };
 
   if (isLoading) {
     return (
@@ -36,7 +30,9 @@ export default function Portfolio() {
           <ul className="portfolio-list">
             {portfolios.map((item) => (
               <li key={item.seq} className="w-full">
-                <ProductCard product={item} onClick={() => handleCardClick(item.seq)} />
+                <Link href={`/portfolio/${item.seq}`} prefetch={true}>
+                  <ProductCard product={item} />
+                </Link>
               </li>
             ))}
             <li className="view-all-button">

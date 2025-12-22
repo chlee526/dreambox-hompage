@@ -47,7 +47,9 @@ export default function Header() {
         <nav>
           <ul className="menu-list">
             <li>
-              <Link href="/portfolio">포트폴리오</Link>
+              <Link href="/portfolio" prefetch={true}>
+                포트폴리오
+              </Link>
             </li>
             <li>
               <button onClick={openModal} className="contact-btn">
@@ -60,4 +62,3 @@ export default function Header() {
     </header>
   );
 }
-
