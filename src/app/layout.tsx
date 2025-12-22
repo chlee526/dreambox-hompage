@@ -6,14 +6,24 @@ import './styles/main.scss';
 
 export const metadata: Metadata = {
   title: {
-    default: '드림박스 | Dream Box',
-    template: '%s | Dream Box',
+    default: '드림박스 | DreamBox',
+    template: '%s | 드림박스',
   },
   description: '드림박스는 맞춤 패키지 샘플 제작을 기반으로 새로운 형태의 박스를 제작합니다.\n샘플 컨펌 후 생산 연계와 납기 관리를 통해 소량 제작이 가능합니다.',
-  keywords: ['맞춤 박스 제작', '소량 박스 제작', '패키지 샘플 제작', '박스 샘플', '새로운 형태의 박스', '맞춤 패키지', '소량 패키지 제작', '종이 박스 제작', '드림박스', 'Dream Box', 'DreamBox', '사바리박스', '싸바리박스', '쇼핑백'],
-  authors: [{ name: 'DreamBox' }],
-  creator: 'Dream Box',
-  publisher: 'Dream Box',
+  // 파비콘 설정 추가
+  icons: {
+    icon: [
+      { url: 'assets/image/favicon/favicon.ico', sizes: 'any' },
+      { url: 'assets/image/favicon/icon_32.png', type: 'image/png', sizes: '32x32' },
+      { url: 'assets/image/favicon/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: 'assets/image/favicon/icon-512.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: [{ url: 'assets/image/favicon/apple-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
+  keywords: ['맞춤 박스 제작', '소량 박스 제작', '패키지 샘플 제작', '박스 샘플', '새로운 형태의 박스', '맞춤 패키지', '소량 패키지 제작', '종이 박스 제작', '드림박스', 'DreamBox', '사바리박스', '싸바리박스', '쇼핑백'],
+  authors: [{ name: '드림박스 | DreamBox' }],
+  creator: '드림박스 | DreamBox',
+  publisher: '드림박스 | DreamBox',
   formatDetection: {
     email: false,
     address: false,
@@ -21,10 +31,10 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL('https://www.dreambox.kr'),
   openGraph: {
-    title: '드림박스 | 맞춤 패키지 샘플·소량 제작 전문',
+    title: '드림박스 | DreamBox',
     description: '새로운 형태의 패키지를 직접 제작해 샘플로 확인할 수 있습니다. 컨펌 후 생산과 납기까지 관리하여 소량 제작이 가능합니다.',
     url: 'https://www.dreambox.kr',
-    siteName: 'DreamBox',
+    siteName: '드림박스 | DreamBox',
     locale: 'ko_KR',
     type: 'website',
     images: [
@@ -32,13 +42,13 @@ export const metadata: Metadata = {
         url: '/assets/image/dreambox_og.png',
         width: 1200,
         height: 630,
-        alt: 'Dream Box - 소량 맞춤 박스 제작 전문',
+        alt: '드림박스 | DreamBox',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '드림박스 | 맞춤 패키지 샘플·소량 제작 전문',
+    title: '드림박스 | DreamBox',
     description: '새로운 형태의 패키지를 직접 제작해 샘플로 확인할 수 있습니다. 컨펌 후 생산과 납기까지 관리하여 소량 제작이 가능합니다.',
     images: ['/assets/image/dreambox_og.png'],
   },
