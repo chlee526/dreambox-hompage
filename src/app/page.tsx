@@ -1,5 +1,6 @@
 import Banner from './(main)/Banner';
 import Portfolio from './(main)/Portfolio';
+import Process from './(main)/Process';
 import { getPortfolios, getPreviewPortfolios } from '@/lib/services/portfolio';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { getQueryClient } from '@/lib/queryClient';
@@ -25,6 +26,8 @@ export default async function Home() {
       <Banner />
       {/* 포트폴리오 */}
       <Portfolio />
+      {/* 생산 과정 */}
+      <Process />
     </HydrationBoundary>
   );
 }
