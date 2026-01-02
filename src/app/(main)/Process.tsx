@@ -11,7 +11,7 @@ export default function Process() {
     {
       id: 2,
       step: 'STEP 02',
-      title: '디자인 기획',
+      title: '패키지 디자인',
       description: '브랜드 아이덴티티를 담은\n맞춤형 디자인을 제작합니다',
     },
     {
@@ -39,17 +39,17 @@ export default function Process() {
       <div className="l-inner">
         <div className="section-header">
           <h2 className="section-title">Production Process</h2>
-          <p className="section-description">체계적인 프로세스로 고객님의 브랜드 가치를 높입니다</p>
+          <p className="section-desc">체계적인 프로세스로 고객님의 브랜드 가치를 높입니다</p>
         </div>
 
         <div className="process-timeline">
           {processes.map((process, index) => (
             <div key={process.id} className="process-item">
-              <div className="process-number">{String(index + 1).padStart(2, '0')}</div>
+              <div className="process-order">{String(index + 1).padStart(2, '0')}</div>
               <div className="process-content">
-                <span className="process-step">{process.step}</span>
-                <h3 className="process-title">{process.title}</h3>
-                <p className="process-description">
+                <span className="step">{process.step}</span>
+                <h3 className="title">{process.title}</h3>
+                <p className="desc">
                   {process.description.split('\n').map((line, i) => (
                     <span key={i}>
                       {line}
@@ -59,9 +59,8 @@ export default function Process() {
                 </p>
               </div>
               {index < processes.length - 1 && (
-                <div className="process-connector">
-                  {/* <div className="connector-line" /> */}
-                  <div className="connector-arrow">→</div>
+                <div className="connector">
+                  <div className="arrow">→</div>
                 </div>
               )}
             </div>

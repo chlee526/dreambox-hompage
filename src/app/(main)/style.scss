@@ -275,28 +275,7 @@
   }
 }
 
-// 애니메이션 정의
-@keyframes floatUpDown {
-  0%,
-  100% {
-    transform: translateY(0) rotate(var(--rotation));
-  }
-  50% {
-    transform: translateY(-40px) rotate(calc(var(--rotation) + 5deg));
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+// 포트폴리오 섹션
 .portfolio-section {
   width: 100%;
   padding: 10rem 6rem;
@@ -471,255 +450,257 @@
     @include mobile {
       margin-bottom: 4rem;
     }
-  }
 
-  .section-title {
-    font-size: 3.2rem;
-    font-weight: 700;
-    color: #5b1c1d;
-    margin-bottom: 1.6rem;
+    .section-title {
+      margin-bottom: 1.6rem;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: #5b1c1d;
 
-    @include tablet {
-      font-size: 2.8rem;
-      margin-bottom: 1.4rem;
+      @include tablet {
+        margin-bottom: 1.4rem;
+        font-size: 2.8rem;
+      }
+
+      @include mobile {
+        margin-bottom: 1.2rem;
+        font-size: 2.4rem;
+      }
     }
 
-    @include mobile {
-      font-size: 2.4rem;
-      margin-bottom: 1.2rem;
-    }
-  }
+    .section-desc {
+      font-size: 1.8rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #6b7280;
 
-  .section-description {
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: #6b7280;
-    line-height: 1.6;
+      @include tablet {
+        font-size: 1.6rem;
+      }
 
-    @include tablet {
-      font-size: 1.6rem;
-    }
-
-    @include mobile {
-      font-size: 1.4rem;
+      @include mobile {
+        font-size: 1.4rem;
+      }
     }
   }
 
   .process-timeline {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
     gap: 3rem;
     max-width: 100%;
     margin: 0 auto;
-    justify-content: center;
-    align-items: stretch;
 
     @include tablet {
-      gap: 2.5rem;
+      gap: 3rem;
     }
 
     @include mobile {
       flex-direction: column;
       gap: 3rem;
     }
-  }
 
-  .process-item {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    padding: 3rem 2rem;
-    background: linear-gradient(135deg, #f9f7f4 0%, #ffffff 100%);
-    border: 1px solid rgba(91, 28, 29, 0.08);
-    border-radius: 1.6rem;
-    transition: all 0.3s ease;
-    flex: 1;
-    min-width: 0;
+    .process-item {
+      flex: 1;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      min-width: 0;
+      padding: 3rem 2rem;
+      border: 1px solid #5b1c1d14;
+      border-radius: 1.6rem;
+      background: linear-gradient(135deg, #f9f7f4 0%, #ffffff 100%);
+      transition: all 0.3s ease;
 
-    @include tablet {
-      gap: 1.6rem;
-      padding: 2.4rem 1.6rem;
-      border-radius: 1.4rem;
-    }
-
-    @include mobile {
-      flex-direction: row;
-      gap: 1.6rem;
-      padding: 2rem;
-      border-radius: 1.2rem;
-    }
-
-    &:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(91, 28, 29, 0.12);
-      border-color: rgba(91, 28, 29, 0.15);
+      @include tablet {
+        gap: 2rem;
+        padding: 2.4rem 1.6rem;
+        border-radius: 1.4rem;
+      }
 
       @include mobile {
-        transform: translateY(-2px);
+        flex-direction: row;
+        gap: 1.6rem;
+        padding: 2rem;
+        border-radius: 1.2rem;
       }
 
-      .process-number {
-        background: linear-gradient(135deg, #5b1c1d 0%, #7e3031 100%);
-        color: #fff;
-        transform: scale(1.05);
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(91, 28, 29, 0.12);
+        border-color: rgba(91, 28, 29, 0.15);
+
+        @include mobile {
+          transform: translateY(-2px);
+        }
+
+        .process-order {
+          background: linear-gradient(135deg, #5b1c1d 0%, #7e3031 100%);
+          color: #fff;
+          transform: scale(1.05);
+        }
+
+        .connector {
+          > .arrow {
+            transform: translateX(8px);
+            opacity: 1;
+
+            @include mobile {
+              transform: rotate(90deg) translateX(8px);
+            }
+          }
+        }
       }
 
-      .process-connector {
-        .connector-arrow {
-          transform: translateX(8px);
-          opacity: 1;
+      .process-order {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 6rem;
+        height: 6rem;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #5b1c1d;
+        background: rgba(91, 28, 29, 0.06);
+        border-radius: 50%;
+        transition: all 0.3s ease;
+
+        @include tablet {
+          width: 5.5rem;
+          height: 5.5rem;
+          font-size: 1.8rem;
+        }
+
+        @include mobile {
+          width: 5rem;
+          height: 5rem;
+          font-size: 1.6rem;
+        }
+      }
+
+      .process-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+
+        @include mobile {
+          gap: 0.8rem;
+          text-align: left;
+        }
+
+        > .step {
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #9ca3af;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+
+          @include tablet {
+            font-size: 1.1rem;
+          }
 
           @include mobile {
-            transform: translateY(8px);
+            font-size: 1.1rem;
+          }
+        }
+
+        > .title {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #5b1c1d;
+          line-height: 1.3;
+
+          @include tablet {
+            font-size: 1.8rem;
+          }
+
+          @include mobile {
+            font-size: 1.8rem;
+          }
+        }
+
+        > .desc {
+          font-size: 1.4rem;
+          font-weight: 400;
+          color: #6b7280;
+          line-height: 1.6;
+
+          @include tablet {
+            font-size: 1.3rem;
+          }
+
+          @include mobile {
+            font-size: 1.3rem;
+          }
+        }
+      }
+
+      .connector {
+        position: absolute;
+        right: calc(-3rem / 2 - 0.6rem);
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.4rem;
+        z-index: 1;
+
+        @include tablet {
+        }
+
+        @include mobile {
+          right: auto;
+          left: 50%;
+          transform: translateX(-50%);
+          top: auto;
+          bottom: calc(-3rem / 2 - 1rem);
+        }
+
+        > .arrow {
+          font-size: 2.4rem;
+          color: rgba(91, 28, 29, 0.4);
+          transition: all 0.3s ease;
+          opacity: 0.8;
+          font-weight: 300;
+
+          @include tablet {
+            font-size: 2rem;
+          }
+
+          @include mobile {
+            font-size: 2rem;
+            transform: rotate(90deg);
           }
         }
       }
     }
+  }
+}
 
-    .process-number {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 6rem;
-      height: 6rem;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #5b1c1d;
-      background: rgba(91, 28, 29, 0.06);
-      border-radius: 50%;
-      transition: all 0.3s ease;
+@keyframes floatUpDown {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--rotation));
+  }
+  50% {
+    transform: translateY(-40px) rotate(calc(var(--rotation) + 5deg));
+  }
+}
 
-      @include tablet {
-        width: 5.5rem;
-        height: 5.5rem;
-        font-size: 1.8rem;
-      }
-
-      @include mobile {
-        width: 5rem;
-        height: 5rem;
-        font-size: 1.6rem;
-      }
-    }
-
-    .process-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      text-align: center;
-
-      @include mobile {
-        gap: 0.8rem;
-        text-align: left;
-      }
-    }
-
-    .process-step {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #9ca3af;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-
-      @include tablet {
-        font-size: 1.1rem;
-      }
-
-      @include mobile {
-        font-size: 1.1rem;
-      }
-    }
-
-    .process-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #5b1c1d;
-      line-height: 1.3;
-
-      @include tablet {
-        font-size: 1.8rem;
-      }
-
-      @include mobile {
-        font-size: 1.8rem;
-      }
-    }
-
-    .process-description {
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: #6b7280;
-      line-height: 1.6;
-
-      @include tablet {
-        font-size: 1.3rem;
-      }
-
-      @include mobile {
-        font-size: 1.3rem;
-      }
-    }
-
-    .process-connector {
-      position: absolute;
-      right: calc(-3rem / 2 - 0.4rem);
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 0.4rem;
-      z-index: 1;
-
-      @include tablet {
-        right: calc(-2.5rem / 2 - 1.2rem);
-      }
-
-      @include mobile {
-        right: auto;
-        left: 50%;
-        top: auto;
-        bottom: -3rem;
-        transform: translateX(-50%);
-        flex-direction: column;
-      }
-
-      .connector-line {
-        height: 2px;
-        width: 1.5rem;
-        background: linear-gradient(90deg, rgba(91, 28, 29, 0.3) 0%, rgba(91, 28, 29, 0.15) 100%);
-
-        @include tablet {
-          width: 1.2rem;
-        }
-
-        @include mobile {
-          width: 2px;
-          height: 1.6rem;
-          background: linear-gradient(180deg, rgba(91, 28, 29, 0.2) 0%, rgba(91, 28, 29, 0.05) 100%);
-        }
-      }
-
-      .connector-arrow {
-        font-size: 2.4rem;
-        color: rgba(91, 28, 29, 0.4);
-        transition: all 0.3s ease;
-        opacity: 0.8;
-        font-weight: 300;
-
-        @include tablet {
-          font-size: 2rem;
-        }
-
-        @include mobile {
-          font-size: 1.6rem;
-          transform: rotate(90deg);
-        }
-      }
-    }
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
