@@ -91,7 +91,7 @@
         font-weight: 400;
         color: #fff;
         text-align: center;
-        white-space: nowrap;
+        word-break: keep-all;
 
         @include tablet {
           font-size: 1.6rem;
