@@ -246,22 +246,6 @@
       }
     }
 
-    &-remove {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 28px;
-      height: 28px;
-      padding: 0;
-      background: rgba(220, 38, 38, 0.9);
-      color: white;
-      border-radius: 50%;
-      font-size: 16px;
-
-      &:hover {
-        background: #dc2626;
-      }
-    }
   }
 
   // 공통 입력 필드 스타일
@@ -350,6 +334,10 @@
         .file-input {
           display: none;
         }
+
+        &.image-upload-label {
+          margin-bottom: 12px;
+        }
       }
 
       .preview {
@@ -366,6 +354,26 @@
           height: auto;
           max-height: 260px;
           object-fit: contain;
+        }
+
+        .btn-remove {
+          position: absolute;
+          top: 8px;
+          right: 8px;
+          width: 28px;
+          height: 28px;
+          padding: 0;
+          background: rgba(220, 38, 38, 0.9);
+          color: white;
+          border-radius: 50%;
+          font-size: 18px;
+          line-height: 1;
+          border: none;
+          cursor: pointer;
+
+          &:hover {
+            background: #dc2626;
+          }
         }
       }
     }

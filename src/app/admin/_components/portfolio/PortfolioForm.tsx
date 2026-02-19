@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm, useFieldArray, SubmitHandler } from 'react-hook-form';
 import { PortfolioType } from '@/types/portfolio';
@@ -147,23 +148,33 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
     }
   };
 
-  // 상세 이미지 파일 업로드
-  const handleImageFileChange = async (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  // 상세 이미지 다중 업로드
+  const [uploadingCount, setUploadingCount] = useState(0);
+
+  const handleMultipleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
+
+    setUploadingCount(files.length);
 
     try {
-      setValue(`images.${index}.uploading`, true);
-      const result = await uploadImage({
-        file,
-        folder: 'images', // 상세 이미지는 images 폴더에 저장
+      const results = await Promise.allSettled(files.map((file) => uploadImage({ file, folder: 'images' })));
+
+      let failCount = 0;
+      results.forEach((result) => {
+        if (result.status === 'fulfilled') {
+          appendImage({ url: result.value.url });
+        } else {
+          failCount++;
+        }
       });
-      setValue(`images.${index}.url`, result.url);
-    } catch (error) {
-      // 에러는 mutation의 onError에서 처리
-      console.error('이미지 업로드 실패:', error);
+
+      if (failCount > 0) {
+        alert(`${failCount}개의 이미지 업로드에 실패했습니다.`);
+      }
     } finally {
-      setValue(`images.${index}.uploading`, false);
+      setUploadingCount(0);
+      e.target.value = '';
     }
   };
 
@@ -244,31 +255,26 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
 
           <div className="section">
             <h2 className="section-title">상세 이미지</h2>
+            <label className="file-label image-upload-label">
+              <input type="file" accept="image/*" multiple onChange={handleMultipleImageUpload} className="file-input" disabled={uploadingCount > 0} />
+              <span className="btn btn-file">{uploadingCount > 0 ? `${uploadingCount}개 업로드 중...` : '파일 선택 (다중 선택 가능)'}</span>
+            </label>
             <div className="images-scroll">
-              {imageFields.map((field, index) => (
-                <div key={field.id} className="field-group">
-                  <div className="flex items-center gap-[8px] mb-[8px]">
-                    <label className="file-label">
-                      <input type="file" accept="image/*" onChange={(e) => handleImageFileChange(index, e)} className="file-input" disabled={watch(`images.${index}.uploading`)} />
-                      <span className="btn btn-file">{watch(`images.${index}.uploading`) ? '업로드 중...' : `이미지 ${index + 1} 선택`}</span>
-                    </label>
-                    {imageFields.length > 1 && (
-                      <button type="button" onClick={() => removeImage(index)} className="btn btn-delete">
-                        삭제
-                      </button>
-                    )}
-                  </div>
-                  {watch(`images.${index}.url`) && (
+              {imageFields.map((field, index) => {
+                const url = watch(`images.${index}.url`);
+                if (!url) return null;
+                return (
+                  <div key={field.id} className="field-group">
                     <div className="preview">
-                      <img src={watch(`images.${index}.url`)} alt={`이미지 ${index + 1} 미리보기`} />
+                      <img src={url} alt={`이미지 ${index + 1} 미리보기`} />
+                      <button type="button" onClick={() => removeImage(index)} className="btn btn-remove">
+                        ×
+                      </button>
                     </div>
-                  )}
-                </div>
-              ))}
+                  </div>
+                );
+              })}
             </div>
-            <button type="button" onClick={() => appendImage({ url: '' })} className="btn btn-add">
-              + 이미지 추가
-            </button>
           </div>
         </div>
 
@@ -327,11 +333,11 @@ export default function PortfolioForm({ mode, portfolio }: PortfolioFormProps) {
       </div>
 
       <div className="form-actions">
-        <button type="button" onClick={handleCancel} className="btn btn-cancel" disabled={isSubmitting || isUploading || isCreating || isUpdating}>
+        <button type="button" onClick={handleCancel} className="btn btn-cancel" disabled={isSubmitting || isUploading || isCreating || isUpdating || uploadingCount > 0}>
           취소
         </button>
-        <button type="submit" className="btn btn-submit" disabled={isSubmitting || isUploading || isCreating || isUpdating || !isFormValid()}>
-          {isUploading ? '업로드 중...' : isCreating || isUpdating ? '저장 중...' : mode === 'create' ? '생성' : '수정'}
+        <button type="submit" className="btn btn-submit" disabled={isSubmitting || isUploading || isCreating || isUpdating || uploadingCount > 0 || !isFormValid()}>
+          {isUploading || uploadingCount > 0 ? '업로드 중...' : isCreating || isUpdating ? '저장 중...' : mode === 'create' ? '생성' : '수정'}
         </button>
       </div>
     </form>
