@@ -1,5 +1,5 @@
-import { createClient } from '@/utils/supabase/server';
-import AdminHeader from './_components/header/AdminHeader';
+import { createClient } from '@/lib/supabase/server';
+import AdminHeader from '@/features/admin/AdminHeader';
 import './style.scss';
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {

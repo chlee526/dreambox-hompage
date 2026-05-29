@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IoClose } from 'react-icons/io5';
 import { useContactModalStore } from '@/stores/useContactModalStore';
-import { useContactMutation } from 'root/src/lib/queries/contact/useContact';
+import { useContactMutation } from '@/hooks/queries/useContact';
 import { ContactFormData } from '@/types/contactTypes';
 import './style.scss';
 

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import ReactQueryClientProvider from 'root/src/app/_provider/ReactQueryClientProvider';
+import ReactQueryClientProvider from '@/app/_provider/ReactQueryClientProvider';
 import LayoutClient from './LayoutClient';
-import './styles/main.scss';
+import '@/styles/main.scss';
 
 export const metadata: Metadata = {
   title: {

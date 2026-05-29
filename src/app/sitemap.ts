@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { getPortfolios } from '@/lib/services/portfolio';
+import { getPortfolios } from '@/lib/portfolio';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.dreambox.kr';

@@ -1,8 +1,7 @@
-import { requireAuth } from '@/utils/supabase/server';
-import { getPortfolio } from '@/lib/services/portfolio';
+import { requireAuth } from '@/lib/supabase/server';
+import { getPortfolio } from '@/lib/portfolio';
 import { notFound } from 'next/navigation';
-import PortfolioForm from '@/app/admin/_components/portfolio/PortfolioForm';
-import '@/app/admin/_components/portfolio/style.scss';
+import PortfolioForm from '@/features/admin/PortfolioForm';
 
 interface EditPortfolioPageProps {
   params: Promise<{ seq: string }>;

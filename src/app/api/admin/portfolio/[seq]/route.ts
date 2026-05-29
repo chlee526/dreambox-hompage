@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/utils/supabase/server';
-import { updatePortfolio, deletePortfolio } from '@/lib/services/portfolio';
+import { createClient } from '@/lib/supabase/server';
+import { updatePortfolio, deletePortfolio } from '@/lib/portfolio';
 
 /**
  * 포트폴리오 수정 API

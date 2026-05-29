@@ -1,0 +1,55 @@
+@import '@/styles/base/_colors.scss';
+
+.admin-dashboard {
+  width: 100%;
+  height: 100%;
+
+  > .wrap {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    height: 100%;
+
+    .dashboard-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      background: white;
+      border-radius: 12px;
+      padding: 32px 24px;
+      height: 120px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      .icon {
+        position: relative;
+        bottom: 2px;
+        font-size: 18px;
+        margin-bottom: 16px;
+      }
+
+      .title {
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .desc {
+        padding-left: 4px;
+        font-size: 14px;
+        color: #666;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    > .wrap {
+      flex-direction: column;
+    }
+  }
+}

@@ -1,5 +1,5 @@
-import { requireAuth } from '@/utils/supabase/server';
-import PortfolioForm from '../../_components/portfolio/PortfolioForm';
+import { requireAuth } from '@/lib/supabase/server';
+import PortfolioForm from '@/features/admin/PortfolioForm';
 
 export default async function NewPortfolioPage() {
   // 인증 체크

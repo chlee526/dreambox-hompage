@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@/utils/supabase/server';
-import { uploadImage } from '@/lib/services/storage';
+import { createClient } from '@/lib/supabase/server';
+import { uploadImage } from '@/lib/storage';
 
 /**
  * 이미지 파일 업로드 API

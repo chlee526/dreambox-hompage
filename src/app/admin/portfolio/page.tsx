@@ -1,6 +1,6 @@
-import { requireAuth } from '@/utils/supabase/server';
-import { getPortfolios } from '@/lib/services/portfolio';
-import PortfolioManagement from '../_components/portfolio/PortfolioManagement';
+import { requireAuth } from '@/lib/supabase/server';
+import { getPortfolios } from '@/lib/portfolio';
+import PortfolioManagement from '@/features/admin/PortfolioManagement';
 
 export default async function AdminPortfolioPage() {
   // 인증 체크

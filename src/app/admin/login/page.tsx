@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { createBrowserSupabaseClient } from '@/utils/supabase/client';
+import { createBrowserSupabaseClient } from '@/lib/supabase/client';
 import './style.scss';
 
 interface LoginFormData {

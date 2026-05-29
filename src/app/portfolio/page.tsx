@@ -1,10 +1,10 @@
 import React from 'react';
 import './style.scss';
-import PortfolioClient from './PortfolioClient';
-import { getPortfolios } from '@/lib/services/portfolio';
+import PortfolioList from '@/features/portfolio/PortfolioList';
+import { getPortfolios } from '@/lib/portfolio';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { getQueryClient } from '@/lib/queryClient';
-import { portfolioKeys } from 'root/src/lib/queries/portfolios/portfolioKeys';
+import { portfolioKeys } from '@/hooks/queries/portfolioKeys';
 
 // ISR: 1시간마다 재생성
 export const revalidate = 3600; // 3600초 = 1시간
@@ -28,7 +28,7 @@ export default async function PortfolioPage() {
 
         {/* 클라이언트 컴포넌트로 필터링 및 인터랙션 처리 */}
         <HydrationBoundary state={dehydrate(queryClient)}>
-          <PortfolioClient />
+          <PortfolioList />
         </HydrationBoundary>
       </div>
     </section>

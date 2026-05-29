@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getPortfolio } from '@/lib/services/portfolio';
+import { getPortfolio } from '@/lib/portfolio';
 
 /**
  * 개별 포트폴리오 조회 API

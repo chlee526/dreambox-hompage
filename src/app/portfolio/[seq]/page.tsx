@@ -1,11 +1,11 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import './style.scss';
-import { getPortfolio } from '@/lib/services/portfolio';
+import { getPortfolio } from '@/lib/portfolio';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { getQueryClient } from '@/lib/queryClient';
-import { portfolioKeys } from 'root/src/lib/queries/portfolios/portfolioKeys';
-import PortfolioDetail from './PortfolioDetail';
+import { portfolioKeys } from '@/hooks/queries/portfolioKeys';
+import PortfolioDetail from '@/features/portfolio/PortfolioDetail';
 
 // ISR: 1시간마다 재생성
 export const revalidate = 3600;
