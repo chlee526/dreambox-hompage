@@ -1,0 +1,66 @@
+// @tailwind base;
+// @tailwind components;
+// @layer components {
+//     .link-button > a {
+//         @apply flex justify-center items-center border-none;
+//         @apply h-[3.2rem] p-[01.2rem] rounded-[1.6rem];
+//         @apply bg-[#9a9a9a] text-[1.6rem] text-white;
+
+//         &::after {
+//             content: url('/assets/image/arrow.svg');
+//             position: relative;
+//             top: -3px;
+//             display: inline-block;
+//             width: 0;
+//             height: 1.4rem;
+//             margin-left: 0.4rem;
+//             opacity: 0;
+//             transition: all 0.25s ease-in-out;
+//         }
+
+//         &:hover::after {
+//             width: 1.4rem;
+//             opacity: 1;
+//         }
+//     }
+// }
+
+.link-button {
+    > a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        height: 3.2rem;
+        line-height: 1;
+        padding: 0 1.2rem;
+        border-radius: 1.6rem;
+        background-color: #9a9a9a;
+        color: #fff;
+        font-size: 1.6rem;
+
+        &::after {
+            content: url('/assets/image/arrow.svg');
+
+            display: inline-block;
+            width: 0;
+            height: 1.4rem;
+
+            opacity: 0;
+            transition: all 0.25s ease-in-out;
+        }
+
+        &:hover::after {
+            width: 1.4rem;
+            margin-left: 0.4rem;
+            opacity: 1;
+        }
+    }
+
+    @include mobile-s {
+        > a {
+            height: 3.2rem;
+            font-size: 1.4rem;
+        }
+    }
+}

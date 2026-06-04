@@ -11,5 +11,11 @@
 @import './layout/layout';
 @import './layout/common';
 
-@import '@/components/layout/styles';
-@import '@/components/ui/styles';
+@import './ui/linkButton';
+
+@import './components/header';
+@import './components/footer';
+@import './components/home/banner';
+@import './components/home/portfolio';
+@import './components/home/about';
+@import './components/home/guide';
