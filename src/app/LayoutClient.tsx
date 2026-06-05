@@ -18,7 +18,7 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
             <div className="app-container">
                 <Header />
                 <main>{children}</main>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </>
     );

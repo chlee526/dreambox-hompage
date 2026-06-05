@@ -30,10 +30,10 @@ export default function HomeSwiper() {
                 <Banner isActive={activeIndex === 0} />
             </SwiperSlide>
             <SwiperSlide>
-                <PortfolioSection />
+                <PortfolioSection isActive={activeIndex === 1} />
             </SwiperSlide>
             <SwiperSlide>
-                <AboutSection />
+                <AboutSection isActive={activeIndex === 2} />
             </SwiperSlide>
             <SwiperSlide>
                 <GuideSection />
