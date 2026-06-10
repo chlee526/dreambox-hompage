@@ -1,0 +1,107 @@
+.page-faq {
+    min-height: 100vh;
+
+    > .l-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        > .page-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 3rem 0;
+
+            > .page-title {
+                &::after {
+                    display: none;
+                }
+            }
+
+            @include mobile {
+                padding: 2rem 0;
+
+                > .page-title {
+                    font-size: 4.8rem;
+                }
+            }
+        }
+
+        > .content-wrap {
+            flex-grow: 1;
+            padding: 2rem 0 4rem;
+
+            .faq-list {
+                &-item {
+                    position: relative;
+                    border-top: 2px solid $color-text-body;
+
+                    &:last-child {
+                        border-bottom: 2px solid $color-text-body;
+                    }
+
+                    .question {
+                        display: flex;
+                        align-items: center;
+                        gap: 1.2rem;
+                        width: 100%;
+                        padding: 2rem 1.6rem;
+                        padding-right: 5rem;
+                        font-size: 1.6rem;
+                        font-weight: 600;
+                        cursor: pointer;
+
+                        &::before {
+                            content: 'Q.';
+                            display: inline-block;
+                            font-weight: 700;
+                            flex-shrink: 0;
+                        }
+                    }
+
+                    .answer {
+                        display: grid;
+                        grid-template-rows: 0fr;
+                        transition: grid-template-rows 0.35s ease;
+
+                        > .answer-body {
+                            min-height: 0;
+                            overflow: hidden;
+
+                            > p {
+                                display: flex;
+                                gap: 1.2rem;
+                                align-items: flex-start;
+                                padding: 2rem 1.6rem;
+                                border-top: 1px solid #d4d4d4;
+                                font-size: 1.6rem;
+                                line-height: 1.6;
+                                white-space: pre-line;
+
+                                &::before {
+                                    content: 'A.';
+                                    display: inline-block;
+                                    font-weight: 700;
+                                    flex-shrink: 0;
+                                }
+                            }
+                        }
+                    }
+
+                    &.is-open {
+                        .answer {
+                            grid-template-rows: 1fr;
+                        }
+                    }
+
+                    .toggle-btn {
+                        position: absolute;
+                        top: 1.3rem;
+                        right: 1.6rem;
+                    }
+                }
+            }
+        }
+    }
+}

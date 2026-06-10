@@ -1,6 +1,5 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import './style.scss';
 import { getPortfolio } from '@/lib/portfolio';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { getQueryClient } from '@/lib/queryClient';
@@ -19,29 +18,29 @@ export const revalidate = 3600;
 // }
 
 interface PortfolioDetailPageProps {
-  params: Promise<{ seq: string }>;
+    params: Promise<{ seq: string }>;
 }
 
 export default async function PortfolioDetailPage({ params }: PortfolioDetailPageProps) {
-  const { seq } = await params;
-  const id = Number(seq);
+    const { seq } = await params;
+    const id = Number(seq);
 
-  const queryClient = getQueryClient();
+    const queryClient = getQueryClient();
 
-  // 서버에서 데이터 프리페치
-  const detailData = await getPortfolio(id);
+    // 서버에서 데이터 프리페치
+    const detailData = await getPortfolio(id);
 
-  // 데이터가 없으면 404 페이지 표시
-  if (!detailData) {
-    notFound();
-  }
+    // 데이터가 없으면 404 페이지 표시
+    if (!detailData) {
+        notFound();
+    }
 
-  // React Query 캐시에 저장
-  queryClient.setQueryData(portfolioKeys.detail(id), detailData);
+    // React Query 캐시에 저장
+    queryClient.setQueryData(portfolioKeys.detail(id), detailData);
 
-  return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <PortfolioDetail seq={id} />
-    </HydrationBoundary>
-  );
+    return (
+        <HydrationBoundary state={dehydrate(queryClient)}>
+            <PortfolioDetail seq={id} />
+        </HydrationBoundary>
+    );
 }
