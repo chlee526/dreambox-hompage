@@ -1,145 +1,155 @@
 footer {
-    padding: 4rem 6rem 2.4rem 6rem;
-    background-color: $color-primary-dark;
-    color: #ffffff;
-
-    @include tablet {
-        padding: 4rem 4rem 2rem;
-    }
-
-    @include mobile {
-        padding: 4rem 2rem 2rem;
-    }
+    background-color: #252525;
 
     .footer-top {
-        display: flex;
-        justify-content: space-between;
-        gap: 4rem;
-        padding-bottom: 1.6rem;
+        height: 7.2rem;
         border-bottom: 1px solid rgb(255 255 255 / 10%);
 
-        @include tablet {
-            flex-direction: column;
-            gap: 3rem;
-            padding-bottom: 2.4rem;
-        }
-
-        @include mobile {
-            flex-direction: column;
-            gap: 2.4rem;
-            padding-bottom: 2rem;
-        }
-
-        .info-section {
+        > .l-inner {
             display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-            flex: 1;
-
-            .contact-info,
-            .company-info {
-                display: flex;
-                flex-direction: column;
-                gap: 0.6rem;
-
-                @include mobile {
-                    gap: 0.6rem;
-                }
-
-                > p {
-                    font-size: 1.4rem;
-                    color: $color-gray-400;
-                    line-height: 1.6;
-                    white-space: nowrap;
-
-                    @include mobile {
-                        font-size: 1.3rem;
-                    }
-                }
-            }
-
-            .company-info {
-                > p {
-                    color: $color-gray-500;
-                }
-            }
+            justify-content: space-between;
         }
 
-        .logo-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            flex-shrink: 0;
-            text-align: right;
-
-            @include tablet {
-                text-align: left;
-            }
-            @include mobile {
-                text-align: left;
-            }
-
-            .logo {
-                margin-bottom: 1rem;
-                width: 162px;
-                height: 40px;
-                margin-left: auto;
-
-                @include tablet {
-                    width: 140px;
-                    height: 35px;
-                    margin-left: 0;
-                }
-
-                @include mobile {
-                    // margin-bottom: 0.8rem;
-                    width: 130px;
-                    height: 32px;
-                    margin-left: 0;
-                }
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: contain;
-                }
-            }
-
-            .tagline {
+        .policy-btn {
+            height: 100%;
+            padding: 0 0.8rem;
+            > span {
                 font-size: 1.6rem;
-                color: $color-gray-300;
-                line-height: 1.5;
+                font-weight: 500;
+                color: $color-gray-white;
+            }
+        }
 
-                @include tablet {
-                    font-size: 1.5rem;
-                }
+        .top-btn {
+            position: fixed;
+            bottom: 6rem;
+            right: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 5rem;
+            background-color: #3c3c3c;
+            border-radius: 9999px;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            z-index: 1000;
 
-                @include mobile {
-                    font-size: 1.4rem;
-                }
+            &::after {
+                content: url('/assets/image/chevron-up.svg');
+                position: relative;
+                top: -0.1rem;
+                width: 2.4rem;
+                height: 2.4rem;
+                display: block;
             }
         }
     }
 
     .footer-bottom {
-        padding-top: 2.4rem;
-        text-align: center;
+        padding: 2.4rem 0;
 
-        @include tablet {
-            padding-top: 2rem;
-        }
-
-        @include mobile {
-            padding-top: 1.6rem;
-        }
-
-        > p {
-            font-size: 1.3rem;
-            color: $color-gray-500;
-            line-height: 1.6;
+        > .l-inner {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
 
             @include mobile {
-                font-size: 1.2rem;
+                flex-direction: column;
+                justify-content: center;
+                gap: 1.6rem;
+
+                > div {
+                    width: 100%;
+                    text-align: center;
+
+                    &.rc {
+                        .logo-wrap {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            img {
+                                width: 14rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            > .lc {
+                //
+                display: flex;
+                flex-direction: column;
+                gap: 1.6rem;
+
+                @include mobile {
+                    gap: 1.2rem;
+                }
+
+                > div:not(.copyright) {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    gap: 0.6rem;
+                    > span {
+                        &:nth-child(1) {
+                            padding-right: 1rem;
+                            border-right: 2px solid rgb(255 255 255 / 10%);
+                        }
+
+                        &:nth-child(2) {
+                            padding-left: 0.4rem;
+                        }
+                    }
+
+                    @include mobile {
+                        justify-content: center;
+                    }
+                }
+
+                .info {
+                    > span {
+                        font-size: 2rem;
+                        font-weight: 500;
+                        color: #ffffff;
+                        text-wrap: nowrap;
+
+                        @include tablet {
+                            font-size: 1.8rem;
+                        }
+
+                        @include mobile {
+                            font-size: 1.6rem;
+                        }
+                    }
+                }
+
+                .company,
+                .owner {
+                    > span {
+                        font-size: 1.6rem;
+                        font-weight: 400;
+                        color: $color-gray-white;
+
+                        @include mobile {
+                            font-size: 1.4rem;
+                        }
+                    }
+                }
+
+                .copyright {
+                    > span {
+                        font-size: 1.4rem;
+                        font-weight: 400;
+                        color: $color-gray-white;
+
+                        @include mobile {
+                            font-size: 1.3rem;
+                        }
+                    }
+                }
             }
         }
     }

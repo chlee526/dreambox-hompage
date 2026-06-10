@@ -12,11 +12,13 @@
 @import './layout/layout';
 @import './layout/common';
 
-@import './ui/linkButton';
-
 @import './components/header';
 @import './components/footer';
 @import './components/home/banner';
 @import './components/home/portfolio';
 @import './components/home/about';
 @import './components/home/guide';
+
+@import './components/portfolio/portfolioList';
+
+@import './ui/linkButton';

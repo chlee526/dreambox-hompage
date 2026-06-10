@@ -1,39 +1,59 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
-  return (
-    <footer>
-      <div className="l-inner">
-        <div className="footer-top">
-          <div className="info-section">
-            <div className="contact-info">
-              <p>연락처: 010-5290-8856</p>
-              <p>이메일: dreamboxcom25@gmail.com</p>
-              <p>주소: 경기도 파주시 바리골길 196-20</p>
+    const pathname = usePathname();
+
+    const moveToTop = () => {
+        if (pathname === '/') {
+            window.dispatchEvent(new CustomEvent('scrollToTop'));
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    };
+    return (
+        <footer>
+            <div className="footer-top">
+                <div className="l-inner">
+                    <button className="policy-btn">
+                        <span>개인정보처리방침</span>
+                    </button>
+
+                    <button className="top-btn" onClick={moveToTop}></button>
+                </div>
             </div>
 
-            <div className="company-info">
-              <p>대표자: 이재정 | 사업자등록번호: 123-45-67890</p>
+            <div className="footer-bottom">
+                <div className="l-inner">
+                    <div className="lc">
+                        <div className="info">
+                            <span className="tel">Tel. 010-5290-8856</span>
+                            <span className="email">E-mail. dreamboxcom25@gmail.com</span>
+                        </div>
+                        <div className="company">
+                            <span className="name">(주)드림박스</span>
+                            <span className="address">경기도 파주시 바리골길 196-20</span>
+                        </div>
+                        <div className="owner">
+                            <span className="name">대표자: 이재정</span>
+                            <span className="number">사업자등록번호: 141-81-37938</span>
+                        </div>
+                        <div className="copyright">
+                            <span>©DREAMBOX. All rights reserved.</span>
+                        </div>
+                    </div>
+                    <div className="rc">
+                        <div className="logo-wrap">
+                            <Link href="/" className="logo">
+                                <Image src="/assets/image/logo_white.svg" alt="logo" width={180} height={42} priority />
+                            </Link>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <div className="logo-section">
-            <div className="logo">
-              <Image src={'/assets/image/logo_light.svg'} alt="logo" width={162} height={40} priority={true} />
-            </div>
-            <p className="tagline">당신의 꿈을 담는 상자, 드림박스</p>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <p>
-            © 2025
-            {new Date().getFullYear() > 2025 ? `-${new Date().getFullYear()}` : ''} DreamBox. All rights reserved.
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
+        </footer>
+    );
 }

@@ -35,3 +35,21 @@
         opacity: 1;
     }
 }
+
+@keyframes revealFromLeft {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+    to {
+        clip-path: inset(0 0% 0 0);
+    }
+}
+
+@keyframes revealFromRight {
+    from {
+        clip-path: inset(0 0 0 100%);
+    }
+    to {
+        clip-path: inset(0 0 0 0%);
+    }
+}

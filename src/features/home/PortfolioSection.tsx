@@ -40,7 +40,7 @@ export default function PortfolioSection({ isActive }: Props) {
                 </div>
             </div>
             <div className="rc">
-                <div className="image-wrap">
+                <div className="image-wrap" key={animKey}>
                     <Swiper
                         className="portfolio-swiper"
                         modules={[Navigation, Pagination, Autoplay, EffectFade]}
