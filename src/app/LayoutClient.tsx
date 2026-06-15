@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { Header, Footer } from '@/components/layout';
+import PrivacyModal from '@/components/ui/PrivacyModal';
 
 export default function LayoutClient({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -20,6 +21,7 @@ export default function LayoutClient({ children }: { children: React.ReactNode }
                 <main>{children}</main>
                 <Footer />
             </div>
+            <PrivacyModal />
         </>
     );
 }

@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const NAV_LINKS = [
     { href: '/', label: '홈' },
@@ -13,12 +14,14 @@ const NAV_LINKS = [
 ];
 
 export default function Header() {
+    const pathname = usePathname();
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const closeMenu = () => setIsMenuOpen(false);
 
     return (
-        <header className="gnb">
+        <header className={pathname === '/' ? 'gnb is-home' : 'gnb'}>
             <div className="l-inner">
                 <div className="header-wrap">
                     <button className="menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)} />

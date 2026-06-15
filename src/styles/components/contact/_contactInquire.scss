@@ -1,0 +1,222 @@
+.page-contact-inquire {
+    > .l-inner {
+        > .page-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3.2rem;
+
+            > .page-title {
+                &::after {
+                    display: none;
+                }
+            }
+
+            > .text {
+                font-size: 2.2rem;
+                font-weight: 500;
+            }
+        }
+
+        > .content-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 3.2rem;
+
+            .info-item {
+                &.inquire {
+                    padding-bottom: 3.2rem;
+                    border-bottom: 1px solid #eeeeee;
+                    > .row {
+                        .row-item {
+                            > strong {
+                                width: 10rem;
+                            }
+                        }
+                    }
+                }
+                > .header {
+                    padding: 0.8rem 1.6rem;
+                    border-bottom: 1px solid $color-text-body;
+                    font-size: 2.4rem;
+                    font-weight: 600;
+                }
+
+                > .row {
+                    display: flex;
+                    gap: 6.4rem;
+                    padding: 1.6rem;
+
+                    &.is-file {
+                        flex-direction: column;
+                        gap: 1.6rem;
+
+                        .info-msg {
+                            font-size: 1.4rem;
+
+                            padding-left: 11.6rem;
+                        }
+                    }
+
+                    .row-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 1.6rem;
+
+                        &.is-package {
+                            align-items: flex-start;
+                        }
+
+                        > strong {
+                            flex-shrink: 0;
+                            font-size: 1.8rem;
+                            font-weight: 500;
+
+                            &.require {
+                                &::after {
+                                    content: '*';
+                                    display: inline-block;
+                                    padding-left: 0.4rem;
+                                    font-weight: 400;
+                                    color: #ff0000;
+                                }
+                            }
+                        }
+
+                        > input {
+                            width: 100%;
+                        }
+
+                        .package-wrap {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 2.4rem;
+                            width: 100%;
+                            padding: 2.4rem;
+                            background-color: #f7f7f7;
+                            border-radius: 0.2rem;
+                            // border: 1px solid #f0f0f0;
+
+                            .package-list {
+                                display: flex;
+                                gap: 1.6rem;
+
+                                .package-btn {
+                                    padding: 1.2rem 3.2rem;
+                                    border-radius: 0.4rem;
+                                    background-color: #ffffff;
+                                    font-size: 1.8rem;
+                                    font-weight: 500;
+                                    color: $color-text-body;
+                                    transition: all 0.2s ease-in;
+
+                                    &.active {
+                                        background-color: $color-text-body;
+                                        color: #ffffff;
+                                    }
+                                }
+                            }
+
+                            .example-list {
+                                display: flex;
+                                gap: 1.6rem;
+
+                                .example-btn {
+                                    display: flex;
+                                    flex-direction: column;
+                                    gap: 0.8rem;
+                                    padding-bottom: 0.2rem;
+                                    border: 4px solid transparent;
+                                    border-radius: 0.4rem;
+                                    transition: all 0.15s ease-in;
+
+                                    &.active {
+                                        border-color: $color-text-body;
+                                        background-color: $color-text-body;
+
+                                        > .name {
+                                            color: #ffffff;
+                                        }
+                                    }
+
+                                    .image-wrap {
+                                        width: 13rem;
+                                        height: 13rem;
+                                        border-radius: 0.2rem;
+                                        background-color: #bebebe;
+                                    }
+
+                                    > .name {
+                                        font-size: 1.8rem;
+                                        font-weight: 500;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .policy-area {
+                display: flex;
+                align-items: center;
+                gap: 1.6rem;
+                padding: 0 1.6rem;
+                margin-top: 3.2rem;
+                font-size: 1.6rem;
+
+                > .policy {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.8rem;
+                    > label {
+                        user-select: none;
+                        cursor: pointer;
+                    }
+                }
+
+                .full-content {
+                    color: #999999;
+                }
+            }
+
+            .form-bottom {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin-top: 3.2rem;
+
+                > button {
+                    padding: 1.2rem 3.2rem;
+                    border-radius: 0.4rem;
+                    font-size: 1.8rem;
+                    font-weight: 500;
+                    transition: all 0.25s ease-in;
+
+                    &.submit {
+                        background-color: $color-text-body;
+                        color: #ffffff;
+
+                        &:disabled {
+                            background-color: #d4d4d4;
+                            color: #999999;
+                            cursor: not-allowed;
+                        }
+
+                        &:not(:disabled):hover {
+                            background-color: #000000;
+                        }
+                    }
+
+                    &.list {
+                        border: 1px solid $color-text-body;
+
+                        &:hover {
+                            background-color: #eeeeee;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,74 @@
+.privacy-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    .privacy-modal {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 72rem;
+        max-height: 80vh;
+        background-color: #fff;
+        border-radius: 0.8rem;
+        overflow: hidden;
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 2.4rem;
+            border-bottom: 1px solid #e0e0e0;
+            flex-shrink: 0;
+            background-color: #303030;
+
+            .modal-title {
+                color: #ffffff;
+                font-size: 2rem;
+                font-weight: 600;
+            }
+
+            .modal-close {
+                width: 3.2rem;
+                height: 3.2rem;
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #ffffff;
+                transition: color 0.15s ease;
+            }
+        }
+
+        .modal-body {
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            padding: 2.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.4rem;
+
+            .privacy-section {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                .section-title {
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                    color: $color-text-body;
+                }
+
+                .section-body {
+                    font-size: 1.4rem;
+                    line-height: 1.8;
+                    color: #444;
+                    white-space: pre-line;
+                }
+            }
+        }
+    }
+}

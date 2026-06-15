@@ -18,7 +18,7 @@ export default function Footer() {
         <footer>
             <div className="footer-top">
                 <div className="l-inner">
-                    <button className="policy-btn">
+                    <button className="policy-btn" onClick={() => window.dispatchEvent(new CustomEvent('openPrivacyModal'))}>
                         <span>개인정보처리방침</span>
                     </button>
 
@@ -48,7 +48,7 @@ export default function Footer() {
                     <div className="rc">
                         <div className="logo-wrap">
                             <Link href="/" className="logo">
-                                <Image src="/assets/image/logo_white.svg" alt="logo" width={180} height={42} priority />
+                                <img src="/assets/image/logo_white.svg" alt="logo" />
                             </Link>
                         </div>
                     </div>

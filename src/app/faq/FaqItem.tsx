@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronIcon } from '@/components/ui';
+import ChevronIcon from '@/components/ui/ChevronIcon';
 
 interface FaqItemProps {
     question: string;

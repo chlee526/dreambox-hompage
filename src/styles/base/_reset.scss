@@ -91,6 +91,16 @@ input {
         border-color: #333333;
     }
 
+    &[readonly] {
+        background-color: #f5f5f5;
+        color: #888888;
+        cursor: default;
+
+        &:focus {
+            border-color: #e0e0e0;
+        }
+    }
+
     // 자동완성 배경색 제거
     &:-webkit-autofill,
     &:-webkit-autofill:hover,

@@ -1,0 +1,290 @@
+.page-contact {
+    > .l-inner {
+        display: flex;
+        flex-direction: column;
+
+        > .page-header {
+            display: flex;
+            justify-content: center;
+
+            > .page-title {
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+        > .content-wrap {
+            .contact-table-wrap {
+                .search-area {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    gap: 0.2rem;
+                    padding-bottom: 1.6rem;
+
+                    > input {
+                        width: 24rem;
+                        border-radius: 0.2rem;
+                    }
+
+                    .search-btn {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 3.8rem;
+                        height: 3.4rem;
+                        border-radius: 0.2rem;
+                        background-color: $color-text-body;
+
+                        &::after {
+                            content: url('/assets/image/search.svg');
+                            display: block;
+                            width: 2.4rem;
+                            height: 2.4rem;
+                        }
+                    }
+                }
+                .contact-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    table-layout: fixed;
+
+                    .col-no {
+                        width: 8rem;
+                    }
+                    .col-title {
+                        width: auto;
+                    }
+                    .col-author {
+                        width: 12rem;
+                    }
+                    .col-date {
+                        width: 14rem;
+                    }
+
+                    th,
+                    td {
+                        padding: 1.4rem 1.2rem;
+                        text-align: center;
+                        font-size: 1.5rem;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+
+                    thead tr {
+                        border-top: 2px solid $color-text-body;
+                        border-bottom: 1px solid $color-text-body;
+
+                        th {
+                            font-weight: 600;
+                        }
+                    }
+
+                    tbody tr {
+                        border-bottom: 1px solid #d4d4d4;
+
+                        transition: background-color 0.15s ease;
+
+                        &:hover {
+                            background-color: #f5f5f5;
+                        }
+
+                        td.title {
+                            display: flex;
+                            align-items: center;
+                            gap: 0.6rem;
+                            text-align: left;
+
+                            > span {
+                                cursor: pointer;
+
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+
+                            .new-badge {
+                                display: inline-flex;
+                                align-items: center;
+                                justify-content: center;
+                                padding: 0 0.4rem;
+                                height: 1.7rem;
+                                border-radius: 0.3rem;
+                                background-color: #fc7b44;
+                                font-size: 1.1rem;
+                                line-height: 1;
+                                font-weight: 700;
+                                color: #ffffff;
+                                vertical-align: middle;
+                            }
+                        }
+                    }
+                }
+
+                .inquire-area {
+                    display: flex;
+                    justify-content: flex-end;
+
+                    padding-top: 1.6rem;
+
+                    > button {
+                        height: 4rem;
+                        padding: 0 1.6rem;
+                        border-radius: 0.2rem;
+                        background-color: $color-text-body;
+                        font-size: 1.6rem;
+                        font-weight: 500;
+                        color: #ffffff;
+                        transition: all 0.25s ease-in;
+
+                        &:hover {
+                            background-color: #000000;
+                        }
+                    }
+                }
+
+                .pagination {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 0.4rem;
+                    margin-top: 3.2rem;
+
+                    .page-btn {
+                        min-width: 3.6rem;
+                        height: 3.6rem;
+                        padding: 0 0.8rem;
+                        border: 1px solid #d4d4d4;
+                        font-size: 1.4rem;
+                        color: $color-text-body;
+                        cursor: pointer;
+                        transition:
+                            background-color 0.15s ease,
+                            color 0.15s ease,
+                            border-color 0.15s ease;
+
+                        &:hover:not(:disabled) {
+                            background-color: $color-text-body;
+                            color: #fff;
+                            border-color: $color-text-body;
+                        }
+
+                        &.active {
+                            background-color: $color-text-body;
+                            color: #fff;
+                            border-color: $color-text-body;
+                        }
+
+                        &:disabled {
+                            opacity: 0.3;
+                            cursor: default;
+                        }
+
+                        &.prev,
+                        &.next {
+                            padding: 0 1.2rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pw-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    .pw-modal {
+        width: 100%;
+        max-width: 40rem;
+        background-color: #fff;
+        border-radius: 0.8rem;
+        overflow: hidden;
+
+        .pw-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.6rem 2rem;
+            background-color: #303030;
+
+            > strong {
+                font-size: 1.8rem;
+                font-weight: 600;
+                color: #ffffff;
+            }
+
+            > button {
+                font-size: 1.8rem;
+                color: #ffffff;
+            }
+        }
+
+        .pw-modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 1.6rem;
+            padding: 2.4rem;
+
+            > p {
+                font-size: 1.5rem;
+                color: #666666;
+            }
+
+            > input {
+                width: 100%;
+            }
+
+            .error-msg {
+                font-size: 1.4rem;
+                color: #ff0000;
+            }
+
+            .pw-modal-btns {
+                display: flex;
+                justify-content: flex-end;
+                gap: 0.8rem;
+
+                > button {
+                    padding: 0.8rem 2rem;
+                    border-radius: 0.4rem;
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                    transition: all 0.2s ease;
+
+                    &[type='button'] {
+                        border: 1px solid #d4d4d4;
+
+                        &:hover {
+                            background-color: #f5f5f5;
+                        }
+                    }
+
+                    &[type='submit'] {
+                        background-color: $color-text-body;
+                        color: #ffffff;
+
+                        &:hover:not(:disabled) {
+                            background-color: #000000;
+                        }
+
+                        &:disabled {
+                            background-color: #d4d4d4;
+                            color: #999999;
+                            cursor: not-allowed;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

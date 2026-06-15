@@ -11,7 +11,8 @@
     width: 100%;
     max-width: 182rem;
     height: 100%;
-    padding-top: 6.9rem;
+    min-height: 100vh;
+    padding: 10.1rem 0 6rem 0;
     margin: 0 auto;
     background-color: #fff;
 }
@@ -27,6 +28,10 @@
 
     @include mobile {
         padding: 0 1.6rem;
+    }
+
+    .page-header {
+        margin-bottom: 3.2rem;
     }
 
     .page-title {

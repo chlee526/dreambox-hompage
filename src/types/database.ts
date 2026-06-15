@@ -8,6 +8,69 @@ export type Database = {
   };
   public: {
     Tables: {
+      inquire: {
+        Row: {
+          id: string;
+          seq: number;
+          company: string;
+          name: string;
+          phone: string;
+          email: string;
+          pw: string;
+          title: string;
+          package: string;
+          amount: string;
+          p_size: string | null;
+          contents: string | null;
+          c_size: string | null;
+          deadline: string | null;
+          budget: string | null;
+          content: string | null;
+          files: string[] | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          seq?: number;
+          company: string;
+          name: string;
+          phone: string;
+          email: string;
+          pw: string;
+          title: string;
+          package: string;
+          amount: string;
+          p_size?: string | null;
+          contents?: string | null;
+          c_size?: string | null;
+          deadline?: string | null;
+          budget?: string | null;
+          content?: string | null;
+          files?: string[] | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          seq?: number;
+          company?: string;
+          name?: string;
+          phone?: string;
+          email?: string;
+          pw?: string;
+          title?: string;
+          package?: string;
+          amount?: string;
+          p_size?: string | null;
+          contents?: string | null;
+          c_size?: string | null;
+          deadline?: string | null;
+          budget?: string | null;
+          content?: string | null;
+          files?: string[] | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
       portfolioList: {
         Row: {
           category: string;

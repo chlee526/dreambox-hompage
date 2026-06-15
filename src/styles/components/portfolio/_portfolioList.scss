@@ -7,15 +7,12 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.6rem;
-    padding-top: 4rem;
 
     &-item {
         width: 100%;
         max-width: 38rem;
         height: 50vw;
         max-height: 40rem; // 브라우저 너비의 절반 → 화면 크기에 따라 자동 축소
-        // background-color: gray;
-        // border: 1px solid gray;
         transition: border 0.35s ease-in;
 
         position: relative;

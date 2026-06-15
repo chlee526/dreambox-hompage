@@ -20,7 +20,9 @@ export default async function PortfolioPage() {
     return (
         <section className="l-page page-portfolio">
             <div className="l-inner">
-                <strong className="page-title">OUR WORK</strong>
+                <div className="page-header">
+                    <strong className="page-title">OUR WORK</strong>
+                </div>
 
                 {/* 클라이언트 컴포넌트로 필터링 및 인터랙션 처리 */}
                 <HydrationBoundary state={dehydrate(queryClient)}>
