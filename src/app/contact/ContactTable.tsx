@@ -14,6 +14,7 @@ interface ContactItem {
 interface ContactTableProps {
     data: ContactItem[];
     perPage?: number;
+    detailBasePath?: string; // 설정 시 클릭하면 해당 경로로 바로 이동 (관리자용)
 }
 
 const maskName = (name: string) => {
@@ -37,12 +38,20 @@ const maskAuthor = (author: string) => {
 
 const today = new Date().toISOString().slice(0, 10).replace(/-/g, '.');
 
-export default function ContactTable({ data, perPage = 10 }: ContactTableProps) {
+export default function ContactTable({ data, perPage = 10, detailBasePath }: ContactTableProps) {
     const router = useRouter();
     const [currentPage, setCurrentPage] = useState(1);
     const [inputValue, setInputValue] = useState('');
     const [searchKeyword, setSearchKeyword] = useState('');
     const [modalSeq, setModalSeq] = useState<number | null>(null);
+
+    const handleTitleClick = (seq: number) => {
+        if (detailBasePath) {
+            router.push(`${detailBasePath}/${seq}`);
+        } else {
+            setModalSeq(seq);
+        }
+    };
 
     const filtered = data.filter((item) => item.title.includes(searchKeyword) || item.author.includes(searchKeyword));
     const totalPages = Math.ceil(filtered.length / perPage);
@@ -84,7 +93,7 @@ export default function ContactTable({ data, perPage = 10 }: ContactTableProps) 
                         <tr key={item.seq}>
                             <td>{item.seq}</td>
                             <td className="title">
-                                <span onClick={() => setModalSeq(item.seq)}>{item.title}</span>
+                                <span onClick={() => handleTitleClick(item.seq)}>{item.title}</span>
                                 {item.date === today && <span className="new-badge">N</span>}
                             </td>
                             <td>{maskAuthor(item.author)}</td>

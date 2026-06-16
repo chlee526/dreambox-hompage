@@ -20,4 +20,5 @@ export interface InquireData {
     budget: string | null;
     content: string | null;
     files: string[] | null;
+    status?: string; // '접수완료' | '답변완료'
 }

@@ -1,32 +1,30 @@
-import React from 'react';
-import { redirect } from 'next/navigation';
+import { requireAuth } from '@/lib/supabase/server';
 import { createClient } from '@/lib/supabase/server';
-import InquireForm from '../inquire/InquireForm';
-import { packageList } from '../inquire/packageData';
+import { notFound } from 'next/navigation';
+import InquireForm from '@/app/contact/inquire/InquireForm';
+import { packageList } from '@/app/contact/inquire/packageData';
+import StatusControl from '@/features/admin/contact/StatusControl';
 
-export default async function ContactDetailPage({ params }: { params: Promise<{ seq: string }> }) {
+export default async function AdminContactDetailPage({ params }: { params: Promise<{ seq: string }> }) {
+    await requireAuth();
+
     const { seq } = await params;
     const supabase = await createClient();
 
     const { data } = await supabase.from('inquire').select('*').eq('seq', Number(seq)).single();
-
-    if (!data) redirect('/contact');
-
-    const status: string = data.status ?? '접수완료';
+    if (!data) notFound();
 
     return (
-        <section className="l-page page-contact-inquire">
+        <div className="l-page page-contact-inquire">
             <div className="l-inner">
                 <div className="page-header">
-                    <strong className="page-title">견적 문의 상세</strong>
-                    <span className="text">문의를 남겨 주시면 담당자가 확인 후 연락처 및 이메일로 답변드립니다</span>
+                    <h2 className="page-title">견적 문의 상세</h2>
                 </div>
-                <div className="status-area">
-                    <span className={`status-badge ${status === '답변완료' ? 'is-done' : 'is-received'}`}>{status}</span>
-                </div>
+                <StatusControl seq={data.seq} status={data.status ?? '접수완료'} />
                 <div className="content-wrap">
                     <InquireForm
                         packageList={packageList}
+                        adminMode
                         initialData={{
                             seq: data.seq,
                             company: data.company,
@@ -48,6 +46,6 @@ export default async function ContactDetailPage({ params }: { params: Promise<{ 
                     />
                 </div>
             </div>
-        </section>
+        </div>
     );
 }

@@ -11,6 +11,7 @@ import type { PackageItem, InquireData } from '@/types/contactTypes';
 interface InquireFormProps {
     packageList: PackageItem[];
     initialData?: InquireData;
+    adminMode?: boolean;
 }
 
 const REQUIRED_FIELDS = ['company', 'name', 'phone', 'email', 'pw', 'title', 'amount'] as const;
@@ -41,7 +42,7 @@ async function uploadFiles(files: File[]): Promise<string[]> {
     return urls;
 }
 
-export default function InquireForm({ packageList, initialData }: InquireFormProps) {
+export default function InquireForm({ packageList, initialData, adminMode = false }: InquireFormProps) {
     const router = useRouter();
     const isEdit = !!initialData;
 
@@ -99,6 +100,17 @@ export default function InquireForm({ packageList, initialData }: InquireFormPro
         REQUIRED_FIELDS.every((key) => fields[key].trim() !== '') &&
         selectedPackage !== null &&
         (isEdit ? isChanged : policyChecked);
+
+    const handleDelete = async () => {
+        if (!confirm('견적문의를 삭제하시겠습니까?')) return;
+        const supabase = createBrowserSupabaseClient();
+        const { error } = await supabase.from('inquire').delete().eq('seq', initialData!.seq);
+        if (error) {
+            alert('삭제에 실패했습니다. 다시 시도해 주세요.');
+        } else {
+            router.push('/admin/contact');
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -269,10 +281,16 @@ export default function InquireForm({ packageList, initialData }: InquireFormPro
             )}
 
             <div className="form-bottom">
-                <button type="submit" className="form-btn submit" disabled={!isValid || isLoading}>
-                    {isLoading ? (isEdit ? '수정 중...' : '등록 중...') : isEdit ? '수정하기' : '문의하기'}
-                </button>
-                <button type="button" className="form-btn list" onClick={() => router.push('/contact')}>
+                {adminMode ? (
+                    <button type="button" className="form-btn delete" onClick={handleDelete}>
+                        삭제
+                    </button>
+                ) : (
+                    <button type="submit" className="form-btn submit" disabled={!isValid || isLoading}>
+                        {isLoading ? (isEdit ? '수정 중...' : '등록 중...') : isEdit ? '수정하기' : '문의하기'}
+                    </button>
+                )}
+                <button type="button" className="form-btn list" onClick={() => router.push(adminMode ? '/admin/contact' : '/contact')}>
                     목록
                 </button>
             </div>

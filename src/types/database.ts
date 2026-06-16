@@ -27,6 +27,7 @@ export type Database = {
           budget: string | null;
           content: string | null;
           files: string[] | null;
+          status: string;
           created_at: string;
         };
         Insert: {
@@ -47,6 +48,7 @@ export type Database = {
           budget?: string | null;
           content?: string | null;
           files?: string[] | null;
+          status?: string;
           created_at?: string;
         };
         Update: {
@@ -67,6 +69,7 @@ export type Database = {
           budget?: string | null;
           content?: string | null;
           files?: string[] | null;
+          status?: string;
           created_at?: string;
         };
         Relationships: [];

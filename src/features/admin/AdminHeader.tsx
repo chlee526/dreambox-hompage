@@ -37,6 +37,11 @@ export default function AdminHeader({ user }: AdminHeaderProps) {
                   포트폴리오 관리
                 </Link>
               </li>
+              <li>
+                <Link href="/admin/contact" className={`nav-btn ${pathname.includes('/admin/contact') ? 'active' : ''}`}>
+                  견적문의 관리
+                </Link>
+              </li>
             </ul>
           </nav>
         </div>

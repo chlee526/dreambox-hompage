@@ -193,6 +193,63 @@
     }
 }
 
+.status-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2.4rem;
+
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.6rem 1.2rem;
+        border-radius: 2rem;
+        font-size: 1.6rem;
+        font-weight: 600;
+
+        &.is-received {
+            background-color: #fff4e5;
+            color: #e88c01;
+        }
+
+        &.is-done {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+    }
+
+    .status-change-btn {
+        padding: 0.5rem 1.4rem;
+        border-radius: 0.4rem;
+        border: 1px solid #2e7d32;
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: #2e7d32;
+        transition: all 0.2s ease;
+
+        &:hover:not(:disabled) {
+            background-color: #2e7d32;
+            color: #ffffff;
+        }
+
+        &.is-revert {
+            border-color: #e88c01;
+            color: #e88c01;
+
+            &:hover:not(:disabled) {
+                background-color: #e88c01;
+                color: #ffffff;
+            }
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+}
+
 .pw-modal-overlay {
     position: fixed;
     inset: 0;

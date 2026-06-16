@@ -8,6 +8,23 @@
   background-color: $color-gray-light;
 }
 
+.admin-page-header {
+  margin-bottom: 2rem;
+
+  .admin-page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $color-text-body;
+  }
+}
+
+.admin-contact-wrap,
+.admin-contact-detail-wrap {
+  .content-wrap {
+    margin-top: 0;
+  }
+}
+
 // admin-main
 .admin-main {
   flex: 1;
