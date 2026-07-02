@@ -1,15 +1,13 @@
 import React from 'react';
-import ContactTable from './ContactTable';
+import ContactTable from '@/features/contact/ContactTable';
 import { createClient } from '@/lib/supabase/server';
 
 export const dynamic = 'force-dynamic';
 
 export default async function ContactPage() {
     const supabase = await createClient();
-    const { data } = await supabase
-        .from('inquire')
-        .select('seq, title, name, created_at')
-        .order('created_at', { ascending: false });
+
+    const { data } = await supabase.from('inquire').select('seq, title, name, created_at').order('created_at', { ascending: false });
 
     const contactList = (data ?? []).map((item) => ({
         seq: item.seq,

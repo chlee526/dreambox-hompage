@@ -1,26 +1,14 @@
 'use client';
 
 import React from 'react';
-import { usePortfolio } from '@/hooks/queries/usePortfolios';
+import { portfolioData } from '@/features/portfolio/portfolioData';
 
 interface PortfolioDetailProps {
-    seq: number;
+    seq: string;
 }
 
 export default function PortfolioDetail({ seq }: PortfolioDetailProps) {
-    const { data: detailData, isLoading } = usePortfolio(seq);
-
-    if (isLoading) {
-        return (
-            <section className="page-portfolio-detail">
-                <div className="l-inner">
-                    <div className="flex justify-center items-center py-20">
-                        <p>로딩 중...</p>
-                    </div>
-                </div>
-            </section>
-        );
-    }
+    const detailData = portfolioData.find((item) => item.seq === seq);
 
     if (!detailData) {
         return (
@@ -35,37 +23,31 @@ export default function PortfolioDetail({ seq }: PortfolioDetailProps) {
     }
 
     return (
-        <section className="page-portfolio-detail">
+        <section className="l-page page-portfolio-detail">
             <div className="l-inner">
-                <div className="header">
-                    <h3>{detailData.name}</h3>
-                </div>
                 <div className="wrap">
-                    <div className="desc-area">
-                        <ul className="info-data-list">
-                            {detailData?.infoData.map((sort) => (
-                                <li key={sort.code}>
-                                    {sort.value && (
-                                        <>
-                                            <strong>{sort.name}</strong>
-                                            <span>{sort.value}</span>
-                                        </>
-                                    )}
-                                </li>
-                            ))}
-                        </ul>
-                        <hr />
-                        <div className="description">
-                            <p>{detailData.description}</p>
-                        </div>
-                    </div>
                     <div className="image-area">
                         <div className="image-list">
-                            {detailData.images.map((image, index) => (
+                            {detailData.imgList.filter(Boolean).map((image, index) => (
                                 <div key={index}>
-                                    <img src={image as string} alt={`${detailData.name} - ${index + 1}`} width={800} height={600} className="w-full h-auto" />
+                                    <img src={image!.url} alt={`${detailData.name} - ${index + 1}`} className="w-full h-auto" />
                                 </div>
                             ))}
+                        </div>
+                    </div>
+                    <div className="desc-area">
+                        <div className="title">
+                            <strong>{detailData.name}</strong>
+                        </div>
+                        <div className="wrap">
+                            <ul className="info-data-list">
+                                {detailData.infos?.map((data) => (
+                                    <li key={data.topic}>
+                                        <strong>{data.topic}</strong>
+                                        <span>{data.info}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </div>

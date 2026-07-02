@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import { portfolioData } from '@/features/portfolio/portfolioData';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
+import { useRouter } from 'next/navigation';
 
 interface Props {
     isActive: boolean;
@@ -13,8 +15,9 @@ interface Props {
 
 export default function PortfolioSection({ isActive }: Props) {
     const [animKey, setAnimKey] = useState(0);
-    const isFirstMount = useRef(true);
+    const router = useRouter();
 
+    const isFirstMount = useRef(true);
     useEffect(() => {
         if (isFirstMount.current) {
             isFirstMount.current = false;
@@ -27,6 +30,8 @@ export default function PortfolioSection({ isActive }: Props) {
 
     const prevRef = useRef<HTMLButtonElement>(null);
     const nextRef = useRef<HTMLButtonElement>(null);
+
+    const slideList = portfolioData.filter((item) => item.isSlide);
 
     return (
         <section className="portfolio-section">
@@ -59,44 +64,23 @@ export default function PortfolioSection({ isActive }: Props) {
                         autoplay={{ delay: 3000, disableOnInteraction: false }}
                         loop={true}
                     >
-                        <SwiperSlide>
-                            <ul className="image-list">
-                                <li className="image-list-item">
-                                    <img src="/assets/image/portfolio/slide1-item1.png" alt="포트폴리오 이미지 1" />
-                                </li>
-                                <li className="image-list-item">
-                                    <img src="/assets/image/portfolio/slide1-item2.png" alt="포트폴리오 이미지 2" />
-                                </li>
-                                <li className="image-list-item">
-                                    <img src="/assets/image/portfolio/slide1-item3.png" alt="포트폴리오 이미지 3" />
-                                </li>
-                                <li className="image-list-item">
-                                    <img src="/assets/image/portfolio/slide1-item4.png" alt="포트폴리오 이미지 4" />
-                                </li>
-                            </ul>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <ul className="image-list">
-                                <li className="image-list-item">
-                                    <img src="/assets/image/portfolio/sample1.jpg" alt="포트폴리오 이미지 1" />
-                                </li>
-                                <li className="image-list-item">
-                                    <img src="/assets/image/portfolio/sample2.jpg" alt="포트폴리오 이미지 2" />
-                                </li>
-                                <li className="image-list-item">
-                                    <img src="/assets/image/portfolio/sample3.jpg" alt="포트폴리오 이미지 3" />
-                                </li>
-                                <li className="image-list-item">
-                                    <img src="/assets/image/portfolio/sample4.jpg" alt="포트폴리오 이미지 4" />
-                                </li>
-                            </ul>
-                        </SwiperSlide>
+                        {slideList.map((slide) => (
+                            <SwiperSlide key={slide.seq}>
+                                <ul className="image-list" onClick={() => router.push(`/portfolio/${slide.seq}`)}>
+                                    {slide.slideList?.map((img, idx) => (
+                                        <li key={idx} className="image-list-item">
+                                            <img src={img.url} alt={`${slide.name} 이미지 ${idx + 1}`} />
+                                        </li>
+                                    ))}
+                                </ul>
+                            </SwiperSlide>
+                        ))}
                     </Swiper>
                     <button ref={prevRef} className="portfolio-nav-btn portfolio-nav-btn--prev">
-                        <img src="/assets/image/chevron-left.svg" alt="이전" />
+                        <img src="/assets/image/icon/chevron-left.svg" alt="이전" />
                     </button>
                     <button ref={nextRef} className="portfolio-nav-btn portfolio-nav-btn--next">
-                        <img src="/assets/image/chevron-right.svg" alt="다음" />
+                        <img src="/assets/image/icon/chevron-right.svg" alt="다음" />
                     </button>
                 </div>
             </div>

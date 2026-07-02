@@ -1,8 +1,8 @@
 import React from 'react';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
-import InquireForm from '../inquire/InquireForm';
-import { packageList } from '../inquire/packageData';
+import InquireForm from '@/features/contact/inquire/InquireForm';
+import { packageList } from '@/features/contact/inquire/packageData';
 
 export default async function ContactDetailPage({ params }: { params: Promise<{ seq: string }> }) {
     const { seq } = await params;

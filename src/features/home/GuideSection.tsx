@@ -25,7 +25,7 @@ export default function GuideSection({ isActive }: Props) {
         <section className="guide-section">
             <div className="lc" key={animKey}>
                 <div className="image-wrap">
-                    <img src={'/assets/image/guide-banner.png'} alt="guide-banner" />
+                    <img src={'/assets/image/home/guide-banner.png'} alt="guide-banner" />
                 </div>
             </div>
             <div className="rc">

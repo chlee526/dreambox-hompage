@@ -1,6 +1,6 @@
 import React from 'react';
-import InquireForm from './InquireForm';
-import { packageList } from './packageData';
+import InquireForm from '@/features/contact/inquire/InquireForm';
+import { packageList } from '@/features/contact/inquire/packageData';
 
 export default async function ContactInquirePage() {
     return (

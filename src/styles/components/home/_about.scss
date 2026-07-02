@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    padding: 14.8rem 0 6rem;
+    padding: 12.8rem 0 6rem;
     background: linear-gradient(#dbdcde, #e3e3e3);
 
     @include tablet {
@@ -14,10 +14,11 @@
     .content-wrap {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        gap: 8rem;
+        // gap: 8rem;
         width: 100%;
+        height: 100%;
 
         @include mobile {
             gap: 4rem;
@@ -27,7 +28,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 3rem;
+            gap: 2.6rem;
             padding: 0 1.6rem;
 
             @include mobile {
@@ -35,13 +36,13 @@
             }
 
             > .title {
-                font-size: 8rem;
+                font-size: 7.6rem;
                 font-weight: 600;
                 animation: fadeInUp 0.7s ease-out both;
                 animation-delay: 0.2s;
 
                 @include tablet {
-                    font-size: 6rem;
+                    font-size: 5.8rem;
                 }
 
                 @include mobile {
@@ -146,7 +147,7 @@
 
                 // 화살표: 라인 완성 후 등장
                 &::before {
-                    content: url('/assets/image/process-chevron.svg');
+                    content: url('/assets/image/icon/process-chevron.svg');
                     position: absolute;
                     right: -0.2rem;
                     top: 16%;
@@ -209,42 +210,42 @@
                     animation: fadeInUp 0.7s ease-out both;
                     animation-delay: 1.1s;
                     &::before {
-                        content: url('/assets/image/process-1.svg');
+                        content: url('/assets/image/icon/process-1.svg');
                     }
                 }
                 .no-2 {
                     animation: fadeInUp 0.7s ease-out both;
                     animation-delay: 1.3s;
                     &::before {
-                        content: url('/assets/image/process-2.svg');
+                        content: url('/assets/image/icon/process-2.svg');
                     }
                 }
                 .no-3 {
                     animation: fadeInUp 0.7s ease-out both;
                     animation-delay: 1.5s;
                     &::before {
-                        content: url('/assets/image/process-3.svg');
+                        content: url('/assets/image/icon/process-3.svg');
                     }
                 }
                 .no-4 {
                     animation: fadeInUp 0.7s ease-out both;
                     animation-delay: 1.7s;
                     &::before {
-                        content: url('/assets/image/process-4.svg');
+                        content: url('/assets/image/icon/process-4.svg');
                     }
                 }
                 .no-5 {
                     animation: fadeInUp 0.7s ease-out both;
                     animation-delay: 1.9s;
                     &::before {
-                        content: url('/assets/image/process-5.svg');
+                        content: url('/assets/image/icon/process-5.svg');
                     }
                 }
                 .no-6 {
                     animation: fadeInUp 0.7s ease-out both;
                     animation-delay: 2.1s;
                     &::before {
-                        content: url('/assets/image/process-6.svg');
+                        content: url('/assets/image/icon/process-6.svg');
                     }
                 }
             }

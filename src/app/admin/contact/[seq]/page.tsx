@@ -1,8 +1,8 @@
 import { requireAuth } from '@/lib/supabase/server';
 import { createClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
-import InquireForm from '@/app/contact/inquire/InquireForm';
-import { packageList } from '@/app/contact/inquire/packageData';
+import InquireForm from '@/features/contact/inquire/InquireForm';
+import { packageList } from '@/features/contact/inquire/packageData';
 import StatusControl from '@/features/admin/contact/StatusControl';
 
 export default async function AdminContactDetailPage({ params }: { params: Promise<{ seq: string }> }) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import PortfolioList from '@/features/portfolio/PortfolioList';
-import { getPortfolios } from '@/lib/portfolio';
+// import { getPortfolios } from '@/lib/portfolio';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { getQueryClient } from '@/lib/queryClient';
 import { portfolioKeys } from '@/hooks/queries/portfolioKeys';
@@ -12,10 +12,10 @@ export default async function PortfolioPage() {
     const queryClient = getQueryClient();
 
     // 서버에서 데이터 프리페치
-    const portfolios = await getPortfolios();
+    // const portfolios = await getPortfolios();
 
     // React Query 캐시에 저장
-    queryClient.setQueryData(portfolioKeys.lists(), portfolios);
+    // queryClient.setQueryData(portfolioKeys.lists(), portfolios);
 
     return (
         <section className="l-page page-portfolio">

@@ -1,6 +1,6 @@
 import { requireAuth } from '@/lib/supabase/server';
 import { createClient } from '@/lib/supabase/server';
-import ContactTable from '@/app/contact/ContactTable';
+import ContactTable from '@/features/contact/ContactTable';
 
 export const dynamic = 'force-dynamic';
 

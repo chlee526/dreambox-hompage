@@ -23,6 +23,10 @@
                     gap: 0.2rem;
                     padding-bottom: 1.6rem;
 
+                    @include mobile {
+                        padding-top: 3.2rem;
+                    }
+
                     > input {
                         width: 24rem;
                         border-radius: 0.2rem;
@@ -38,7 +42,7 @@
                         background-color: $color-text-body;
 
                         &::after {
-                            content: url('/assets/image/search.svg');
+                            content: url('/assets/image/icon/search.svg');
                             display: block;
                             width: 2.4rem;
                             height: 2.4rem;
@@ -68,9 +72,12 @@
                         padding: 1.4rem 1.2rem;
                         text-align: center;
                         font-size: 1.5rem;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
+
+                        > span {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
                     }
 
                     thead tr {

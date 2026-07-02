@@ -15,6 +15,10 @@
     padding: 10.1rem 0 6rem 0;
     margin: 0 auto;
     background-color: #fff;
+
+    @include mobile {
+        padding: 8.4rem 0 6rem 0;
+    }
 }
 
 .l-inner {
@@ -32,14 +36,26 @@
 
     .page-header {
         margin-bottom: 3.2rem;
+
+        @include mobile {
+            margin-bottom: 0;
+        }
     }
 
     .page-title {
-        font-size: 6.4rem;
+        font-size: 6rem;
         font-weight: 600;
         position: relative;
         padding-bottom: 0.6rem;
         animation: fadeInUp 0.3s ease-out both;
+
+        @include tablet {
+            font-size: 4.8rem;
+        }
+
+        @include mobile {
+            font-size: 3.8rem;
+        }
 
         &::after {
             content: '';

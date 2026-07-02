@@ -43,7 +43,7 @@ export default function Header() {
 
                     <div className="logo-wrap">
                         <Link href="/" className="logo">
-                            <Image src="/assets/image/logo.svg" alt="logo" width={203} height={42} priority />
+                            <Image src="/assets/image/home/logo.svg" alt="logo" width={203} height={42} priority />
                         </Link>
                     </div>
 

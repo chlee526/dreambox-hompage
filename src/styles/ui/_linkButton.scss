@@ -7,7 +7,7 @@
 //         @apply bg-[#9a9a9a] text-[1.6rem] text-white;
 
 //         &::after {
-//             content: url('/assets/image/arrow.svg');
+//             content: url('/assets/image/icon/arrow.svg');
 //             position: relative;
 //             top: -3px;
 //             display: inline-block;
@@ -40,7 +40,7 @@
         font-size: 1.6rem;
 
         &::after {
-            content: url('/assets/image/arrow.svg');
+            content: url('/assets/image/icon/arrow.svg');
 
             display: inline-block;
             width: 0;
