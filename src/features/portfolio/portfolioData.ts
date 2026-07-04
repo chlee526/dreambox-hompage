@@ -129,7 +129,7 @@ export const portfolioData = [
         thumbnailList: [{ url: '/assets/image/portfolio/db_008/thum1.png' }, { url: '/assets/image/portfolio/db_008/thum2.png' }],
         imgList: [{ url: '/assets/image/portfolio/db_008/img1.png' }, { url: '/assets/image/portfolio/db_008/img2.png' }, { url: '/assets/image/portfolio/db_008/img3.png' }, { url: '/assets/image/portfolio/db_008/img4.png' }, { url: '/assets/image/portfolio/db_008/img5.png' }, { url: '/assets/image/portfolio/db_008/img6.png' }],
         infos: [
-            { topic: '품명', info: 'OLENS - OLENS x Jooshica 콜라보 패키지' },
+            { topic: '품명', info: 'OLENS - OLENS x Jooshica 시딩 패키지' },
             { topic: '형태', info: '표지+지함 싸바리' },
             { topic: '지종', info: '아트지 130g' },
             { topic: '인쇄', info: '별색 1도' },

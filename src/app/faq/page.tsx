@@ -1,5 +1,12 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import FaqItem from './FaqItem';
+
+export const metadata: Metadata = {
+    title: { absolute: '자주 묻는 질문 | 박스제작 최소수량·샘플·납기 안내 - 드림박스' },
+    description: '구조설계 샘플이 무료인지, 최소 주문 수량은 몇 개인지, 제작 기간은 어떻게 되는지, 디자인 파일 준비 방법 등 자주 묻는 질문을 모았습니다.',
+    keywords: ['박스제작 최소수량', '박스제작 납기', '박스제작 문의', '패키지 제작기간', '박스 무료샘플', '구조설계 샘플'],
+};
 
 const faqList = [
     {

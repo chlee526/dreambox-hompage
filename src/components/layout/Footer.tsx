@@ -10,7 +10,9 @@ export default function Footer() {
         if (pathname === '/') {
             window.dispatchEvent(new CustomEvent('scrollToTop'));
         } else {
+            // body가 실제 스크롤 컨테이너인 경우 window.scrollTo만으로는 반영되지 않아 body도 함께 초기화
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.body.scrollTo({ top: 0, behavior: 'smooth' });
         }
     };
     return (
