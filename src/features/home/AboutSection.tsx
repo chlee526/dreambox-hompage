@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface Props {
     isActive: boolean;
@@ -9,6 +10,7 @@ interface Props {
 export default function AboutSection({ isActive }: Props) {
     const [animKey, setAnimKey] = useState(0);
     const isFirstMount = useRef(true);
+    const router = useRouter();
 
     useEffect(() => {
         if (isFirstMount.current) {
@@ -49,7 +51,9 @@ export default function AboutSection({ isActive }: Props) {
 
                 <div className="info-wrap">
                     <span>*자세한 내용은 FAQ를 확인해주세요</span>
-                    <button className="more-btn">자세히보기</button>
+                    <button className="more-btn" onClick={() => router.push('/faq')}>
+                        자세히보기
+                    </button>
                 </div>
             </div>
         </section>

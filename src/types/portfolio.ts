@@ -1,4 +1,4 @@
-export type PortfolioImageItem = { url: string };
+export type PortfolioImageItem = { url: string; width?: number; height?: number };
 
 export type PortfolioCategory = 'plan' | 'savary' | 'dan' | 'shop' | 'print';
 

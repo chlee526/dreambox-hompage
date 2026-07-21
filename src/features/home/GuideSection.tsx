@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
@@ -25,7 +26,7 @@ export default function GuideSection({ isActive }: Props) {
         <section className="guide-section">
             <div className="lc" key={animKey}>
                 <div className="image-wrap">
-                    <img src={'/assets/image/home/guide-banner.png'} alt="guide-banner" />
+                    <Image src="/assets/image/home/guide-banner.png" alt="guide-banner" fill sizes="(max-width: 768px) 100vw, 45vw" />
                 </div>
             </div>
             <div className="rc">

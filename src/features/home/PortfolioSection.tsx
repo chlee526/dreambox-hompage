@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -69,7 +70,7 @@ export default function PortfolioSection({ isActive }: Props) {
                                 <ul className="image-list" onClick={() => router.push(`/portfolio/${slide.seq}`)}>
                                     {slide.slideList?.map((img, idx) => (
                                         <li key={idx} className="image-list-item">
-                                            <img src={img.url} alt={`${slide.name} 이미지 ${idx + 1}`} />
+                                            <Image src={img.url} alt={`${slide.name} 이미지 ${idx + 1}`} fill sizes="(max-width: 768px) 50vw, 27vw" />
                                         </li>
                                     ))}
                                 </ul>
@@ -77,10 +78,10 @@ export default function PortfolioSection({ isActive }: Props) {
                         ))}
                     </Swiper>
                     <button ref={prevRef} className="portfolio-nav-btn portfolio-nav-btn--prev">
-                        <img src="/assets/image/icon/chevron-left.svg" alt="이전" />
+                        <Image src="/assets/image/icon/chevron-left.svg" alt="이전" width={24} height={24} unoptimized />
                     </button>
                     <button ref={nextRef} className="portfolio-nav-btn portfolio-nav-btn--next">
-                        <img src="/assets/image/icon/chevron-right.svg" alt="다음" />
+                        <Image src="/assets/image/icon/chevron-right.svg" alt="다음" width={24} height={24} unoptimized />
                     </button>
                 </div>
             </div>

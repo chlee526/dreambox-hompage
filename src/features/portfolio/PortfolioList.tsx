@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { portfolioData } from '@/features/portfolio/portfolioData';
@@ -16,15 +17,18 @@ const FILTER_TABS: { value: FilterValue; label: string }[] = [
     })),
 ];
 
-function PortfolioItem({ portfolio }: { portfolio: PortfolioType }) {
+// 그리드 컬럼 수(4/3/2/1)에 맞춰 브라우저가 필요한 만큼만 리사이즈된 이미지를 받도록 지정
+const IMAGE_SIZES = '(max-width: 490px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw';
+
+function PortfolioItem({ portfolio, priority }: { portfolio: PortfolioType; priority: boolean }) {
     const defaultImage = portfolio.thumbnailList[0]?.url ?? '';
     const hoverImage = portfolio.thumbnailList[1]?.url ?? defaultImage;
 
     return (
         <Link href={`/portfolio/${portfolio.seq}`} className="portfolio-list-item">
             <div className="image-wrap">
-                <img className="img-default" src={defaultImage} alt={portfolio.name} />
-                <img className="img-hover" src={hoverImage} alt={portfolio.name} />
+                <Image className="img-default" src={defaultImage} alt={portfolio.name} fill sizes={IMAGE_SIZES} priority={priority} loading={priority ? undefined : 'lazy'} />
+                <Image className="img-hover" src={hoverImage} alt={portfolio.name} fill sizes={IMAGE_SIZES} loading="lazy" />
             </div>
             <div className="name-wrap">
                 <span>{portfolio.name}</span>
@@ -49,8 +53,8 @@ export default function PortfolioList() {
                 ))}
             </ul>
             <div className="portfolio-list">
-                {filtered.map((portfolio) => (
-                    <PortfolioItem key={portfolio.seq} portfolio={portfolio} />
+                {filtered.map((portfolio, index) => (
+                    <PortfolioItem key={portfolio.seq} portfolio={portfolio} priority={index < 4} />
                 ))}
             </div>
         </div>

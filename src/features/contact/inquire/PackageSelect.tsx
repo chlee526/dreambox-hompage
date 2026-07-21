@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import type { PackageItem } from '@/types/contactTypes';
 
@@ -50,9 +51,7 @@ export default function PackageSelect({ packageList, initialValue, onPackageChan
                 <div className="example-list">
                     {selectedPackageItem.example.map((ex) => (
                         <button key={ex.name} type="button" className={`example-btn${selectedExample === ex.name ? ' active' : ''}`} onClick={() => handleExampleClick(ex.name)}>
-                            <div className="image-wrap">
-                                <img src={ex.url} alt={ex.name} />
-                            </div>
+                            <div className="image-wrap">{ex.url && <Image src={ex.url} alt={ex.name} fill sizes="200px" />}</div>
                             <span className="name">{ex.name}</span>
                         </button>
                     ))}

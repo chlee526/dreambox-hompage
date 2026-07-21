@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -49,7 +50,7 @@ export default function Footer() {
                     <div className="rc">
                         <div className="logo-wrap">
                             <Link href="/" className="logo">
-                                <img src="/assets/image/home/logo_white.svg" alt="logo" />
+                                <Image src="/assets/image/home/logo_white.svg" alt="logo" width={237} height={49} unoptimized />
                             </Link>
                         </div>
                     </div>

@@ -140,10 +140,16 @@
                                     }
 
                                     .image-wrap {
+                                        position: relative;
                                         width: 13rem;
                                         height: 13rem;
                                         border-radius: 0.2rem;
+                                        overflow: hidden;
                                         background-color: #bebebe;
+
+                                        img {
+                                            object-fit: cover;
+                                        }
                                     }
 
                                     > .name {
