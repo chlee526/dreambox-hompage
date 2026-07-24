@@ -89,9 +89,9 @@ export default function ContactTable({ data, perPage = 10, detailBasePath }: Con
                     </tr>
                 </thead>
                 <tbody>
-                    {currentData.map((item) => (
+                    {currentData.map((item, index) => (
                         <tr key={item.seq}>
-                            <td>{item.seq}</td>
+                            <td>{filtered.length - (startIndex + index)}</td>
                             <td className="title">
                                 <span onClick={() => handleTitleClick(item.seq)}>{item.title}</span>
                                 {item.date === today && <span className="new-badge">N</span>}

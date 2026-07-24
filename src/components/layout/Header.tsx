@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 
 const NAV_LINKS = [
     { href: '/', label: '홈' },
-    { href: '/guide', label: '박스제작 가이드' },
+    // { href: '/guide', label: '박스제작 가이드' },
     { href: '/portfolio', label: '포트폴리오' },
     { href: '/faq', label: 'FAQ' },
     { href: '/contact', label: '견적문의', className: 'link-button' },

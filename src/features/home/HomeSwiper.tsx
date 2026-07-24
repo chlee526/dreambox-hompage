@@ -8,7 +8,7 @@ import 'swiper/css';
 import Banner from './Banner';
 import PortfolioSection from './PortfolioSection';
 import AboutSection from './AboutSection';
-import GuideSection from './GuideSection';
+// import GuideSection from './GuideSection';
 
 function setPageScroll(enabled: boolean) {
     const val = enabled ? 'auto' : 'hidden';
@@ -144,9 +144,9 @@ export default function HomeSwiper() {
             <SwiperSlide>
                 <AboutSection isActive={activeIndex === 2} />
             </SwiperSlide>
-            <SwiperSlide>
+            {/* <SwiperSlide>
                 <GuideSection isActive={activeIndex === 3} />
-            </SwiperSlide>
+            </SwiperSlide> */}
         </Swiper>
     );
 }

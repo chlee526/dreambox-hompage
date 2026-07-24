@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+// import Image from 'next/image';
 import React from 'react';
 import { portfolioData } from '@/features/portfolio/portfolioData';
 
@@ -31,7 +31,7 @@ export default function PortfolioDetail({ seq }: PortfolioDetailProps) {
                         <div className="image-list">
                             {detailData.imgList.filter(Boolean).map((image, index) => (
                                 <div key={index}>
-                                    <Image src={image!.url} alt={`${detailData.name} - ${index + 1}`} width={image!.width ?? 1200} height={image!.height ?? 1200} sizes="(max-width: 1200px) 100vw, 65vw" className="w-full h-auto" />
+                                    <img src={image!.url} alt={`${detailData.name} - ${index + 1}`} className="w-full h-auto" />
                                 </div>
                             ))}
                         </div>
