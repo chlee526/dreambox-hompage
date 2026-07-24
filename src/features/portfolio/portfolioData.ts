@@ -1,5 +1,5 @@
 /**
- * category : plan(시딩박스 / 기획패키지) | savary(싸바리) | dan(단상자) | shop(쇼핑백) | print(인쇄물) | custom(커스텀)
+ * category : plan(시딩박스 / 기획패키지) | savary(싸바리) | dan(단상자) | shop(쇼핑백) | etc(커스텀/인쇄물) | custom(커스텀)
  * isSlide(boolean) : 메인페이지 포트폴리오 섹션 슬라이더 포함 여부
  * infos > topic : 품명, 형태, 지종, 인쇄, 코팅, 후가공, 원단, 부자재
  */
@@ -143,6 +143,7 @@ export const portfolioData = [
             { topic: '부자재', info: '무늬목(보강재)' },
         ],
     },
+
     {
         seq: 'db_003',
         name: 'CARIN 안경 패키지',
@@ -180,7 +181,7 @@ export const portfolioData = [
     {
         seq: 'db_020',
         name: '원기 상황버섯 패키지',
-        category: ['plan'],
+        category: ['plan', 'etc'],
         isSlide: false,
         thumbnailList: [{ url: '/assets/image/portfolio/db_020/thum1.png' }, { url: '/assets/image/portfolio/db_020/thum2.png' }],
         imgList: [{ url: '/assets/image/portfolio/db_020/img1.png' }, { url: '/assets/image/portfolio/db_020/img2.png' }, { url: '/assets/image/portfolio/db_020/img3.png' }, { url: '/assets/image/portfolio/db_020/img4.png' }, { url: '/assets/image/portfolio/db_020/img5.png' }],
@@ -241,6 +242,20 @@ export const portfolioData = [
         ],
     },
     {
+        seq: 'db_028',
+        name: `CARIN 'Butterfly's Journey' 전시회 카드`,
+        category: ['etc'],
+        isSlide: false,
+        thumbnailList: [{ url: '/assets/image/portfolio/db_028/thum1.png' }, { url: '/assets/image/portfolio/db_028/thum2.png' }],
+        imgList: [{ url: '/assets/image/portfolio/db_028/img1.png' }, { url: '/assets/image/portfolio/db_028/img2.png' }, { url: '/assets/image/portfolio/db_028/img3.png' }, { url: '/assets/image/portfolio/db_028/img4.png' }],
+        infos: [
+            { topic: '품명', info: `CARIN - 카린 'Butterfly's Journey' 전시회 카드` },
+            { topic: '형태', info: '엽서카드 인쇄물' },
+            { topic: '지종', info: '랑데뷰 수입지 300g' },
+            { topic: '인쇄', info: '옵셋인쇄 4도' },
+        ],
+    },
+    {
         seq: 'db_004',
         name: 'CARIN 기프트 패키지',
         category: ['savary'],
@@ -292,7 +307,7 @@ export const portfolioData = [
     {
         seq: 'db_010',
         name: 'CARIN 25FALL 컬렉션 카드',
-        category: ['print'],
+        category: ['etc'],
         isSlide: false,
         slideList: [{ url: '/assets/image/portfolio/db_009/img1.png' }, { url: '/assets/image/portfolio/db_009/img3.png' }, { url: '/assets/image/portfolio/db_009/img5.png' }, { url: '/assets/image/portfolio/db_009/img6.png' }],
         thumbnailList: [{ url: '/assets/image/portfolio/db_010/thum1.png' }, { url: '/assets/image/portfolio/db_010/thum2.png' }],
@@ -307,7 +322,7 @@ export const portfolioData = [
     {
         seq: 'db_011',
         name: '디자인 무지 노트',
-        category: ['print'],
+        category: ['etc'],
         isSlide: false,
         slideList: [{ url: '/assets/image/portfolio/db_009/img1.png' }, { url: '/assets/image/portfolio/db_009/img3.png' }, { url: '/assets/image/portfolio/db_009/img5.png' }, { url: '/assets/image/portfolio/db_009/img6.png' }],
         thumbnailList: [{ url: '/assets/image/portfolio/db_011/thum1.png' }, { url: '/assets/image/portfolio/db_011/thum2.png' }],
