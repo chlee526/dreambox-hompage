@@ -36,7 +36,7 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        width: 3.8rem;
+                        width: 3.4rem;
                         height: 3.4rem;
                         border-radius: 0.2rem;
                         background-color: $color-text-body;
@@ -44,8 +44,13 @@
                         &::after {
                             content: url('/assets/image/icon/search.svg');
                             display: block;
-                            width: 2.4rem;
-                            height: 2.4rem;
+                            width: 2rem;
+                            height: 2rem;
+                        }
+
+                        @include mobile {
+                            width: 3.4rem;
+                            height: 3rem;
                         }
                     }
                 }
@@ -55,21 +60,21 @@
                     table-layout: fixed;
 
                     .col-no {
-                        width: 8rem;
+                        width: 5rem;
                     }
                     .col-title {
                         width: auto;
                     }
                     .col-author {
-                        width: 12rem;
+                        width: 8rem;
                     }
                     .col-date {
-                        width: 14rem;
+                        width: 10rem;
                     }
 
                     th,
                     td {
-                        padding: 1.4rem 1.2rem;
+                        padding: 1rem 0.4rem;
                         text-align: center;
                         font-size: 1.5rem;
 
@@ -77,6 +82,10 @@
                             overflow: hidden;
                             text-overflow: ellipsis;
                             white-space: nowrap;
+                        }
+
+                        @include mobile {
+                            font-size: 1.4rem;
                         }
                     }
 
@@ -137,14 +146,19 @@
                     padding-top: 1.6rem;
 
                     > button {
-                        height: 4rem;
+                        height: 3.4rem;
                         padding: 0 1.6rem;
                         border-radius: 0.2rem;
                         background-color: $color-text-body;
-                        font-size: 1.6rem;
+                        font-size: 1.5rem;
                         font-weight: 500;
                         color: #ffffff;
                         transition: all 0.25s ease-in;
+
+                        @include mobile {
+                            height: 3rem;
+                            font-size: 1.4rem;
+                        }
 
                         &:hover {
                             background-color: #000000;
@@ -171,6 +185,12 @@
                             background-color 0.15s ease,
                             color 0.15s ease,
                             border-color 0.15s ease;
+
+                        @include mobile {
+                            min-width: 3rem;
+                            height: 3rem;
+                            font-size: 1.4rem;
+                        }
 
                         &:hover:not(:disabled) {
                             background-color: $color-text-body;

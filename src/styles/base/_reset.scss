@@ -80,6 +80,7 @@ legend {
 
 input {
     border: 1px solid #e0e0e0;
+    height: 3.4rem;
     padding: 0.8rem 1rem;
     border-radius: 0.5rem;
     background-color: #fff;
@@ -87,6 +88,12 @@ input {
     font-family: 'Pretendard', sans-serif;
     font-size: 1.5rem;
     color: #333333;
+
+    @include mobile {
+        height: 3rem;
+        padding: 0.6rem 0.8rem;
+        font-size: 1.4rem;
+    }
 
     &:focus {
         border-color: #333333;

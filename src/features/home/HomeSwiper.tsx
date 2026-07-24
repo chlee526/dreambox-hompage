@@ -67,17 +67,16 @@ export default function HomeSwiper() {
     }, []);
 
     useEffect(() => {
-        const handleWheel = (e: WheelEvent) => {
+        // wheel/touch 공통 판단 로직: footer 진입/복귀 감지, 슬라이드 전환, lock 처리
+        const handleScrollAttempt = (deltaY: number, preventDefault?: () => void) => {
             const swiper = swiperRef.current;
             if (!swiper) return;
-
-            lastWheelTime.current = Date.now();
 
             if (isFooterMode.current) {
                 // 푸터 복귀 감지: body.scrollTop 기준 (html이 아닌 body가 스크롤 컨테이너)
                 // window.scrollY / window scroll event는 body 스크롤을 반영하지 않음
-                if (e.deltaY < 0 && getScrollTop() < 1) {
-                    e.preventDefault();
+                if (deltaY < 0 && getScrollTop() < 1) {
+                    preventDefault?.();
                     resetScrollTop();
                     isFooterMode.current = false;
                     setPageScroll(false);
@@ -87,22 +86,41 @@ export default function HomeSwiper() {
                 return;
             }
 
-            e.preventDefault();
+            preventDefault?.();
             if (!canScroll.current) return;
 
-            if (swiper.isEnd && e.deltaY > 0) {
+            if (swiper.isEnd && deltaY > 0) {
                 canScroll.current = false;
                 isFooterMode.current = true;
                 setPageScroll(true);
-            } else if (!swiper.isEnd && e.deltaY > 0) {
+            } else if (!swiper.isEnd && deltaY > 0) {
                 canScroll.current = false;
                 swiper.slideNext(800);
                 scheduleUnlock(400);
-            } else if (!swiper.isBeginning && e.deltaY < 0) {
+            } else if (!swiper.isBeginning && deltaY < 0) {
                 canScroll.current = false;
                 swiper.slidePrev(800);
                 scheduleUnlock(400);
             }
+        };
+
+        const handleWheel = (e: WheelEvent) => {
+            lastWheelTime.current = Date.now();
+            handleScrollAttempt(e.deltaY, () => e.preventDefault());
+        };
+
+        // 모바일/태블릿은 wheel 이벤트가 없으므로 touchmove의 이동량을 deltaY로 환산해 동일 로직 재사용
+        let lastTouchY = 0;
+        const handleTouchStart = (e: TouchEvent) => {
+            lastTouchY = e.touches[0].clientY;
+        };
+
+        const handleTouchMove = (e: TouchEvent) => {
+            const currentY = e.touches[0].clientY;
+            const deltaY = lastTouchY - currentY; // 손가락이 위로 이동 = 양수 (wheel deltaY 부호와 동일)
+            lastTouchY = currentY;
+            lastWheelTime.current = Date.now();
+            handleScrollAttempt(deltaY, () => e.preventDefault());
         };
 
         const handleScrollToTop = () => {
@@ -116,10 +134,14 @@ export default function HomeSwiper() {
         };
 
         window.addEventListener('wheel', handleWheel, { passive: false });
+        window.addEventListener('touchstart', handleTouchStart, { passive: true });
+        window.addEventListener('touchmove', handleTouchMove, { passive: false });
         window.addEventListener('scrollToTop', handleScrollToTop);
 
         return () => {
             window.removeEventListener('wheel', handleWheel);
+            window.removeEventListener('touchstart', handleTouchStart);
+            window.removeEventListener('touchmove', handleTouchMove);
             window.removeEventListener('scrollToTop', handleScrollToTop);
         };
     }, []);
