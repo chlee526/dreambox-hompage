@@ -111,12 +111,35 @@ export default function HomeSwiper() {
 
         // 모바일/태블릿은 wheel 이벤트가 없으므로 touchmove의 이동량을 deltaY로 환산해 동일 로직 재사용
         let lastTouchY = 0;
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchDirection: 'vertical' | 'horizontal' | null = null;
+        const TOUCH_DIRECTION_THRESHOLD = 10;
+
         const handleTouchStart = (e: TouchEvent) => {
             lastTouchY = e.touches[0].clientY;
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            touchDirection = null;
         };
 
         const handleTouchMove = (e: TouchEvent) => {
+            const currentX = e.touches[0].clientX;
             const currentY = e.touches[0].clientY;
+
+            if (touchDirection === null) {
+                const totalDeltaX = Math.abs(currentX - touchStartX);
+                const totalDeltaY = Math.abs(currentY - touchStartY);
+                if (totalDeltaX < TOUCH_DIRECTION_THRESHOLD && totalDeltaY < TOUCH_DIRECTION_THRESHOLD) return;
+                touchDirection = totalDeltaX > totalDeltaY ? 'horizontal' : 'vertical';
+            }
+
+            // 가로 스와이프(포트폴리오 섹션 내부 캐러셀 등)는 그대로 두고 섹션 전환에 관여하지 않음
+            if (touchDirection === 'horizontal') {
+                lastTouchY = currentY;
+                return;
+            }
+
             const deltaY = lastTouchY - currentY; // 손가락이 위로 이동 = 양수 (wheel deltaY 부호와 동일)
             lastTouchY = currentY;
             lastWheelTime.current = Date.now();

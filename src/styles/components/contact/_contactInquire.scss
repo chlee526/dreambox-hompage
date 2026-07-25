@@ -5,6 +5,7 @@
             flex-direction: column;
             align-items: center;
             gap: 3.2rem;
+            margin-bottom: 3.2rem;
 
             > .page-title {
                 &::after {
@@ -15,6 +16,10 @@
             > .text {
                 font-size: 2.2rem;
                 font-weight: 500;
+
+                @include mobile {
+                    font-size: 1.6rem;
+                }
             }
         }
 
@@ -23,7 +28,23 @@
             flex-direction: column;
             gap: 3.2rem;
 
+            > form {
+                display: flex;
+                flex-direction: column;
+                gap: 3.2rem;
+
+                // @include tablet {
+                //     gap: 1.6rem;
+                // }
+            }
+
             .info-item {
+                @include tablet {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.6rem;
+                }
+
                 &.inquire {
                     padding-bottom: 3.2rem;
                     border-bottom: 1px solid #eeeeee;
@@ -36,16 +57,27 @@
                     }
                 }
                 > .header {
-                    padding: 0.8rem 1.6rem;
+                    padding: 0.8rem;
                     border-bottom: 1px solid $color-text-body;
                     font-size: 2.4rem;
                     font-weight: 600;
+
+                    @include mobile {
+                        font-size: 1.8rem;
+                    }
                 }
 
                 > .row {
                     display: flex;
                     gap: 6.4rem;
                     padding: 1.6rem;
+
+                    @include tablet {
+                        flex-direction: column;
+                        gap: 1.6rem;
+                        padding: 0;
+                        // padding: 0 1.6rem;
+                    }
 
                     &.is-file {
                         flex-direction: column;
@@ -63,14 +95,31 @@
                         align-items: center;
                         gap: 1.6rem;
 
+                        @include tablet {
+                            width: 100% !important;
+                            gap: 0.8rem;
+
+                            > strong {
+                                width: 8rem;
+                            }
+                        }
+
                         &.is-package {
                             align-items: flex-start;
+
+                            @include mobile {
+                                flex-direction: column;
+                            }
                         }
 
                         > strong {
                             flex-shrink: 0;
                             font-size: 1.8rem;
                             font-weight: 500;
+
+                            @include mobile {
+                                font-size: 1.5rem;
+                            }
 
                             &.require {
                                 &::after {
@@ -95,10 +144,18 @@
                             padding: 2.4rem;
                             background-color: #f7f7f7;
                             border-radius: 0.2rem;
-                            // border: 1px solid #f0f0f0;
+
+                            @include mobile {
+                                padding: 1.6rem;
+
+                                .package-list {
+                                    gap: 0.8rem;
+                                }
+                            }
 
                             .package-list {
                                 display: flex;
+                                flex-wrap: wrap;
                                 gap: 1.6rem;
 
                                 .package-btn {
@@ -107,6 +164,7 @@
                                     background-color: #ffffff;
                                     font-size: 1.8rem;
                                     font-weight: 500;
+                                    text-wrap: nowrap;
                                     color: $color-text-body;
                                     transition: all 0.2s ease-in;
 
@@ -114,11 +172,22 @@
                                         background-color: $color-text-body;
                                         color: #ffffff;
                                     }
+
+                                    @include tablet {
+                                        padding: 1rem 2.4rem;
+                                        font-size: 1.6rem;
+                                    }
+
+                                    @include mobile {
+                                        padding: 0.8rem 1.6rem;
+                                        font-size: 1.4rem;
+                                    }
                                 }
                             }
 
                             .example-list {
                                 display: flex;
+                                flex-wrap: wrap;
                                 gap: 1.6rem;
 
                                 .example-btn {
@@ -150,11 +219,20 @@
                                         img {
                                             object-fit: cover;
                                         }
+
+                                        @include tablet {
+                                            width: 10rem;
+                                            height: 10rem;
+                                        }
                                     }
 
                                     > .name {
                                         font-size: 1.8rem;
                                         font-weight: 500;
+
+                                        @include mobile {
+                                            font-size: 1.5rem;
+                                        }
                                     }
                                 }
                             }
@@ -168,13 +246,19 @@
                 align-items: center;
                 gap: 1.6rem;
                 padding: 0 1.6rem;
-                margin-top: 3.2rem;
                 font-size: 1.6rem;
+
+                @include mobile {
+                    font-size: 1.4rem;
+                    padding: 0;
+                    gap: 0.8rem;
+                }
 
                 > .policy {
                     display: flex;
                     align-items: center;
                     gap: 0.8rem;
+
                     > label {
                         user-select: none;
                         cursor: pointer;
@@ -190,7 +274,7 @@
                 display: flex;
                 justify-content: center;
                 gap: 2rem;
-                margin-top: 3.2rem;
+                // margin-top: 3.2rem;
 
                 > button {
                     padding: 1.2rem 3.2rem;
@@ -198,6 +282,11 @@
                     font-size: 1.8rem;
                     font-weight: 500;
                     transition: all 0.25s ease-in;
+
+                    @include mobile {
+                        padding: 0.8rem 2rem;
+                        font-size: 1.5rem;
+                    }
 
                     &.submit {
                         background-color: $color-text-body;
