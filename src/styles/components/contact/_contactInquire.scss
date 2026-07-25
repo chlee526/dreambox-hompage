@@ -1,326 +1,327 @@
 .page-contact-inquire {
-    > .l-inner {
-        > .page-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3.2rem;
-            margin-bottom: 3.2rem;
+  > .l-inner {
+    > .page-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3.2rem;
+      margin-bottom: 3.2rem;
 
-            > .page-title {
-                &::after {
-                    display: none;
-                }
-            }
+      > .page-title {
+        &::after {
+          display: none;
+        }
+      }
 
-            > .text {
-                font-size: 2.2rem;
-                font-weight: 500;
+      > .text {
+        font-size: 2.2rem;
+        font-weight: 500;
+        text-align: center;
 
-                @include mobile {
-                    font-size: 1.6rem;
-                }
-            }
+        @include mobile {
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    > .content-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 3.2rem;
+
+      > form {
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+
+        // @include tablet {
+        //     gap: 1.6rem;
+        // }
+      }
+
+      .info-item {
+        @include tablet {
+          display: flex;
+          flex-direction: column;
+          gap: 1.6rem;
         }
 
-        > .content-wrap {
-            display: flex;
+        &.inquire {
+          padding-bottom: 3.2rem;
+          border-bottom: 1px solid #eeeeee;
+          > .row {
+            .row-item {
+              > strong {
+                width: 10rem;
+              }
+            }
+          }
+        }
+        > .header {
+          padding: 0.8rem;
+          border-bottom: 1px solid $color-text-body;
+          font-size: 2.4rem;
+          font-weight: 600;
+
+          @include mobile {
+            font-size: 1.8rem;
+          }
+        }
+
+        > .row {
+          display: flex;
+          gap: 6.4rem;
+          padding: 1.6rem;
+
+          @include tablet {
             flex-direction: column;
-            gap: 3.2rem;
+            gap: 1.6rem;
+            padding: 0;
+            // padding: 0 1.6rem;
+          }
 
-            > form {
-                display: flex;
-                flex-direction: column;
-                gap: 3.2rem;
+          &.is-file {
+            flex-direction: column;
+            gap: 1.6rem;
 
-                // @include tablet {
-                //     gap: 1.6rem;
-                // }
+            .info-msg {
+              font-size: 1.4rem;
+
+              padding-left: 11.6rem;
+            }
+          }
+
+          .row-item {
+            display: flex;
+            align-items: center;
+            gap: 1.6rem;
+
+            @include tablet {
+              width: 100% !important;
+              gap: 0.8rem;
+
+              > strong {
+                width: 8rem;
+              }
             }
 
-            .info-item {
-                @include tablet {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 1.6rem;
-                }
+            &.is-package {
+              align-items: flex-start;
 
-                &.inquire {
-                    padding-bottom: 3.2rem;
-                    border-bottom: 1px solid #eeeeee;
-                    > .row {
-                        .row-item {
-                            > strong {
-                                width: 10rem;
-                            }
-                        }
+              @include mobile {
+                flex-direction: column;
+              }
+            }
+
+            > strong {
+              flex-shrink: 0;
+              font-size: 1.8rem;
+              font-weight: 500;
+
+              @include mobile {
+                font-size: 1.5rem;
+              }
+
+              &.require {
+                &::after {
+                  content: '*';
+                  display: inline-block;
+                  padding-left: 0.4rem;
+                  font-weight: 400;
+                  color: #ff0000;
+                }
+              }
+            }
+
+            > input {
+              width: 100%;
+            }
+
+            .package-wrap {
+              display: flex;
+              flex-direction: column;
+              gap: 2.4rem;
+              width: 100%;
+              padding: 2.4rem;
+              background-color: #f7f7f7;
+              border-radius: 0.2rem;
+
+              @include mobile {
+                padding: 1.6rem;
+
+                .package-list {
+                  gap: 0.8rem;
+                }
+              }
+
+              .package-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.6rem;
+
+                .package-btn {
+                  padding: 1.2rem 3.2rem;
+                  border-radius: 0.4rem;
+                  background-color: #ffffff;
+                  font-size: 1.8rem;
+                  font-weight: 500;
+                  text-wrap: nowrap;
+                  color: $color-text-body;
+                  transition: all 0.2s ease-in;
+
+                  &.active {
+                    background-color: $color-text-body;
+                    color: #ffffff;
+                  }
+
+                  @include tablet {
+                    padding: 1rem 2.4rem;
+                    font-size: 1.6rem;
+                  }
+
+                  @include mobile {
+                    padding: 0.8rem 1.6rem;
+                    font-size: 1.4rem;
+                  }
+                }
+              }
+
+              .example-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.6rem;
+
+                .example-btn {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 0.8rem;
+                  padding-bottom: 0.2rem;
+                  border: 4px solid transparent;
+                  border-radius: 0.4rem;
+                  transition: all 0.15s ease-in;
+
+                  &.active {
+                    border-color: $color-text-body;
+                    background-color: $color-text-body;
+
+                    > .name {
+                      color: #ffffff;
                     }
-                }
-                > .header {
-                    padding: 0.8rem;
-                    border-bottom: 1px solid $color-text-body;
-                    font-size: 2.4rem;
-                    font-weight: 600;
+                  }
 
-                    @include mobile {
-                        font-size: 1.8rem;
+                  .image-wrap {
+                    position: relative;
+                    width: 13rem;
+                    height: 13rem;
+                    border-radius: 0.2rem;
+                    overflow: hidden;
+                    background-color: #bebebe;
+
+                    img {
+                      object-fit: cover;
                     }
-                }
-
-                > .row {
-                    display: flex;
-                    gap: 6.4rem;
-                    padding: 1.6rem;
 
                     @include tablet {
-                        flex-direction: column;
-                        gap: 1.6rem;
-                        padding: 0;
-                        // padding: 0 1.6rem;
+                      width: 10rem;
+                      height: 10rem;
                     }
+                  }
 
-                    &.is-file {
-                        flex-direction: column;
-                        gap: 1.6rem;
-
-                        .info-msg {
-                            font-size: 1.4rem;
-
-                            padding-left: 11.6rem;
-                        }
-                    }
-
-                    .row-item {
-                        display: flex;
-                        align-items: center;
-                        gap: 1.6rem;
-
-                        @include tablet {
-                            width: 100% !important;
-                            gap: 0.8rem;
-
-                            > strong {
-                                width: 8rem;
-                            }
-                        }
-
-                        &.is-package {
-                            align-items: flex-start;
-
-                            @include mobile {
-                                flex-direction: column;
-                            }
-                        }
-
-                        > strong {
-                            flex-shrink: 0;
-                            font-size: 1.8rem;
-                            font-weight: 500;
-
-                            @include mobile {
-                                font-size: 1.5rem;
-                            }
-
-                            &.require {
-                                &::after {
-                                    content: '*';
-                                    display: inline-block;
-                                    padding-left: 0.4rem;
-                                    font-weight: 400;
-                                    color: #ff0000;
-                                }
-                            }
-                        }
-
-                        > input {
-                            width: 100%;
-                        }
-
-                        .package-wrap {
-                            display: flex;
-                            flex-direction: column;
-                            gap: 2.4rem;
-                            width: 100%;
-                            padding: 2.4rem;
-                            background-color: #f7f7f7;
-                            border-radius: 0.2rem;
-
-                            @include mobile {
-                                padding: 1.6rem;
-
-                                .package-list {
-                                    gap: 0.8rem;
-                                }
-                            }
-
-                            .package-list {
-                                display: flex;
-                                flex-wrap: wrap;
-                                gap: 1.6rem;
-
-                                .package-btn {
-                                    padding: 1.2rem 3.2rem;
-                                    border-radius: 0.4rem;
-                                    background-color: #ffffff;
-                                    font-size: 1.8rem;
-                                    font-weight: 500;
-                                    text-wrap: nowrap;
-                                    color: $color-text-body;
-                                    transition: all 0.2s ease-in;
-
-                                    &.active {
-                                        background-color: $color-text-body;
-                                        color: #ffffff;
-                                    }
-
-                                    @include tablet {
-                                        padding: 1rem 2.4rem;
-                                        font-size: 1.6rem;
-                                    }
-
-                                    @include mobile {
-                                        padding: 0.8rem 1.6rem;
-                                        font-size: 1.4rem;
-                                    }
-                                }
-                            }
-
-                            .example-list {
-                                display: flex;
-                                flex-wrap: wrap;
-                                gap: 1.6rem;
-
-                                .example-btn {
-                                    display: flex;
-                                    flex-direction: column;
-                                    gap: 0.8rem;
-                                    padding-bottom: 0.2rem;
-                                    border: 4px solid transparent;
-                                    border-radius: 0.4rem;
-                                    transition: all 0.15s ease-in;
-
-                                    &.active {
-                                        border-color: $color-text-body;
-                                        background-color: $color-text-body;
-
-                                        > .name {
-                                            color: #ffffff;
-                                        }
-                                    }
-
-                                    .image-wrap {
-                                        position: relative;
-                                        width: 13rem;
-                                        height: 13rem;
-                                        border-radius: 0.2rem;
-                                        overflow: hidden;
-                                        background-color: #bebebe;
-
-                                        img {
-                                            object-fit: cover;
-                                        }
-
-                                        @include tablet {
-                                            width: 10rem;
-                                            height: 10rem;
-                                        }
-                                    }
-
-                                    > .name {
-                                        font-size: 1.8rem;
-                                        font-weight: 500;
-
-                                        @include mobile {
-                                            font-size: 1.5rem;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            .policy-area {
-                display: flex;
-                align-items: center;
-                gap: 1.6rem;
-                padding: 0 1.6rem;
-                font-size: 1.6rem;
-
-                @include mobile {
-                    font-size: 1.4rem;
-                    padding: 0;
-                    gap: 0.8rem;
-                }
-
-                > .policy {
-                    display: flex;
-                    align-items: center;
-                    gap: 0.8rem;
-
-                    > label {
-                        user-select: none;
-                        cursor: pointer;
-                    }
-                }
-
-                .full-content {
-                    color: #999999;
-                }
-            }
-
-            .form-bottom {
-                display: flex;
-                justify-content: center;
-                gap: 2rem;
-                // margin-top: 3.2rem;
-
-                > button {
-                    padding: 1.2rem 3.2rem;
-                    border-radius: 0.4rem;
+                  > .name {
                     font-size: 1.8rem;
                     font-weight: 500;
-                    transition: all 0.25s ease-in;
 
                     @include mobile {
-                        padding: 0.8rem 2rem;
-                        font-size: 1.5rem;
+                      font-size: 1.5rem;
                     }
-
-                    &.submit {
-                        background-color: $color-text-body;
-                        color: #ffffff;
-
-                        &:disabled {
-                            background-color: #d4d4d4;
-                            color: #999999;
-                            cursor: not-allowed;
-                        }
-
-                        &:not(:disabled):hover {
-                            background-color: #000000;
-                        }
-                    }
-
-                    &.delete {
-                        background-color: #d32f2f;
-                        color: #ffffff;
-
-                        &:hover {
-                            background-color: #b71c1c;
-                        }
-                    }
-
-                    &.list {
-                        border: 1px solid $color-text-body;
-
-                        &:hover {
-                            background-color: #eeeeee;
-                        }
-                    }
+                  }
                 }
+              }
             }
+          }
         }
+      }
+
+      .policy-area {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+        padding: 0 1.6rem;
+        font-size: 1.6rem;
+
+        @include mobile {
+          font-size: 1.4rem;
+          padding: 0;
+          gap: 0.8rem;
+        }
+
+        > .policy {
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+
+          > label {
+            user-select: none;
+            cursor: pointer;
+          }
+        }
+
+        .full-content {
+          color: #999999;
+        }
+      }
+
+      .form-bottom {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        // margin-top: 3.2rem;
+
+        > button {
+          padding: 1.2rem 3.2rem;
+          border-radius: 0.4rem;
+          font-size: 1.8rem;
+          font-weight: 500;
+          transition: all 0.25s ease-in;
+
+          @include mobile {
+            padding: 0.8rem 2rem;
+            font-size: 1.5rem;
+          }
+
+          &.submit {
+            background-color: $color-text-body;
+            color: #ffffff;
+
+            &:disabled {
+              background-color: #d4d4d4;
+              color: #999999;
+              cursor: not-allowed;
+            }
+
+            &:not(:disabled):hover {
+              background-color: #000000;
+            }
+          }
+
+          &.delete {
+            background-color: #d32f2f;
+            color: #ffffff;
+
+            &:hover {
+              background-color: #b71c1c;
+            }
+          }
+
+          &.list {
+            border: 1px solid $color-text-body;
+
+            &:hover {
+              background-color: #eeeeee;
+            }
+          }
+        }
+      }
     }
+  }
 }
