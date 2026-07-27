@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import ReactQueryClientProvider from '@/app/_provider/ReactQueryClientProvider';
 import LayoutClient from './LayoutClient';
+import { SITE_URL } from '@/lib/site';
 import '@/styles/main.scss';
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: '/assets/image/favicon/apple-icon.png', sizes: '180x180', type: 'image/png' }],
   },
-  keywords: ['맞춤 박스 제작', '소량 박스 제작', '패키지 샘플 제작', '박스 샘플', '새로운 형태의 박스', '맞춤 패키지', '소량 패키지 제작', '종이 박스 제작', '드림박스', 'DreamBox', '사바리박스', '싸바리박스', '쇼핑백'],
+  keywords: ['맞춤 박스 제작', '소량 박스 제작', '패키지 샘플 제작', '박스 샘플', '구조 샘플 무료', '샘플 무료', '새로운 형태의 박스', '맞춤 패키지', '소량 패키지 제작', '종이 박스 제작', '드림박스', 'DreamBox', '사바리박스', '싸바리박스', '쇼핑백', '시딩박스', '단상자', '인쇄물 제작', '커스텀박스'],
   authors: [{ name: '드림박스 | DreamBox' }],
   creator: '드림박스 | DreamBox',
   publisher: '드림박스 | DreamBox',
@@ -29,17 +30,17 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://www.dreambox.kr'),
+  metadataBase: new URL(SITE_URL),
   openGraph: {
-    title: '드림박스 | DreamBox',
-    description: '새로운 형태의 패키지를 직접 제작해 샘플로 확인할 수 있습니다. 컨펌 후 생산과 납기까지 관리하여 소량 제작이 가능합니다.',
-    url: 'https://www.dreambox.kr',
+    title: '싸바리박스 단상자 패키지제작 맞춤패키지 맞춤박스 제작 전문업체 드림박스 | 구조 샘플 무료',
+    description: '구조 샘플 무료. 싸바리박스 단상자 패키지제작 맞춤패키지 맞춤박스 제작 전문 업체 드림박스입니다. 무료 샘플 컨펌 후 소량 제작 가능합니다.',
+    url: SITE_URL,
     siteName: '드림박스 | DreamBox',
     locale: 'ko_KR',
     type: 'website',
     images: [
       {
-        url: '/assets/image/dreambox_og.png',
+        url: '/assets/image/og.png',
         width: 1200,
         height: 630,
         alt: '드림박스 | DreamBox',
@@ -48,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '드림박스 | DreamBox',
-    description: '새로운 형태의 패키지를 직접 제작해 샘플로 확인할 수 있습니다. 컨펌 후 생산과 납기까지 관리하여 소량 제작이 가능합니다.',
-    images: ['/assets/image/dreambox_og.png'],
+    title: '싸바리박스 단상자 패키지제작 맞춤패키지 맞춤박스 제작 전문업체 드림박스 | 구조 샘플 무료',
+    description: '구조 샘플 무료. 싸바리박스 단상자 패키지제작 맞춤패키지 맞춤박스 제작 전문 업체 드림박스입니다. 무료 샘플 컨펌 후 소량 제작 가능합니다.',
+    images: ['/assets/image/og.png'],
   },
   robots: {
     index: true,
