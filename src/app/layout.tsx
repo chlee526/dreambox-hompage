@@ -72,6 +72,25 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      name: '드림박스',
+      alternateName: 'DreamBox',
+      url: SITE_URL,
+      logo: `${SITE_URL}/assets/image/home/logo.svg`,
+    },
+    {
+      '@type': 'WebSite',
+      name: '드림박스',
+      alternateName: 'DreamBox',
+      url: SITE_URL,
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -80,6 +99,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body suppressHydrationWarning>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <ReactQueryClientProvider>
           <LayoutClient>{children}</LayoutClient>
         </ReactQueryClientProvider>
