@@ -67,7 +67,7 @@ export const metadata: Metadata = {
   verification: {
     google: 'APLzo29RwuHS0VcWpgNV_ASjcTvCXUCE3n8h64c_eJ4', // Google Search Console 인증 코드
     other: {
-      'naver-site-verification': '0ef9e6c69a9dd9f986a51d3df42bc0d7d443b7cd', // 네이버 웹마스터 인증 코드
+      'naver-site-verification': ['0ef9e6c69a9dd9f986a51d3df42bc0d7d443b7cd', '628191e58308b482e2e4f9c6ca549dd521f1ce35'], // 네이버 웹마스터 인증 코드
     },
   },
 };
