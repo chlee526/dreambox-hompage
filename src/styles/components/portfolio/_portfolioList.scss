@@ -1,127 +1,147 @@
 .page-portfolio {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+
+  > .l-inner {
+    > .page-header {
+      display: flex;
+      align-items: flex-end;
+      gap: 3.6rem;
+      row-gap: 1.6rem;
+      flex-wrap: wrap;
+
+      > .page-desc {
+        margin-top: 0;
+        padding-bottom: 0.6rem;
+        font-size: 1.6rem;
+
+        @include mobile {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
 }
 
 .portfolio-content {
-    width: 100%;
+  width: 100%;
 }
 
 .category-tab-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 2.8rem;
-    row-gap: 0.8rem;
-    margin: 3.2rem 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.8rem;
+  row-gap: 0.8rem;
+  margin: 3.2rem 0;
 
-    .category-tab-item {
-        button {
-            padding: 0.6rem 0.8rem;
-            border-bottom: 1px solid transparent;
+  .category-tab-item {
+    button {
+      padding: 0.6rem 0.8rem;
+      border-bottom: 1px solid transparent;
 
-            font-size: 1.8rem;
-            font-weight: 500;
-            color: #888;
-            background: #fff;
-            transition: all 0.2s ease;
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #888;
+      background: #fff;
+      transition: all 0.2s ease;
 
-            @include mobile {
-                font-size: 1.6rem;
-            }
+      @include mobile {
+        font-size: 1.6rem;
+      }
 
-            &:hover {
-                color: $color-text-body;
-            }
-        }
-
-        &.is-active button {
-            border-color: $color-text-body;
-            color: $color-text-body;
-        }
+      &:hover {
+        color: $color-text-body;
+      }
     }
+
+    &.is-active button {
+      border-color: $color-text-body;
+      color: $color-text-body;
+    }
+  }
 }
 
 .portfolio-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.6rem;
 
-    &-item {
-        width: 100%;
-        max-width: 38rem;
-        height: 50vw;
-        max-height: 40rem; // 브라우저 너비의 절반 → 화면 크기에 따라 자동 축소
+  &-item {
+    width: 100%;
+    max-width: 38rem;
+    height: 50vw;
+    max-height: 40rem; // 브라우저 너비의 절반 → 화면 크기에 따라 자동 축소
 
-        position: relative;
-        overflow: hidden;
+    position: relative;
+    overflow: hidden;
 
-        > .image-wrap {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            transition: height 0.35s ease-in;
+    > .image-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      transition: height 0.35s ease-in;
 
-            > img {
-                // next/image의 fill이 position/inset/width/height를 인라인으로 지정하므로 object-fit, opacity만 제어
-                object-fit: contain;
-                transition: opacity 0.35s ease-in-out; // opacity만 animate
+      > img {
+        // next/image의 fill이 position/inset/width/height를 인라인으로 지정하므로 object-fit, opacity만 제어
+        object-fit: contain;
+        transition: opacity 0.35s ease-in-out; // opacity만 animate
 
-                &.img-hover {
-                    opacity: 0;
-                }
-            }
+        &.img-hover {
+          opacity: 0;
         }
+      }
+    }
 
-        > .name-wrap {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 20%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transform: translateY(100%);
-            transition: transform 0.35s ease-in;
-            background-color: #fff;
+    > .name-wrap {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: translateY(100%);
+      transition: transform 0.35s ease-in;
+      background-color: #fff;
 
-            > span {
-                text-align: center;
-                font-size: 1.8rem;
-                font-weight: 500;
-            }
+      > span {
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+    }
+
+    &:hover {
+      border: 1px solid #eaeaea;
+      > .image-wrap {
+        height: 80%;
+
+        > .img-default {
+          opacity: 0;
         }
-
-        &:hover {
-            border: 1px solid #eaeaea;
-            > .image-wrap {
-                height: 80%;
-
-                > .img-default {
-                    opacity: 0;
-                }
-                > .img-hover {
-                    opacity: 1;
-                }
-            }
-
-            > .name-wrap {
-                transform: translateY(0);
-            }
+        > .img-hover {
+          opacity: 1;
         }
-    }
+      }
 
-    @include tablet {
-        grid-template-columns: repeat(3, 1fr);
+      > .name-wrap {
+        transform: translateY(0);
+      }
     }
+  }
 
-    @include mobile {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-    @include mobile-s {
-        grid-template-columns: 1fr;
-    }
+  @include mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile-s {
+    grid-template-columns: 1fr;
+  }
 }

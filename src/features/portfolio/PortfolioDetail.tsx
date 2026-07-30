@@ -59,7 +59,7 @@ export default function PortfolioDetail({ seq }: PortfolioDetailProps) {
           </div>
           <div className="desc-area">
             <div className="title">
-              <strong>{detailData.name}</strong>
+              <h1>{detailData.name}</h1>
             </div>
             <div className="wrap">
               <ul className="info-data-list">

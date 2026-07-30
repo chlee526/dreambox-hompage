@@ -38,11 +38,11 @@ export default function PortfolioSection({ isActive }: Props) {
     <section className="portfolio-section">
       <div className="lc">
         <div className="text-wrap" key={animKey}>
-          <strong className="title">PORTFOLIO</strong>
-          <p className="desc">어떤 제품이든, 어떤 형태든 원하는 패키지를 만들어드립니다</p>
-          <button className="more-btn">
-            <Link href="/portfolio">MORE</Link>
-          </button>
+          <h2 className="title">PORTFOLIO</h2>
+          <p className="desc">시딩박스 등 시중에 없는 형태도, 어떤 제품이든 원하는 패키지로 만들어드립니다</p>
+          <Link href="/portfolio" className="more-btn">
+            MORE
+          </Link>
         </div>
       </div>
       <div className="rc">

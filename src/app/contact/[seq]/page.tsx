@@ -1,8 +1,15 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import InquireForm from '@/features/contact/inquire/InquireForm';
 import { packageList } from '@/features/contact/inquire/packageData';
+
+// 개별 문의자의 이름·연락처·이메일이 노출될 수 있어 색인 및 링크 추적 모두 차단
+export const metadata: Metadata = {
+    title: '견적 문의 상세 - 드림박스',
+    robots: { index: false, follow: false },
+};
 
 export default async function ContactDetailPage({ params }: { params: Promise<{ seq: string }> }) {
     const { seq } = await params;
@@ -18,7 +25,7 @@ export default async function ContactDetailPage({ params }: { params: Promise<{ 
         <section className="l-page page-contact-inquire">
             <div className="l-inner">
                 <div className="page-header">
-                    <strong className="page-title">견적 문의 상세</strong>
+                    <h1 className="page-title">견적 문의 상세</h1>
                     <span className="text">문의를 남겨 주시면 담당자가 확인 후 연락처 및 이메일로 답변드립니다</span>
                 </div>
                 <div className="status-area">

@@ -50,7 +50,7 @@ export default function Footer() {
           <div className="rc">
             <div className="logo-wrap">
               <Link href="/" className="logo">
-                <Image src="/assets/image/home/logo_white.svg" alt="logo" width={237} height={49} unoptimized />
+                <Image src="/assets/image/home/logo_white.svg" alt="드림박스 로고" width={237} height={49} unoptimized />
               </Link>
             </div>
           </div>

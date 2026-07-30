@@ -27,9 +27,9 @@ export default function Banner({ isActive }: Props) {
     return (
         <section className="home-banner-section">
             <div className="text-wrap" key={animKey}>
-                <p className="text-1">
+                <h1 className="text-1">
                     <strong>패키지</strong>가 <strong>브랜드</strong>가 됩니다
-                </p>
+                </h1>
                 <p className="text-2">
                     소량 맞춤형부터 대량 생산까지 <br />
                     제품에 맞는 패키지를 제안합니다

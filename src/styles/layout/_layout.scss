@@ -1,81 +1,94 @@
 // @import '@/styles/utils/mixins';
 
 .app-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  flex-shrink: 0;
 }
 
 .l-page {
-    width: 100%;
-    max-width: 182rem;
-    height: 100%;
-    min-height: 100vh;
-    padding: 10.1rem 0 6rem 0;
-    margin: 0 auto;
-    background-color: #fff;
+  width: 100%;
+  max-width: 182rem;
+  height: 100%;
+  min-height: 100vh;
+  padding: 10.1rem 0 6rem 0;
+  margin: 0 auto;
+  background-color: #fff;
 
-    @include mobile {
-        padding: 7.8rem 0 1.6rem 0;
-    }
+  @include mobile {
+    padding: 7.8rem 0 1.6rem 0;
+  }
 }
 
 .l-inner {
-    position: relative;
-    width: 100%;
-    max-width: 182rem;
-    height: 100%;
-    padding: 0 3rem;
-    margin: 0 auto;
-    transition: padding 0.3s;
+  position: relative;
+  width: 100%;
+  max-width: 182rem;
+  height: 100%;
+  padding: 0 3rem;
+  margin: 0 auto;
+  transition: padding 0.3s;
+
+  @include mobile {
+    padding: 0 1.6rem;
+  }
+
+  .page-header {
+    margin-bottom: 3.2rem;
 
     @include mobile {
-        padding: 0 1.6rem;
+      margin-bottom: 0;
+    }
+  }
+
+  .page-title {
+    display: inline-block;
+    font-size: 6rem;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.6rem;
+    animation: fadeInUp 0.3s ease-out both;
+
+    @include tablet {
+      font-size: 4.8rem;
     }
 
-    .page-header {
-        margin-bottom: 3.2rem;
-
-        @include mobile {
-            margin-bottom: 0;
-        }
+    @include mobile {
+      font-size: 3.8rem;
     }
 
-    .page-title {
-        font-size: 6rem;
-        font-weight: 600;
-        position: relative;
-        padding-bottom: 0.6rem;
-        animation: fadeInUp 0.3s ease-out both;
-
-        @include tablet {
-            font-size: 4.8rem;
-        }
-
-        @include mobile {
-            font-size: 3.8rem;
-        }
-
-        &::after {
-            content: '';
-            display: block;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50%;
-            height: 0.2rem;
-            background-color: $color-text-body;
-            animation: drawLine 0.6s ease-out both;
-            animation-delay: 0.4s;
-        }
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50%;
+      height: 0.2rem;
+      background-color: $color-text-body;
+      animation: drawLine 0.6s ease-out both;
+      animation-delay: 0.4s;
     }
+  }
+
+  .page-desc {
+    // margin-top: 1.6rem;
+    font-size: 2rem;
+    font-weight: 400;
+    color: $color-text-gray;
+    word-break: keep-all;
+
+    @include mobile {
+      font-size: 1.6rem;
+    }
+  }
 }
 
 .home-swiper {
-    height: 100vh;
+  height: 100vh;
 
-    .swiper-slide {
-        overflow-y: auto;
-    }
+  .swiper-slide {
+    overflow-y: auto;
+  }
 }

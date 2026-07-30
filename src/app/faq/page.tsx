@@ -39,12 +39,26 @@ const faqList = [
     },
 ];
 
+const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqList.map((item) => ({
+        '@type': 'Question',
+        name: item.question.trim(),
+        acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.answer.replace(/\n/g, ' ').trim(),
+        },
+    })),
+};
+
 export default async function FaqPage() {
     return (
         <section className="l-page page-faq">
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
             <div className="l-inner">
                 <div className="page-header">
-                    <strong className="page-title">FAQ</strong>
+                    <h1 className="page-title">FAQ</h1>
                 </div>
                 <div className="content-wrap">
                     <ul className="faq-list">

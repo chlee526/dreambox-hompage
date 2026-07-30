@@ -20,7 +20,8 @@ export default async function PortfolioPage() {
     <section className="l-page page-portfolio">
       <div className="l-inner">
         <div className="page-header">
-          <strong className="page-title">OUR WORK</strong>
+          <h1 className="page-title">OUR WORK</h1>
+          <p className="page-desc">싸바리박스, 단상자부터 시딩박스 같은 특이한 구조, 인쇄물까지. 드림박스 제작 사례를 아래에서 확인하세요</p>
         </div>
 
         {/* 클라이언트 컴포넌트로 필터링 및 인터랙션 처리 */}

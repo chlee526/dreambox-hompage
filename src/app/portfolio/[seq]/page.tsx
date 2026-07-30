@@ -11,7 +11,13 @@ interface PortfolioDetailPageProps {
 export async function generateMetadata({ params }: PortfolioDetailPageProps): Promise<Metadata> {
     const { seq } = await params;
     const item = portfolioData.find((p) => p.seq === seq);
-    if (!item) return {};
+    if (!item) {
+        return {
+            title: '포트폴리오를 찾을 수 없습니다',
+            description: '요청하신 포트폴리오 페이지를 찾을 수 없습니다. 드림박스의 다른 제작 사례를 확인해 보세요.',
+            robots: { index: false, follow: true },
+        };
+    }
 
     const title = `${item.name} 제작사례`;
     const description = (item.infos?.map((i) => `${i.topic} ${i.info}`).join(' · ') || `${item.name} 박스제작 포트폴리오`).slice(0, 150);
