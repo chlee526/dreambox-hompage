@@ -33,7 +33,7 @@ export default function Footer() {
           <div className="lc">
             <div className="info">
               <span className="tel">Tel. 010-5290-8856</span>
-              <span className="email">E-mail. dreambox13@hanmail.net</span>
+              <span className="email">E-mail. dreambox13@daum.net</span>
             </div>
             <div className="company">
               <span className="name">(주)드림박스</span>
