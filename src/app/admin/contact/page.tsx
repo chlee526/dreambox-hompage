@@ -4,6 +4,21 @@ import ContactTable from '@/features/contact/ContactTable';
 
 export const dynamic = 'force-dynamic';
 
+const formatDateTime = (iso: string) => {
+    const parts = new Intl.DateTimeFormat('ko-KR', {
+        timeZone: 'Asia/Seoul',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+    }).formatToParts(new Date(iso));
+    const get = (type: string) => parts.find((p) => p.type === type)?.value ?? '';
+    return `${get('year')}.${get('month')}.${get('day')} ${get('hour')}:${get('minute')}:${get('second')}`;
+};
+
 export default async function AdminContactPage() {
     await requireAuth();
 
@@ -14,7 +29,7 @@ export default async function AdminContactPage() {
         seq: item.seq,
         title: item.title,
         author: item.name,
-        date: item.created_at.slice(0, 10).replace(/-/g, '.'),
+        date: formatDateTime(item.created_at),
     }));
 
     return (

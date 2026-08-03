@@ -94,7 +94,7 @@ export default function ContactTable({ data, perPage = 10, detailBasePath }: Con
                             <td>{filtered.length - (startIndex + index)}</td>
                             <td className="title">
                                 <span onClick={() => handleTitleClick(item.seq)}>{item.title}</span>
-                                {item.date === today && <span className="new-badge">N</span>}
+                                {item.date.slice(0, 10) === today && <span className="new-badge">N</span>}
                             </td>
                             <td>{maskAuthor(item.author)}</td>
                             <td>{item.date}</td>
