@@ -9,6 +9,7 @@ interface ContactItem {
     title: string;
     author: string;
     date: string;
+    status?: string;
 }
 
 interface ContactTableProps {
@@ -94,6 +95,9 @@ export default function ContactTable({ data, perPage = 10, detailBasePath }: Con
                             <td>{filtered.length - (startIndex + index)}</td>
                             <td className="title">
                                 <span onClick={() => handleTitleClick(item.seq)}>{item.title}</span>
+                                {detailBasePath && (
+                                    <span className={`status-badge ${item.status === '답변완료' ? 'is-done' : 'is-received'}`}>{item.status ?? '접수완료'}</span>
+                                )}
                                 {item.date.slice(0, 10) === today && <span className="new-badge">N</span>}
                             </td>
                             <td>{maskAuthor(item.author)}</td>

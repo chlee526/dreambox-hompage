@@ -90,6 +90,26 @@
             }
           }
 
+          .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            vertical-align: middle;
+
+            &.is-received {
+              background-color: #fff4e5;
+              color: #e88c01;
+            }
+
+            &.is-done {
+              background-color: #e8f5e9;
+              color: #2e7d32;
+            }
+          }
+
           thead tr {
             border-top: 2px solid $color-text-body;
             border-bottom: 1px solid $color-text-body;
@@ -114,28 +134,29 @@
               gap: 0.6rem;
               text-align: left;
 
-              > span {
+              > span:not(.new-badge):not(.status-badge) {
                 cursor: pointer;
 
                 &:hover {
                   text-decoration: underline;
                 }
               }
+            }
 
-              .new-badge {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                padding: 0 0.4rem;
-                height: 1.7rem;
-                border-radius: 0.3rem;
-                background-color: #fc7b44;
-                font-size: 1.1rem;
-                line-height: 1;
-                font-weight: 700;
-                color: #ffffff;
-                vertical-align: middle;
-              }
+            .new-badge {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0 0.4rem;
+              height: 1.7rem;
+              margin-left: 0.6rem;
+              border-radius: 0.3rem;
+              background-color: #fc7b44;
+              font-size: 1.1rem;
+              line-height: 1;
+              font-weight: 700;
+              color: #ffffff;
+              vertical-align: middle;
             }
           }
         }

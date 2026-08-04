@@ -23,13 +23,14 @@ export default async function AdminContactPage() {
     await requireAuth();
 
     const supabase = await createClient();
-    const { data } = await supabase.from('inquire').select('seq, title, name, created_at').order('created_at', { ascending: false });
+    const { data } = await supabase.from('inquire').select('seq, title, name, created_at, status').order('created_at', { ascending: false });
 
     const contactList = (data ?? []).map((item) => ({
         seq: item.seq,
         title: item.title,
         author: item.name,
         date: formatDateTime(item.created_at),
+        status: item.status ?? '접수완료',
     }));
 
     return (
