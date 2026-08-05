@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 
 import ReactQueryClientProvider from '@/app/_provider/ReactQueryClientProvider';
 import LayoutClient from './LayoutClient';
+import NaverWcsPageviewTracker from '@/components/analytics/NaverWcsPageviewTracker';
 import { SITE_URL } from '@/lib/site';
 import '@/styles/main.scss';
 
@@ -127,6 +129,20 @@ export default function RootLayout({
     <html lang="ko">
       <body suppressHydrationWarning>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        {/* 네이버 검색광고 전환추적 공통 스크립트 */}
+        <Script src="//wcs.naver.net/wcslog.js" strategy="afterInteractive" />
+        <Script id="naver-wcs-init" strategy="afterInteractive">
+          {`
+            if (!wcs_add) var wcs_add = {};
+            wcs_add["wa"] = "s_54bed3cebebc";
+            if (!_nasa) var _nasa = {};
+            if (window.wcs) {
+              wcs.inflow();
+              wcs_do();
+            }
+          `}
+        </Script>
+        <NaverWcsPageviewTracker />
         <ReactQueryClientProvider>
           <LayoutClient>{children}</LayoutClient>
         </ReactQueryClientProvider>

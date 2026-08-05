@@ -151,6 +151,11 @@ export default function InquireForm({ packageList, initialData, adminMode = fals
         if (error) {
             alert(isEdit ? '수정에 실패했습니다. 다시 시도해 주세요.' : '문의 등록에 실패했습니다. 다시 시도해 주세요.');
         } else {
+            if (!isEdit && window.wcs) {
+                window.wcs_add = window.wcs_add ?? {};
+                window.wcs_add['wa'] = 's_54bed3cebebc';
+                window.wcs.trans({ type: 'lead' });
+            }
             alert(isEdit ? '수정이 완료되었습니다.' : '문의가 등록되었습니다.\n빠른 시일 내에 답변드리겠습니다.');
             router.push('/contact');
         }
