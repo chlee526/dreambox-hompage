@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="l-inner">
           <div className="lc">
             <div className="info">
-              <span className="tel">Tel. 010-5290-8856</span>
+              <span className="tel">Tel. 010-9844-5040</span>
               <span className="email">E-mail. dreambox13@daum.net</span>
             </div>
             <div className="company">
