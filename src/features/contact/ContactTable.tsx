@@ -26,9 +26,11 @@ const maskName = (name: string) => {
 };
 
 const maskAuthor = (author: string) => {
-    if (author.includes(' / ')) {
-        const [name, ...rest] = author.split(' / ');
-        return maskName(name) + ' / ' + rest.join(' / ');
+    const slashIndex = author.indexOf('/');
+    if (slashIndex !== -1) {
+        const namePart = author.slice(0, slashIndex).trim();
+        const restPart = author.slice(slashIndex + 1).trim();
+        return maskName(namePart) + (restPart ? ` / ${restPart}` : '');
     }
     const spaceIndex = author.indexOf(' ');
     if (spaceIndex !== -1) {
