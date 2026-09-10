@@ -67,6 +67,10 @@
           }
           .col-author {
             width: 8rem;
+
+            .admin-layout & {
+              width: 10rem;
+            }
           }
           .col-date {
             width: 15rem;
@@ -218,6 +222,10 @@
               background-color: $color-text-body;
               color: #fff;
               border-color: $color-text-body;
+
+              img {
+                filter: brightness(0) invert(1);
+              }
             }
 
             &.active {
@@ -233,7 +241,14 @@
 
             &.prev,
             &.next {
-              padding: 0 1.2rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 0;
+
+              img {
+                transition: filter 0.15s ease;
+              }
             }
           }
         }

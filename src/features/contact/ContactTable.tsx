@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import PwModal from './PwModal';
 
 interface ContactItem {
@@ -114,7 +115,7 @@ export default function ContactTable({ data, perPage = 10, detailBasePath }: Con
 
             <div className="pagination">
                 <button className="page-btn prev" onClick={() => setCurrentPage((p) => Math.max(1, p - 1))} disabled={currentPage === 1}>
-                    이전
+                    <Image src="/assets/image/icon/chevron-left.svg" alt="이전" width={20} height={20} unoptimized />
                 </button>
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                     <button key={page} className={`page-btn${currentPage === page ? ' active' : ''}`} onClick={() => setCurrentPage(page)}>
@@ -122,7 +123,7 @@ export default function ContactTable({ data, perPage = 10, detailBasePath }: Con
                     </button>
                 ))}
                 <button className="page-btn next" onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages}>
-                    다음
+                    <Image src="/assets/image/icon/chevron-right.svg" alt="다음" width={20} height={20} unoptimized />
                 </button>
             </div>
 
