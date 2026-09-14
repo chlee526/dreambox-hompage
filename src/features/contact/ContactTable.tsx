@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import PwModal from './PwModal';
+import { getKstToday } from '@/lib/date';
 
 interface ContactItem {
     seq: number;
@@ -40,7 +41,7 @@ const maskAuthor = (author: string) => {
     return maskName(author);
 };
 
-const today = new Date().toISOString().slice(0, 10).replace(/-/g, '.');
+const today = getKstToday();
 
 export default function ContactTable({ data, perPage = 10, detailBasePath }: ContactTableProps) {
     const router = useRouter();

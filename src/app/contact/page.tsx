@@ -2,6 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import ContactTable from '@/features/contact/ContactTable';
 import { createClient } from '@/lib/supabase/server';
+import { formatKstDate } from '@/lib/date';
 
 export const dynamic = 'force-dynamic';
 
@@ -20,7 +21,7 @@ export default async function ContactPage() {
     seq: item.seq,
     title: item.title,
     author: item.name,
-    date: item.created_at.slice(0, 10).replace(/-/g, '.'),
+    date: formatKstDate(item.created_at),
   }));
 
   return (
