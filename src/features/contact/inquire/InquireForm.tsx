@@ -164,7 +164,10 @@ export default function InquireForm({ packageList, initialData, adminMode = fals
     return (
         <form onSubmit={handleSubmit}>
             <div className="info-item default">
-                <div className="header">고객 기본 정보</div>
+                <div className="header">
+                    고객 기본 정보
+                    {adminMode && initialData?.seq != null && <span className="seq">No.{initialData.seq}</span>}
+                </div>
                 <div className="row">
                     <div className="row-item w-[50%]">
                         <strong className="require">업체명</strong>
