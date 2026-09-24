@@ -21,4 +21,6 @@ export interface InquireData {
     content: string | null;
     files: string[] | null;
     status?: string; // '접수완료' | '답변완료'
+    reply_link?: string | null;
+    created_at?: string;
 }

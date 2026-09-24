@@ -6,6 +6,7 @@ import PackageSelect from './PackageSelect';
 import FileUpload from '@/components/ui/FileUpload';
 import OpenPrivacyBtn from './OpenPrivacyBtn';
 import { createBrowserSupabaseClient } from '@/lib/supabase/client';
+import { formatKstDateTime } from '@/lib/date';
 import type { PackageItem, InquireData } from '@/types/contactTypes';
 
 interface InquireFormProps {
@@ -167,6 +168,7 @@ export default function InquireForm({ packageList, initialData, adminMode = fals
                 <div className="header">
                     고객 기본 정보
                     {adminMode && initialData?.seq != null && <span className="seq">No.{initialData.seq}</span>}
+                    {adminMode && initialData?.created_at && <span className="seq">{formatKstDateTime(initialData.created_at)}</span>}
                 </div>
                 <div className="row">
                     <div className="row-item w-[50%]">

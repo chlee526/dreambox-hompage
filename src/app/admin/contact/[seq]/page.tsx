@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import InquireForm from '@/features/contact/inquire/InquireForm';
 import { packageList } from '@/features/contact/inquire/packageData';
 import StatusControl from '@/features/admin/contact/StatusControl';
+import ReplyLinkControl from '@/features/admin/contact/ReplyLinkControl';
 
 export default async function AdminContactDetailPage({ params }: { params: Promise<{ seq: string }> }) {
   await requireAuth();
@@ -20,7 +21,10 @@ export default async function AdminContactDetailPage({ params }: { params: Promi
         <div className="page-header">
           <h2 className="page-title">견적 문의 관리</h2>
         </div>
-        <StatusControl seq={data.seq} status={data.status ?? '접수완료'} />
+        <div className="admin-controls-row">
+          <StatusControl seq={data.seq} status={data.status ?? '접수완료'} />
+          <ReplyLinkControl seq={data.seq} replyLink={data.reply_link} />
+        </div>
         <div className="content-wrap">
           <InquireForm
             packageList={packageList}
@@ -42,6 +46,7 @@ export default async function AdminContactDetailPage({ params }: { params: Promi
               budget: data.budget,
               content: data.content,
               files: data.files,
+              created_at: data.created_at,
             }}
           />
         </div>

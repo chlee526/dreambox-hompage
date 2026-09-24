@@ -28,6 +28,7 @@ export type Database = {
           content: string | null;
           files: string[] | null;
           status: string;
+          reply_link: string | null;
           created_at: string;
         };
         Insert: {
@@ -49,6 +50,7 @@ export type Database = {
           content?: string | null;
           files?: string[] | null;
           status?: string;
+          reply_link?: string | null;
           created_at?: string;
         };
         Update: {
@@ -70,6 +72,7 @@ export type Database = {
           content?: string | null;
           files?: string[] | null;
           status?: string;
+          reply_link?: string | null;
           created_at?: string;
         };
         Relationships: [];
