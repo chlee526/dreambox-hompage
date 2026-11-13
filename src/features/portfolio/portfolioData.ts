@@ -6,6 +6,23 @@
 
 export const portfolioData = [
   {
+    seq: 'db_030',
+    name: 'DOB 고데기 시딩패키지',
+    category: ['plan', 'savary'],
+    isSlide: false,
+    slideList: [{ url: '/assets/image/portfolio/db_030/img1.png' }, { url: '/assets/image/portfolio/db_030/img2.png' }, { url: '/assets/image/portfolio/db_030/img3.png' }, { url: '/assets/image/portfolio/db_030/img8.png' }],
+    thumbnailList: [{ url: '/assets/image/portfolio/db_030/thum1.png' }, { url: '/assets/image/portfolio/db_030/thum2.png' }],
+    imgList: [{ url: '/assets/image/portfolio/db_030/img1.png' }, { url: '/assets/image/portfolio/db_030/img2.png' }, { url: '/assets/image/portfolio/db_030/img3.png' }, { url: '/assets/image/portfolio/db_030/img4.png' }, , { url: '/assets/image/portfolio/db_030/img5.png' }, { url: '/assets/image/portfolio/db_030/img6.png' }, { url: '/assets/image/portfolio/db_030/img7.png' }],
+    infos: [
+      { topic: '품명', info: 'DOB - 고데기 시딩패키지' },
+      { topic: '형태', info: '표지+지함형 싸바리' },
+      { topic: '지종', info: '아트지 140g, 백KE골 × 아이보리 300g(패드)' },
+      { topic: '인쇄', info: '인디고 인쇄' },
+      { topic: '코팅', info: '무광 라미' },
+      { topic: '부자재', info: '단면끈' },
+    ],
+  },
+  {
     seq: 'db_029',
     name: 'Spotify House 서울',
     category: ['plan', 'savary'],
@@ -60,7 +77,7 @@ export const portfolioData = [
       { topic: '인쇄', info: 'UV인쇄 별색 2도' },
       { topic: '코팅', info: '무광 라미네이팅' },
       { topic: '후가공', info: '음각형압' },
-      { topic: '부자재', info: 'PET, 골지끈' },
+      { topic: '부자재', info: 'PET, 골직끈' },
     ],
   },
   {
@@ -78,7 +95,7 @@ export const portfolioData = [
       { topic: '인쇄', info: '옵셋인쇄 별색 2도' },
       { topic: '코팅', info: '벨벳 코팅' },
       { topic: '후가공', info: '금박' },
-      { topic: '부자재', info: '골지끈' },
+      { topic: '부자재', info: '골직끈' },
     ],
   },
   {
@@ -113,7 +130,7 @@ export const portfolioData = [
       { topic: '인쇄', info: '옵셋인쇄 별색 2도, 별색 1도' },
       { topic: '코팅', info: '무광 라미네이팅' },
       { topic: '후가공', info: '양각형압' },
-      { topic: '부자재', info: 'PET, 게또바시, 골지끈' },
+      { topic: '부자재', info: 'PET, 게또바시, 골직끈' },
     ],
   },
   {
@@ -148,7 +165,7 @@ export const portfolioData = [
       { topic: '인쇄', info: '옵셋 인쇄 별색 1도' },
       { topic: '코팅', info: '무광 라미네이팅' },
       { topic: '후가공', info: '은박' },
-      { topic: '부자재', info: '골지끈' },
+      { topic: '부자재', info: '단면끈' },
     ],
   },
   {
@@ -182,7 +199,7 @@ export const portfolioData = [
       { topic: '지종', info: '알리킹 수입지 300g, SC마닐라 400g' },
       { topic: '인쇄', info: '옵셋인쇄 별색 1도' },
       { topic: '코팅', info: '무광 라미네이팅' },
-      { topic: '부자재', info: '골지끈' },
+      { topic: '부자재', info: '골직끈' },
     ],
   },
   {
@@ -235,21 +252,7 @@ export const portfolioData = [
       { topic: '후가공', info: '금박 + 음각형압' },
     ],
   },
-  {
-    seq: 'db_025',
-    name: 'OLENS 샘플 패키지',
-    category: ['dan'],
-    isSlide: false,
-    thumbnailList: [{ url: '/assets/image/portfolio/db_025/thum1.png' }, { url: '/assets/image/portfolio/db_025/thum2.png' }],
-    imgList: [{ url: '/assets/image/portfolio/db_025/img1.png' }, { url: '/assets/image/portfolio/db_025/img2.png' }, { url: '/assets/image/portfolio/db_025/img3.png' }, { url: '/assets/image/portfolio/db_025/img4.png' }, { url: '/assets/image/portfolio/db_025/img5.png' }],
-    infos: [
-      { topic: '품명', info: 'OLENS - 오렌즈 샘플 패키지' },
-      { topic: '형태', info: '단상자' },
-      { topic: '지종', info: '로얄아이보리 300g' },
-      { topic: '인쇄', info: '원색 2도 + 별색 4도' },
-      { topic: '후가공', info: '은박 + 양각형압' },
-    ],
-  },
+
   {
     seq: 'db_022',
     name: '조니워커 블루라벨 패키지',
