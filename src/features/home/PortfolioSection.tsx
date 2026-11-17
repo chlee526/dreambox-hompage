@@ -3,7 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
 import { portfolioData } from '@/features/portfolio/portfolioData';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -29,8 +30,7 @@ export default function PortfolioSection({ isActive }: Props) {
     }
   }, [isActive]);
 
-  const prevRef = useRef<HTMLButtonElement>(null);
-  const nextRef = useRef<HTMLButtonElement>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
 
   const slideList = portfolioData.filter((item) => item.isSlide);
 
@@ -49,17 +49,10 @@ export default function PortfolioSection({ isActive }: Props) {
         <div className="image-wrap" key={animKey}>
           <Swiper
             className="portfolio-swiper"
-            modules={[Navigation, Pagination, Autoplay, EffectFade]}
+            modules={[Pagination, Autoplay, EffectFade]}
             effect="fade"
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
-            onBeforeInit={(swiper) => {
-              if (typeof swiper.params.navigation !== 'boolean') {
-                swiper.params.navigation!.prevEl = prevRef.current;
-                swiper.params.navigation!.nextEl = nextRef.current;
-              }
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
             }}
             pagination={{ clickable: true }}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -77,10 +70,10 @@ export default function PortfolioSection({ isActive }: Props) {
               </SwiperSlide>
             ))}
           </Swiper>
-          <button ref={prevRef} className="portfolio-nav-btn portfolio-nav-btn--prev">
+          <button type="button" className="portfolio-nav-btn portfolio-nav-btn--prev" onClick={() => swiperRef.current?.slidePrev()}>
             <Image src="/assets/image/icon/chevron-left.svg" alt="이전" width={24} height={24} unoptimized />
           </button>
-          <button ref={nextRef} className="portfolio-nav-btn portfolio-nav-btn--next">
+          <button type="button" className="portfolio-nav-btn portfolio-nav-btn--next" onClick={() => swiperRef.current?.slideNext()}>
             <Image src="/assets/image/icon/chevron-right.svg" alt="다음" width={24} height={24} unoptimized />
           </button>
         </div>
